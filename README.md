@@ -18,8 +18,8 @@
 - Module 2：已完成
 - Module 3：已完成
 - Module 4：进行中
-- Module 4 当前已完成：第 1～6 课
-- 当前课程：第 7 课｜RPC 查询到底查到哪里：eth_getBalance、eth_getLogs 与 Node Storage 的访问路径
+- Module 4 当前已完成：第 1～7 课
+- 当前课程：第 8 课｜Logs Bloom、索引与缓存：为什么 eth_getLogs 仍然可能很慢？
 
 ## 目录
 

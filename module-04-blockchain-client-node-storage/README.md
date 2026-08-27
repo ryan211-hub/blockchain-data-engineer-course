@@ -11,7 +11,8 @@
 - 第 3 课：已完成
 - 第 4 课：已完成
 - 第 5 课：已完成
-- 第 6 课：学习中
+- 第 6 课：已完成
+- 第 7 课：学习中
 
 ## 课程索引
 
@@ -20,7 +21,8 @@
 3. [第3课｜State Trie：Ethereum 为什么不能只用普通 map<Address, Account>？](lesson-03-state-trie.md)
 4. [第4课｜Historical State、Pruning 与 Archive Node](lesson-04-historical-state-pruning.md)
 5. [第5课｜Archive Node 为什么贵：历史状态查询、存储成本与数据公司的基础设施选择](lesson-05-archive-node-cost.md)
-6. 第6课｜节点同步：为什么新节点不必总从 Genesis 重放？Full Sync、Snap Sync 与状态恢复（学习中）
+6. [第6课｜节点同步：为什么新节点不必总从 Genesis 重放？Full Sync、Snap Sync 与状态恢复](lesson-06-node-sync.md)
+7. 第7课｜RPC 查询到底查到哪里：eth_getBalance、eth_getLogs 与 Node Storage 的访问路径（学习中）
 
 ## 视角规则
 

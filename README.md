@@ -18,8 +18,8 @@
 - Module 2：已完成
 - Module 3：已完成
 - Module 4：进行中
-- Module 4 当前已完成：第 1～5 课
-- 当前课程：第 6 课｜节点同步：为什么新节点不必总从 Genesis 重放？Full Sync、Snap Sync 与状态恢复
+- Module 4 当前已完成：第 1～6 课
+- 当前课程：第 7 课｜RPC 查询到底查到哪里：eth_getBalance、eth_getLogs 与 Node Storage 的访问路径
 
 ## 目录
 

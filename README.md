@@ -18,7 +18,8 @@
 - Module 2：已完成
 - Module 3：已完成
 - Module 4：进行中
-- 当前课程：第 5 课｜Archive Node 为什么贵：历史状态查询、存储成本与数据公司的基础设施选择
+- Module 4 当前已完成：第 1～5 课
+- 当前课程：第 6 课｜节点同步：为什么新节点不必总从 Genesis 重放？Full Sync、Snap Sync 与状态恢复
 
 ## 目录
 

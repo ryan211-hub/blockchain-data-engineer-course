@@ -18,8 +18,8 @@
 - Module 2：已完成
 - Module 3：已完成
 - Module 4：进行中
-- Module 4 当前已完成：第 1～8 课
-- 当前课程：第 9 课｜LevelDB / RocksDB 为什么适合节点：LSM Tree、Compaction 与写放大
+- Module 4 当前已完成：第 1～9 课
+- 当前课程：第 10 课｜节点数据库故障与恢复：WAL、Crash Consistency、损坏与 Re-sync
 
 ## 目录
 

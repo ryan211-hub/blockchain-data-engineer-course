@@ -18,8 +18,8 @@
 - Module 2：已完成
 - Module 3：已完成
 - Module 4：进行中
-- Module 4 当前已完成：第 1～7 课
-- 当前课程：第 8 课｜Logs Bloom、索引与缓存：为什么 eth_getLogs 仍然可能很慢？
+- Module 4 当前已完成：第 1～8 课
+- 当前课程：第 9 课｜LevelDB / RocksDB 为什么适合节点：LSM Tree、Compaction 与写放大
 
 ## 目录
 

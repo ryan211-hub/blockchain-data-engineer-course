@@ -14,7 +14,8 @@
 - 第 6 课：已完成
 - 第 7 课：已完成
 - 第 8 课：已完成
-- 第 9 课：学习中
+- 第 9 课：已完成
+- 第 10 课：学习中
 
 ## 课程索引
 
@@ -26,7 +27,8 @@
 6. [第6课｜节点同步：为什么新节点不必总从 Genesis 重放？Full Sync、Snap Sync 与状态恢复](lesson-06-node-sync.md)
 7. [第7课｜RPC 查询到底查到哪里：eth_getBalance、eth_getLogs 与 Node Storage 的访问路径](lesson-07-rpc-node-storage.md)
 8. [第8课｜Logs Bloom、索引与缓存：为什么 eth_getLogs 仍然可能很慢？](lesson-08-logs-bloom-index-cache.md)
-9. 第9课｜LevelDB / RocksDB 为什么适合节点：LSM Tree、Compaction 与写放大（学习中）
+9. [第9课｜LevelDB / RocksDB 为什么适合节点：LSM Tree、Compaction 与写放大](lesson-09-lsm-tree-compaction.md)
+10. 第10课｜节点数据库故障与恢复：WAL、Crash Consistency、损坏与 Re-sync（学习中）
 
 ## 视角规则
 

@@ -17,13 +17,16 @@
 - Module 1：已完成
 - Module 2：已完成
 - Module 3：已完成
-- Module 4：进行中
-- Module 4 当前已完成：第 1～9 课
-- 当前课程：第 10 课｜节点数据库故障与恢复：WAL、Crash Consistency、损坏与 Re-sync
+- Module 4：✅ 已完成
+- Module 5：进行中
+- 当前课程：Module 5 第 1 课｜RPC 到底是什么：从 dApp 请求到 Node Client 的接口层
+- 当前课程状态：🟡 学习中（讲解已完成，理解检查尚未回答）
+- Module 4 结束说明：LevelDB / RocksDB 与 KV Storage 的两个校准点已提示，用户选择跳过，不作为进入 Module 5 的阻塞项。
 
 ## 目录
 
 - [Module 4 — Blockchain Client & Node Storage](module-04-blockchain-client-node-storage/README.md)
+- [Module 5 — RPC](module-05-rpc/README.md)
 
 ## 同步规则
 
@@ -31,7 +34,7 @@
 
 1. 在 ChatGPT 中完成理解检查。
 2. 将完整教材沉淀到 Notion。
-3. 将同一课整理为 Markdown 同步到 GitHub。
+3. 将同一课 Markdown 同步到 GitHub。
 4. 更新 Module 索引与仓库根目录进度。
 
 > Notion 负责课程导航和学习进度；GitHub 负责可版本化的教材、代码与项目成果。

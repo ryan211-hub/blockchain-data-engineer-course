@@ -8,7 +8,8 @@
 
 进行中。
 
-- 第 1 课：🟡 学习中（讲解已完成，理解检查尚未回答）
+- 第 1 课：✅ 已完成
+- 第 2 课：🟡 学习中
 
 ## Module Contract
 
@@ -35,8 +36,9 @@
 
 ## 课程索引
 
-1. [第1课｜RPC 到底是什么：从 dApp 请求到 Node Client 的接口层](lesson-01-rpc-basics.md) — 🟡 学习中
+1. [第1课｜RPC 到底是什么：从 dApp 请求到 Node Client 的接口层](lesson-01-rpc-basics.md) — ✅ 已完成
+2. [第2课｜一次 JSON-RPC 请求到底发生了什么：Method、Params、Response 与 Error](lesson-02-json-rpc-request-response.md) — 🟡 学习中
 
 ## 当前准确入口
 
-第 1 课讲解已经完成，下一步回答三个理解检查；完成校准后才能标记为 ✅ 已完成并进入第 2 课。
+第 2 课正式开始：理解 JSON-RPC Request / Response 的结构，以及 HTTP 与 JSON-RPC 的层级关系。

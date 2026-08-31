@@ -9,7 +9,9 @@
 进行中。
 
 - 第 1 课：✅ 已完成
-- 第 2 课：🟡 学习中
+- 第 2 课：✅ 已完成
+- 第 3 课：✅ 已完成
+- 第 4 课：🟡 学习中
 
 ## Module Contract
 
@@ -37,8 +39,10 @@
 ## 课程索引
 
 1. [第1课｜RPC 到底是什么：从 dApp 请求到 Node Client 的接口层](lesson-01-rpc-basics.md) — ✅ 已完成
-2. [第2课｜一次 JSON-RPC 请求到底发生了什么：Method、Params、Response 与 Error](lesson-02-json-rpc-request-response.md) — 🟡 学习中
+2. [第2课｜一次 JSON-RPC 请求到底发生了什么：Method、Params、Response 与 Error](lesson-02-json-rpc-request-response.md) — ✅ 已完成
+3. [第3课｜为什么不同 RPC 成本差这么多：State、History、Logs 与 EVM Execution](lesson-03-rpc-cost-model.md) — ✅ 已完成
+4. 第4课｜RPC Provider 为什么需要限流、缓存与多节点：从单节点到生产级服务 — 🟡 学习中
 
 ## 当前准确入口
 
-第 2 课正式开始：理解 JSON-RPC Request / Response 的结构，以及 HTTP 与 JSON-RPC 的层级关系。
+Module 5 第 4 课：继续学习 Rate Limit、Cache、Load Balancer / Multi-node 分别解决什么问题，以及 Provider 为什么需要把单节点能力包装成生产级 RPC Service。

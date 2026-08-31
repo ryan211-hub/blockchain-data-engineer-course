@@ -27,10 +27,23 @@
 - Indexer Pipeline、Checkpoint、数据落库 → Module 7
 - Client 内部 Storage Engine 实现 → Module 4 已结束
 
+## 当前学习进度
+
+- 当前阶段：第二阶段 Infrastructure
+- 当前 Module：Module 5 — RPC
+- 已完成 Lesson：第 1 课、第 2 课、第 3 课、第 4 课
+- 当前 Lesson：第 5 课｜Node 活着为什么还不能接请求：Health Check、Sync Lag 与 Failover
+- 当前状态：🟡 学习中
+- 最近完成：第 4 课理解检查与校准已完成；Rate Limit、Cache、Load Balancer 三者职责已掌握。
+- 尚未完成：第 5 课理解检查与校准
+- 下一步准确入口：继续第 5 课理解检查，回答 Liveness / Readiness、慢节点为何会被移出 Healthy Pool，以及 Health Check / Load Balancer / Failover 三者关系。
+
+> 本区块是 Notion「课程总目录」主进度记录的同步镜像；若发生冲突，以课程总目录为准。
+
 ## 课程索引
 
 1. [第1课｜RPC 到底是什么：从 dApp 请求到 Node Client 的接口层](lesson-01-rpc-basics.md)
 2. [第2课｜一次 JSON-RPC 请求到底发生了什么：Method、Params、Response 与 Error](lesson-02-json-rpc-request-response.md)
 3. [第3课｜为什么不同 RPC 成本差这么多：State、History、Logs 与 EVM Execution](lesson-03-rpc-cost-model.md)
-
-> 本 README 只保存 Module Contract 与课程导航，不维护当前课程、完成状态或下一步入口。课程进度唯一来源为 Notion「课程总目录」。
+4. [第4课｜RPC Provider 为什么需要限流、缓存与多节点：从单节点到生产级服务](lesson-04-rpc-provider-rate-limit-cache-load-balancer.md)
+5. 第5课｜Node 活着为什么还不能接请求：Health Check、Sync Lag 与 Failover（当前学习中；Lesson Markdown 待课程正文同步时创建）

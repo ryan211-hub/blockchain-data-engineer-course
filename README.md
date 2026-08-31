@@ -21,11 +21,11 @@
 - 当前阶段：第二阶段 Infrastructure
 - 已完成 Module：Module 1、Module 2、Module 3、Module 4
 - 当前 Module：Module 5 — RPC
-- Module 5 已完成：第 1 课、第 2 课、第 3 课、第 4 课
-- 当前 Lesson：第 5 课｜Node 活着为什么还不能接请求：Health Check、Sync Lag 与 Failover
+- Module 5 已完成：第 1 课、第 2 课、第 3 课、第 4 课、第 5 课
+- 当前 Lesson：第 6 课｜HTTP 还是 WebSocket：Polling、Subscription 与实时 RPC
 - 当前状态：🟡 学习中
-- 尚未完成：第 5 课理解检查与校准
-- 下一步准确入口：继续 Module 5 第 5 课理解检查，回答 Liveness / Readiness、慢节点为何会被移出 Healthy Pool，以及 Health Check / Load Balancer / Failover 三者关系。
+- 尚未完成：第 6 课正式讲解与理解检查
+- 下一步准确入口：开始 Module 5 第 6 课，理解 HTTP Request/Response、Polling、WebSocket 长连接与 Subscription 的差异，以及它们各自适合的 RPC 场景。
 
 ## 目录
 

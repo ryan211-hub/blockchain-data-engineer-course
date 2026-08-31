@@ -129,6 +129,3 @@ RPC Cost
 - 大范围 `eth_getLogs` 常受 Range Scan / Filter 成本影响。
 - `eth_call` 会真实执行 EVM，因此即使不上链也消耗节点资源。
 - Provider 的计费与限流需要反映真实 Query Cost。
-
-## 当前状态
-✅ 已完成。讲解、理解检查和必要校准均已完成。下一步进入 Module 5 第 4 课。

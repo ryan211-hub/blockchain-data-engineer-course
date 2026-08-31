@@ -19,8 +19,8 @@
 - Module 3：已完成
 - Module 4：✅ 已完成
 - Module 5：进行中
-- 最近完成：Module 5 第 1 课｜RPC 到底是什么：从 dApp 请求到 Node Client 的接口层 ✅
-- 当前课程：Module 5 第 2 课｜一次 JSON-RPC 请求到底发生了什么：Method、Params、Response 与 Error
+- 最近完成：Module 5 第 3 课｜为什么不同 RPC 成本差这么多：State、History、Logs 与 EVM Execution ✅
+- 当前课程：Module 5 第 4 课｜RPC Provider 为什么需要限流、缓存与多节点：从单节点到生产级服务
 - 当前课程状态：🟡 学习中
 - Module 4 结束说明：LevelDB / RocksDB 与 KV Storage 的两个校准点已提示，用户选择跳过，不作为进入 Module 5 的阻塞项。
 

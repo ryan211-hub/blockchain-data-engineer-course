@@ -31,12 +31,12 @@
 
 - 当前阶段：第二阶段 Infrastructure
 - 当前 Module：Module 5 — RPC
-- 已完成 Lesson：第 1 课、第 2 课、第 3 课、第 4 课
-- 当前 Lesson：第 5 课｜Node 活着为什么还不能接请求：Health Check、Sync Lag 与 Failover
+- 已完成 Lesson：第 1 课、第 2 课、第 3 课、第 4 课、第 5 课
+- 当前 Lesson：第 6 课｜HTTP 还是 WebSocket：Polling、Subscription 与实时 RPC
 - 当前状态：🟡 学习中
-- 最近完成：第 4 课理解检查与校准已完成；Rate Limit、Cache、Load Balancer 三者职责已掌握。
-- 尚未完成：第 5 课理解检查与校准
-- 下一步准确入口：继续第 5 课理解检查，回答 Liveness / Readiness、慢节点为何会被移出 Healthy Pool，以及 Health Check / Load Balancer / Failover 三者关系。
+- 最近完成：第 5 课理解检查与校准已完成；Liveness、Readiness、Sync Lag、Health Check、Load Balancer 与 Failover 的关系已掌握。
+- 尚未完成：第 6 课正式讲解与理解检查
+- 下一步准确入口：开始第 6 课，理解 HTTP Request/Response、Polling、WebSocket 长连接与 Subscription 的差异，以及它们各自适合的 RPC 场景。
 
 > 本区块是 Notion「课程总目录」主进度记录的同步镜像；若发生冲突，以课程总目录为准。
 
@@ -46,4 +46,5 @@
 2. [第2课｜一次 JSON-RPC 请求到底发生了什么：Method、Params、Response 与 Error](lesson-02-json-rpc-request-response.md)
 3. [第3课｜为什么不同 RPC 成本差这么多：State、History、Logs 与 EVM Execution](lesson-03-rpc-cost-model.md)
 4. [第4课｜RPC Provider 为什么需要限流、缓存与多节点：从单节点到生产级服务](lesson-04-rpc-provider-rate-limit-cache-load-balancer.md)
-5. 第5课｜Node 活着为什么还不能接请求：Health Check、Sync Lag 与 Failover（当前学习中；Lesson Markdown 待课程正文同步时创建）
+5. [第5课｜Node 活着为什么还不能接请求：Health Check、Sync Lag 与 Failover](lesson-05-health-check-sync-lag-failover.md)
+6. 第6课｜HTTP 还是 WebSocket：Polling、Subscription 与实时 RPC（当前学习中）

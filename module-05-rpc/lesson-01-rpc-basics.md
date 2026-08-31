@@ -254,6 +254,3 @@ Node Storage
 4. 应用通过 RPC 而不是直接读 Node DB，核心原因是抽象和解耦。
 5. RPC Node、Validator Node、Archive Node 是不同维度的角色标签，可能重叠。
 6. 自建 Node 可以提供自定义 RPC / API，但不会改变 Ethereum 协议或共识。
-
-## 当前状态
-✅ 已完成。用户于本轮明确决定结束第 1 课；讲解、追问、理解检查与必要校准均已完成。下一步进入 Module 5 第 2 课。

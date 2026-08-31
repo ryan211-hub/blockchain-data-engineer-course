@@ -311,34 +311,21 @@ id
 result / error
 ```
 
-## 理解检查
+## 理解检查与校准
 ### 问题 1
-下面这句话哪里不准确？
-> `eth_getBalance` 就是一个 HTTP 接口。
+用户回答：HTTP 是超文本传输协议；GET、POST 属于 HTTP Method；JSON-RPC 承载 Ethereum RPC 调用；`eth_getBalance` 不是 HTTP 接口，而是 RPC 接口。
 
-请区分 HTTP、JSON-RPC、`eth_getBalance` 三个层级。
+老师校准：核心理解正确。更精确地说，`GET` / `POST` 是 HTTP Method；`eth_getBalance` 不是一个完整 Request 实例，而是一个 Ethereum JSON-RPC Method。完整 Request 还包含 `jsonrpc`、`method`、`params`、`id` 等字段。
 
 ### 问题 2
-假设同时发送：
-```text
-id=101 → 查询 Alice
-id=102 → 查询 Bob
-```
-结果 Bob 先返回。`id` 在这里解决什么问题？它和 transaction hash 有关系吗？
+用户回答：`id` 用于定位具体 Request；多个请求并发发送时，通过 `id` 可以确定哪个 Response 对应哪个 Request。
+
+老师判断：✅ 通过。补充：JSON-RPC 的 `id` 与 Ethereum transaction hash 无关，只是请求/响应关联标识。
 
 ### 问题 3
-你的 Indexer 收到 HTTP 200，但 Response Body 是：
-```json
-{
-  "jsonrpc": "2.0",
-  "id": 1,
-  "error": {
-    "code": -32602,
-    "message": "Invalid params"
-  }
-}
-```
-这次调用应该算成功还是失败？为什么？
+用户回答：RPC 调用失败。HTTP 200 只表示 HTTP 层成功返回响应，但 JSON-RPC Body 中返回了 `error`，且错误为 `Invalid params`。
+
+老师判断：✅ 通过。核心掌握 `HTTP success ≠ RPC success`。
 
 ## 当前状态
-🟡 学习中。正式讲解已开始，等待理解检查与必要校准。
+✅ 已完成。讲解、理解检查和必要校准均已结束。下一步进入 Module 5 第 3 课。

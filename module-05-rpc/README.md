@@ -4,15 +4,6 @@
 
 从 Blockchain Data Engineer 视角理解 RPC 在 dApp / Wallet / Indexer 与 Blockchain Client 之间的位置，区分 Node、RPC Interface 与 RPC Provider，并逐步理解 Provider 的基础设施能力、限制、性能成本与商业模式。目标不是只会调用 API，而是知道一次 RPC 请求后面发生了什么，以及这些能力为什么值得付费。
 
-## 当前状态
-
-进行中。
-
-- 第 1 课：✅ 已完成
-- 第 2 课：✅ 已完成
-- 第 3 课：✅ 已完成
-- 第 4 课：🟡 学习中
-
 ## Module Contract
 
 ### 必须掌握
@@ -38,11 +29,8 @@
 
 ## 课程索引
 
-1. [第1课｜RPC 到底是什么：从 dApp 请求到 Node Client 的接口层](lesson-01-rpc-basics.md) — ✅ 已完成
-2. [第2课｜一次 JSON-RPC 请求到底发生了什么：Method、Params、Response 与 Error](lesson-02-json-rpc-request-response.md) — ✅ 已完成
-3. [第3课｜为什么不同 RPC 成本差这么多：State、History、Logs 与 EVM Execution](lesson-03-rpc-cost-model.md) — ✅ 已完成
-4. 第4课｜RPC Provider 为什么需要限流、缓存与多节点：从单节点到生产级服务 — 🟡 学习中
+1. [第1课｜RPC 到底是什么：从 dApp 请求到 Node Client 的接口层](lesson-01-rpc-basics.md)
+2. [第2课｜一次 JSON-RPC 请求到底发生了什么：Method、Params、Response 与 Error](lesson-02-json-rpc-request-response.md)
+3. [第3课｜为什么不同 RPC 成本差这么多：State、History、Logs 与 EVM Execution](lesson-03-rpc-cost-model.md)
 
-## 当前准确入口
-
-Module 5 第 4 课：继续学习 Rate Limit、Cache、Load Balancer / Multi-node 分别解决什么问题，以及 Provider 为什么需要把单节点能力包装成生产级 RPC Service。
+> 本 README 只保存 Module Contract 与课程导航，不维护当前课程、完成状态或下一步入口。课程进度唯一来源为 Notion「课程总目录」。

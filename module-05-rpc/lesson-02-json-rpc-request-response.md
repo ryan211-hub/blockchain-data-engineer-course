@@ -326,6 +326,3 @@ result / error
 用户回答：RPC 调用失败。HTTP 200 只表示 HTTP 层成功返回响应，但 JSON-RPC Body 中返回了 `error`，且错误为 `Invalid params`。
 
 老师判断：✅ 通过。核心掌握 `HTTP success ≠ RPC success`。
-
-## 当前状态
-✅ 已完成。讲解、理解检查和必要校准均已结束。下一步进入 Module 5 第 3 课。

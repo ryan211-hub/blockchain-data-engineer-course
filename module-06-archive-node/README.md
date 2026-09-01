@@ -31,13 +31,15 @@
 
 - 当前阶段：第二阶段 Infrastructure
 - 当前 Module：Module 6 — Archive Node
-- 已完成 Lesson：无
+- 已完成 Lesson：第 1 课
 - 当前 Lesson：第 1 课｜Archive Node 到底多保存了什么：History ≠ Historical State
-- 当前状态：🟡 学习中
-- 下一步准确入口：开始第 1 课，先区分“过去发生过什么”与“过去某一高度的完整 State”，再理解 Archive Node 为什么存在。
+- 当前状态：✅ 已完成
+- 最近完成：第 1 课理解检查与校准已完成；History、Current State、Historical State 的区别已掌握。
+- 尚未完成：第 2 课
+- 下一步准确入口：开始第 2 课，比较 Full / Pruned Node 与 Archive Node，理解 Pruning 为什么决定历史 State 的可查询性。
 
 > 本区块是 Notion「课程总目录」主进度记录的同步镜像；若发生冲突，以课程总目录为准。
 
 ## 课程索引
 
-1. 第1课｜Archive Node 到底多保存了什么：History ≠ Historical State（当前学习中）
+1. [第1课｜Archive Node 到底多保存了什么：History ≠ Historical State](lesson-01-history-vs-historical-state.md)（✅ 已完成）

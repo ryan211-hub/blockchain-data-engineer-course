@@ -21,11 +21,11 @@
 - 当前阶段：第二阶段 Infrastructure
 - 已完成 Module：Module 1、Module 2、Module 3、Module 4
 - 当前 Module：Module 5 — RPC
-- Module 5 已完成：第 1 课、第 2 课、第 3 课、第 4 课、第 5 课
-- 当前 Lesson：第 6 课｜HTTP 还是 WebSocket：Polling、Subscription 与实时 RPC
+- Module 5 已完成：第 1 课、第 2 课、第 3 课、第 4 课、第 5 课、第 6 课
+- 当前 Lesson：第 7 课｜RPC Provider 到底卖什么：成本、计费与为什么公司愿意付费
 - 当前状态：🟡 学习中
-- 尚未完成：第 6 课正式讲解与理解检查
-- 下一步准确入口：开始 Module 5 第 6 课，理解 HTTP Request/Response、Polling、WebSocket 长连接与 Subscription 的差异，以及它们各自适合的 RPC 场景。
+- 尚未完成：第 7 课正式讲解与理解检查
+- 下一步准确入口：开始 Module 5 第 7 课，理解 RPC Provider 的成本来源、计费权重、商业价值，以及企业为什么愿意购买 Provider 而不是全部自建 Node。
 
 ## 目录
 

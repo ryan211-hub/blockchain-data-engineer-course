@@ -19,18 +19,19 @@
 ## 当前学习进度
 
 - 当前阶段：第二阶段 Infrastructure
-- 已完成 Module：Module 1、Module 2、Module 3、Module 4
-- 当前 Module：Module 5 — RPC
-- Module 5 已完成：第 1 课、第 2 课、第 3 课、第 4 课、第 5 课、第 6 课
-- 当前 Lesson：第 7 课｜RPC Provider 到底卖什么：成本、计费与为什么公司愿意付费
+- 已完成 Module：Module 1、Module 2、Module 3、Module 4、Module 5
+- 当前 Module：Module 6 — Archive Node
+- 当前 Lesson：第 1 课｜Archive Node 到底多保存了什么：History ≠ Historical State
 - 当前状态：🟡 学习中
-- 尚未完成：第 7 课正式讲解与理解检查
-- 下一步准确入口：开始 Module 5 第 7 课，理解 RPC Provider 的成本来源、计费权重、商业价值，以及企业为什么愿意购买 Provider 而不是全部自建 Node。
+- 最近完成：Module 5 第 7 课理解检查与校准完成，Module 5 已达到结束标准。
+- 尚未完成：Module 6 第 1 课正式讲解与理解检查
+- 下一步准确入口：开始 Module 6 第 1 课，区分 History 与 Historical State，并理解为什么旧 Block 可查不代表旧 State 可查。
 
 ## 目录
 
 - [Module 4 — Blockchain Client & Node Storage](module-04-blockchain-client-node-storage/README.md)
 - [Module 5 — RPC](module-05-rpc/README.md)
+- [Module 6 — Archive Node](module-06-archive-node/README.md)
 
 ## 同步规则
 

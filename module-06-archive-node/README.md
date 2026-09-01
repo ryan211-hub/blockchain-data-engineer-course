@@ -31,15 +31,16 @@
 
 - 当前阶段：第二阶段 Infrastructure
 - 当前 Module：Module 6 — Archive Node
-- 已完成 Lesson：第 1 课
-- 当前 Lesson：第 1 课｜Archive Node 到底多保存了什么：History ≠ Historical State
+- 已完成 Lesson：第 1 课、第 2 课
+- 当前 Lesson：第 2 课｜Full / Pruned Node vs Archive Node：Pruning 到底删掉了什么？
 - 当前状态：✅ 已完成
-- 最近完成：第 1 课理解检查与校准已完成；History、Current State、Historical State 的区别已掌握。
-- 尚未完成：第 2 课
-- 下一步准确入口：开始第 2 课，比较 Full / Pruned Node 与 Archive Node，理解 Pruning 为什么决定历史 State 的可查询性。
+- 最近完成：第 2 课理解检查与校准已完成；已掌握 Pruning 的作用，以及 Full / Pruned Node 与 Archive Node 在 Historical State Retention / Queryability 上的核心区别。
+- 尚未完成：第 3 课
+- 下一步准确入口：开始第 3 课，理解 Archive Node 为什么昂贵：Historical State Retention 带来的存储、I/O、同步与运维成本。
 
 > 本区块是 Notion「课程总目录」主进度记录的同步镜像；若发生冲突，以课程总目录为准。
 
 ## 课程索引
 
 1. [第1课｜Archive Node 到底多保存了什么：History ≠ Historical State](lesson-01-history-vs-historical-state.md)（✅ 已完成）
+2. [第2课｜Full / Pruned Node vs Archive Node：Pruning 到底删掉了什么？](lesson-02-pruning-full-vs-archive.md)（✅ 已完成）

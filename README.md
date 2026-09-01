@@ -21,11 +21,12 @@
 - 当前阶段：第二阶段 Infrastructure
 - 已完成 Module：Module 1、Module 2、Module 3、Module 4、Module 5
 - 当前 Module：Module 6 — Archive Node
+- Module 6 已完成：第 1 课｜Archive Node 到底多保存了什么：History ≠ Historical State
 - 当前 Lesson：第 1 课｜Archive Node 到底多保存了什么：History ≠ Historical State
-- 当前状态：🟡 学习中
-- 最近完成：Module 5 第 7 课理解检查与校准完成，Module 5 已达到结束标准。
-- 尚未完成：Module 6 第 1 课正式讲解与理解检查
-- 下一步准确入口：开始 Module 6 第 1 课，区分 History 与 Historical State，并理解为什么旧 Block 可查不代表旧 State 可查。
+- 当前状态：✅ 已完成
+- 最近完成：Module 6 第 1 课理解检查与校准完成；已掌握 History / Current State / Historical State 的区别，以及 Old Block Available ≠ Old State Available、stateRoot Available ≠ Historical State Data Available。
+- 尚未完成：Module 6 第 2 课
+- 下一步准确入口：开始 Module 6 第 2 课，比较 Full / Pruned Node 与 Archive Node，理解 Pruning 为什么决定历史 State 的可查询性。
 
 ## 目录
 

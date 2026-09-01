@@ -21,12 +21,12 @@
 - 当前阶段：第二阶段 Infrastructure
 - 已完成 Module：Module 1、Module 2、Module 3、Module 4、Module 5
 - 当前 Module：Module 6 — Archive Node
-- Module 6 已完成：第 1 课｜Archive Node 到底多保存了什么：History ≠ Historical State
-- 当前 Lesson：第 1 课｜Archive Node 到底多保存了什么：History ≠ Historical State
+- Module 6 已完成：第 1 课｜Archive Node 到底多保存了什么：History ≠ Historical State；第 2 课｜Full / Pruned Node vs Archive Node：Pruning 到底删掉了什么？
+- 当前 Lesson：第 2 课｜Full / Pruned Node vs Archive Node：Pruning 到底删掉了什么？
 - 当前状态：✅ 已完成
-- 最近完成：Module 6 第 1 课理解检查与校准完成；已掌握 History / Current State / Historical State 的区别，以及 Old Block Available ≠ Old State Available、stateRoot Available ≠ Historical State Data Available。
-- 尚未完成：Module 6 第 2 课
-- 下一步准确入口：开始 Module 6 第 2 课，比较 Full / Pruned Node 与 Archive Node，理解 Pruning 为什么决定历史 State 的可查询性。
+- 最近完成：Module 6 第 2 课理解检查与校准完成；已掌握 Full / Pruned Node 与 Archive Node 在区块验证正确性上没有天然高低之分，核心差异是 Historical State Retention 与 Historical State Queryability。
+- 尚未完成：Module 6 第 3 课
+- 下一步准确入口：开始 Module 6 第 3 课，理解 Archive Node 为什么昂贵：Historical State Retention 带来的存储、I/O、同步与运维成本。
 
 ## 目录
 

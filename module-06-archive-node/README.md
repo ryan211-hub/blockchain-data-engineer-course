@@ -31,12 +31,12 @@
 
 - 当前阶段：第二阶段 Infrastructure
 - 当前 Module：Module 6 — Archive Node
-- 已完成 Lesson：第 1 课、第 2 课
-- 当前 Lesson：第 2 课｜Full / Pruned Node vs Archive Node：Pruning 到底删掉了什么？
+- 已完成 Lesson：第 1 课、第 2 课、第 3 课
+- 当前 Lesson：第 3 课｜Archive Node 为什么昂贵：Historical State Retention 的成本模型
 - 当前状态：✅ 已完成
-- 最近完成：第 2 课理解检查与校准已完成；已掌握 Pruning 的作用，以及 Full / Pruned Node 与 Archive Node 在 Historical State Retention / Queryability 上的核心区别。
-- 尚未完成：第 3 课
-- 下一步准确入口：开始第 3 课，理解 Archive Node 为什么昂贵：Historical State Retention 带来的存储、I/O、同步与运维成本。
+- 最近完成：第 3 课理解检查与校准已完成；已掌握 Archive Node 的 Storage、Read / Write I/O、Sync、Backup / Recovery、Operations 成本模型，以及 Build vs Buy 的基本判断。
+- 尚未完成：第 4 课
+- 下一步准确入口：开始第 4 课，判断什么时候真正需要 Archive Node：区分 Historical State、数仓派生状态，并完成 Archive RPC / 自建能力的需求决策。
 
 > 本区块是 Notion「课程总目录」主进度记录的同步镜像；若发生冲突，以课程总目录为准。
 
@@ -44,3 +44,4 @@
 
 1. [第1课｜Archive Node 到底多保存了什么：History ≠ Historical State](lesson-01-history-vs-historical-state.md)（✅ 已完成）
 2. [第2课｜Full / Pruned Node vs Archive Node：Pruning 到底删掉了什么？](lesson-02-pruning-full-vs-archive.md)（✅ 已完成）
+3. [第3课｜Archive Node 为什么昂贵：Historical State Retention 的成本模型](lesson-03-archive-node-cost-model.md)（✅ 已完成）

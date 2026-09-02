@@ -22,12 +22,12 @@
 - 已完成 Module：Module 1、Module 2、Module 3、Module 4、Module 5、Module 6
 - 当前 Module：Module 7 — Indexer
 - Module 6 完成结论：第 1～4 课均已完成，已达到 Module Contract 结束标准。已能区分 History / Historical State，解释 Pruning、Archive 成本，并根据 Query Semantics、Derived State、规模与 TCO 判断 Archive RPC / Self-hosted / Hybrid。
-- Module 7 已完成：第 1 课、第 2 课
-- 当前 Lesson：Module 7 第 2 课｜Indexer 内部数据流：Raw Block → Parser → Decoder → Normalized Fact → Database
+- Module 7 已完成：第 1 课、第 2 课、第 3 课
+- 当前 Lesson：Module 7 第 3 课｜Indexer 的输入对象：Block / Transaction / Receipt / Log 如何进入数据库
 - 当前状态：✅ 已完成
-- 最近完成：Module 7 第 2 课理解检查与校准完成；已掌握 Parser = Chain Structure、Decoder = Protocol Meaning、Normalizer = Business Data Model，并理解 Raw Layer 对重放、修复和重建的重要性。
-- 尚未完成：Module 7 第 3 课
-- 下一步准确入口：开始 Module 7 第 3 课｜Indexer 的输入对象：Block / Transaction / Receipt / Log 如何进入数据库。进一步明确四类链上基础对象的获取方式、关联键、粒度与基础落库关系。
+- 最近完成：Module 7 第 3 课理解检查与校准完成；已掌握 Block / Transaction / Receipt / Log 的粒度、关联关系与身份键，并理解 Transaction Request、Receipt Execution Result 与 Logs Event Records 的职责区别。
+- 尚未完成：Module 7 第 4 课
+- 下一步准确入口：开始 Module 7 第 4 课｜Checkpoint / Cursor：Indexer 如何知道自己处理到哪个 Block。理解连续推进、中断恢复以及为什么生产级 Indexer 不能只靠内存记录进度。
 
 ## 目录
 

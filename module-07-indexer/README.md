@@ -38,14 +38,15 @@
 
 - 当前阶段：第二阶段 Infrastructure
 - 当前 Module：Module 7 — Indexer
-- 已完成 Lesson：暂无
+- 已完成 Lesson：第 1 课
 - 当前 Lesson：第 1 课｜Indexer 到底是什么：为什么 Node / RPC 之后还需要一层 Indexer
-- 当前状态：⏳ 未开始
-- 最近完成：Module 6 — Archive Node 已达到结束标准并正式完成。
-- 下一步准确入口：开始第 1 课，建立 Node / RPC / Indexer / Warehouse 的职责边界，并理解为什么分析型数据平台不能直接把 RPC 当数据库使用。
+- 当前状态：✅ 已完成
+- 最近完成：第 1 课理解检查与校准已完成；已掌握 Node / RPC / Indexer / Warehouse 的职责边界，以及 Blockchain-oriented Data → Query-oriented Data 的核心转换。
+- 尚未完成：第 2 课
+- 下一步准确入口：开始第 2 课｜Indexer 内部数据流：Raw Block → Parser → Decoder → Normalized Fact → Database。明确每一层输入、输出和职责，并区分 Parser 与 Decoder。
 
 > 本区块是 Notion「课程总目录」主进度记录的同步镜像；若发生冲突，以课程总目录为准。
 
 ## 课程索引
 
-课程尚未开始。第 1 课将在下一次正式开课时创建并同步。
+1. [第1课｜Indexer 到底是什么：为什么 Node / RPC 之后还需要一层 Indexer](lesson-01-what-is-indexer.md)（✅ 已完成）

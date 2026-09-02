@@ -38,12 +38,12 @@
 
 - 当前阶段：第二阶段 Infrastructure
 - 当前 Module：Module 7 — Indexer
-- 已完成 Lesson：第 1 课、第 2 课
-- 当前 Lesson：第 2 课｜Indexer 内部数据流：Raw Block → Parser → Decoder → Normalized Fact → Database
+- 已完成 Lesson：第 1 课、第 2 课、第 3 课
+- 当前 Lesson：第 3 课｜Indexer 的输入对象：Block / Transaction / Receipt / Log 如何进入数据库
 - 当前状态：✅ 已完成
-- 最近完成：第 2 课理解检查与校准已完成；已掌握 Parser / Decoder / Normalizer 的职责边界，以及 Raw Layer 对 Replay / Rebuild 的工程价值。
-- 尚未完成：第 3 课
-- 下一步准确入口：开始第 3 课｜Indexer 的输入对象：Block / Transaction / Receipt / Log 如何进入数据库。进一步明确四类链上基础对象的获取方式、关联键、粒度与基础落库关系。
+- 最近完成：第 3 课理解检查与校准已完成；已掌握 Block / Transaction / Receipt / Log 的粒度、关联关系与身份键，以及 Transaction Request / Receipt Execution Result / Logs Event Records 的职责区别。
+- 尚未完成：第 4 课
+- 下一步准确入口：开始第 4 课｜Checkpoint / Cursor：Indexer 如何知道自己处理到哪个 Block。理解连续推进、中断恢复以及为什么生产级 Indexer 不能只靠内存记录进度。
 
 > 本区块是 Notion「课程总目录」主进度记录的同步镜像；若发生冲突，以课程总目录为准。
 
@@ -51,3 +51,4 @@
 
 1. [第1课｜Indexer 到底是什么：为什么 Node / RPC 之后还需要一层 Indexer](lesson-01-what-is-indexer.md)（✅ 已完成）
 2. [第2课｜Indexer 内部数据流：Raw Block → Parser → Decoder → Normalized Fact → Database](lesson-02-indexer-internal-data-flow.md)（✅ 已完成）
+3. [第3课｜Indexer 的输入对象：Block / Transaction / Receipt / Log 如何进入数据库](lesson-03-indexer-input-objects.md)（✅ 已完成）

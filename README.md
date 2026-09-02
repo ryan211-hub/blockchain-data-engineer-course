@@ -22,11 +22,12 @@
 - 已完成 Module：Module 1、Module 2、Module 3、Module 4、Module 5、Module 6
 - 当前 Module：Module 7 — Indexer
 - Module 6 完成结论：第 1～4 课均已完成，已达到 Module Contract 结束标准。已能区分 History / Historical State，解释 Pruning、Archive 成本，并根据 Query Semantics、Derived State、规模与 TCO 判断 Archive RPC / Self-hosted / Hybrid。
+- Module 7 已完成：第 1 课｜Indexer 到底是什么：为什么 Node / RPC 之后还需要一层 Indexer
 - 当前 Lesson：Module 7 第 1 课｜Indexer 到底是什么：为什么 Node / RPC 之后还需要一层 Indexer
-- 当前状态：⏳ 未开始
-- 最近完成：Module 6 第 4 课理解检查与校准完成；Module 6 已正式结束。已掌握 Historical Data ≠ Historical State，稳定可预测的 Historical State 需求可以通过 Archive RPC Backfill 后沉淀到 Warehouse，而任意 Historical eth_call / Ad-hoc Query 更依赖通用 Archive State Queryability。
-- 尚未完成：Module 7 第 1 课
-- 下一步准确入口：开始 Module 7 第 1 课｜Indexer 到底是什么：为什么 Node / RPC 之后还需要一层 Indexer。建立 Node / RPC / Indexer / Warehouse 的职责边界，并理解为什么分析型数据平台不能直接把 RPC 当数据库使用。
+- 当前状态：✅ 已完成
+- 最近完成：Module 7 第 1 课理解检查与校准完成；已建立 Node / RPC / Indexer / Warehouse 的职责边界，理解 RPC 不是分析数据库，Indexer 的核心职责是把 Blockchain-oriented Data 持续转换为 Query-oriented Data。
+- 尚未完成：Module 7 第 2 课
+- 下一步准确入口：开始 Module 7 第 2 课｜Indexer 内部数据流：Raw Block → Parser → Decoder → Normalized Fact → Database。明确每一层输入、输出和职责，并区分 Parser 与 Decoder。
 
 ## 目录
 

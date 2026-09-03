@@ -38,12 +38,12 @@
 
 - 当前阶段：第二阶段 Infrastructure
 - 当前 Module：Module 7 — Indexer
-- 已完成 Lesson：第 1 课、第 2 课、第 3 课、第 4 课、第 5 课
-- 当前 Lesson：第 5 课｜Idempotency：Indexer 重复处理同一个 Block 为什么不会重复写数据
+- 已完成 Lesson：第 1 课、第 2 课、第 3 课、第 4 课、第 5 课、第 6 课
+- 当前 Lesson：第 6 课｜Backfill：Indexer 如何安全补历史数据，而不是每次从 Genesis 重跑
 - 当前状态：✅ 已完成
-- 最近完成：第 5 课理解检查与校准已完成；已掌握 Stable Identity、Unique Constraint、ON CONFLICT / UPSERT、At-least-once Processing 与 Idempotent Write 的关系。
-- 尚未完成：第 6 课
-- 下一步准确入口：开始第 6 课｜Backfill：Indexer 如何安全补历史数据，而不是每次从 Genesis 重跑。重点理解历史区间补数、与实时同步共存，以及 Checkpoint / 幂等性在 Backfill 中的作用。
+- 最近完成：第 6 课理解检查与校准已完成；已掌握 Backfill 的 Bounded Range Job 模型、Realtime Checkpoint 与 Backfill Cursor 的隔离、Backfill 自身的 Durable Progress，以及与实时 Indexer 共用 Idempotent Writer 的设计。
+- 尚未完成：第 7 课
+- 下一步准确入口：开始第 7 课｜Reorg：Indexer 如何处理 canonical / orphaned 数据与回滚重放。重点理解同一 block_number 为什么会对应不同 block_hash、如何识别 canonical chain，以及 Reorg 后数据如何回滚与重放。
 
 > 本区块是 Notion「课程总目录」主进度记录的同步镜像；若发生冲突，以课程总目录为准。
 
@@ -54,3 +54,4 @@
 3. [第3课｜Indexer 的输入对象：Block / Transaction / Receipt / Log 如何进入数据库](lesson-03-indexer-input-objects.md)（✅ 已完成）
 4. [第4课｜Checkpoint / Cursor：Indexer 如何知道自己处理到哪个 Block](lesson-04-checkpoint-cursor.md)（✅ 已完成）
 5. [第5课｜Idempotency：Indexer 重复处理同一个 Block 为什么不会重复写数据](lesson-05-idempotency.md)（✅ 已完成）
+6. [第6课｜Backfill：Indexer 如何安全补历史数据，而不是每次从 Genesis 重跑](lesson-06-backfill.md)（✅ 已完成）

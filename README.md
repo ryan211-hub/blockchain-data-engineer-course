@@ -22,12 +22,12 @@
 - 已完成 Module：Module 1、Module 2、Module 3、Module 4、Module 5、Module 6
 - 当前 Module：Module 7 — Indexer
 - Module 6 完成结论：第 1～4 课均已完成，已达到 Module Contract 结束标准。已能区分 History / Historical State，解释 Pruning、Archive 成本，并根据 Query Semantics、Derived State、规模与 TCO 判断 Archive RPC / Self-hosted / Hybrid。
-- Module 7 已完成：第 1 课、第 2 课、第 3 课、第 4 课、第 5 课、第 6 课
-- 当前 Lesson：Module 7 第 6 课｜Backfill：Indexer 如何安全补历史数据，而不是每次从 Genesis 重跑
+- Module 7 已完成：第 1 课、第 2 课、第 3 课、第 4 课、第 5 课、第 6 课、第 7 课
+- 当前 Lesson：Module 7 第 7 课｜Reorg：Indexer 如何处理 canonical / orphaned 数据与回滚重放
 - 当前状态：✅ 已完成
-- 最近完成：Module 7 第 6 课理解检查与校准完成；已掌握 Backfill = Bounded Range Job、Realtime Checkpoint 与 Backfill Cursor 的进度隔离、Backfill 自身的 Durable Progress，以及与 Real-time 共用 Idempotent Writer 的设计。
-- 尚未完成：Module 7 第 7 课
-- 下一步准确入口：开始 Module 7 第 7 课｜Reorg：Indexer 如何处理 canonical / orphaned 数据与回滚重放。重点理解同一 block_number 为什么会对应不同 block_hash、如何识别 canonical chain，以及 Reorg 后数据如何回滚与重放。
+- 最近完成：Module 7 第 7 课理解检查与校准完成；已掌握 block_number = Position / block_hash = Identity、canonical / orphaned、Common Ancestor、Reorg Detection，以及 Rollback + Replay 的完整恢复流程。
+- 尚未完成：Module 7 第 8 课
+- 下一步准确入口：开始 Module 7 第 8 课｜Mini Indexer 设计：把 Checkpoint / Idempotency / Backfill / Reorg 串成一个可运行系统。重点把前 7 课的数据路径与可靠性机制整合成最小可用 Indexer 状态机与实现方案。
 
 ## 目录
 

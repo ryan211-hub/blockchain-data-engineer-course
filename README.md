@@ -22,12 +22,12 @@
 - 已完成 Module：Module 1、Module 2、Module 3、Module 4、Module 5、Module 6
 - 当前 Module：Module 7 — Indexer
 - Module 6 完成结论：第 1～4 课均已完成，已达到 Module Contract 结束标准。已能区分 History / Historical State，解释 Pruning、Archive 成本，并根据 Query Semantics、Derived State、规模与 TCO 判断 Archive RPC / Self-hosted / Hybrid。
-- Module 7 已完成：第 1 课、第 2 课、第 3 课、第 4 课、第 5 课、第 6 课、第 7 课
-- 当前 Lesson：Module 7 第 7 课｜Reorg：Indexer 如何处理 canonical / orphaned 数据与回滚重放
+- Module 7 已完成：第 1 课、第 2 课、第 3 课、第 4 课、第 5 课、第 6 课、第 7 课、第 8 课
+- 当前 Lesson：Module 7 第 8 课｜Mini Indexer 设计：把 Checkpoint / Idempotency / Backfill / Reorg 串成一个可运行系统
 - 当前状态：✅ 已完成
-- 最近完成：Module 7 第 7 课理解检查与校准完成；已掌握 block_number = Position / block_hash = Identity、canonical / orphaned、Common Ancestor、Reorg Detection，以及 Rollback + Replay 的完整恢复流程。
-- 尚未完成：Module 7 第 8 课
-- 下一步准确入口：开始 Module 7 第 8 课｜Mini Indexer 设计：把 Checkpoint / Idempotency / Backfill / Reorg 串成一个可运行系统。重点把前 7 课的数据路径与可靠性机制整合成最小可用 Indexer 状态机与实现方案。
+- 最近完成：Module 7 第 8 课理解检查与校准完成；已能把 Fetcher / Parser / Decoder / Normalizer / Idempotent Writer、Checkpoint、Backfill、Reorg 串成一个最小可靠 Indexer，并理解 One Processing Engine + Multiple Execution Modes。
+- 尚未完成：Module 7 第 9 课
+- 下一步准确入口：开始 Module 7 第 9 课｜Mini Indexer 实践：用 Python + Ethereum JSON-RPC 实现最小 ERC-20 Transfer Indexer。重点把第 8 课设计落成可运行代码，先实现 Fetch → Parse → Decode → Normalize → Idempotent Write → Checkpoint 主流程，再逐步验证 Crash Recovery / Backfill / Reorg。
 
 ## 目录
 

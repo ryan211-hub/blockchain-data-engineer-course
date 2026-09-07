@@ -38,12 +38,12 @@
 
 - 当前阶段：第二阶段 Infrastructure
 - 当前 Module：Module 7 — Indexer
-- 已完成 Lesson：第 1 课、第 2 课、第 3 课、第 4 课、第 5 课、第 6 课、第 7 课
-- 当前 Lesson：第 7 课｜Reorg：Indexer 如何处理 canonical / orphaned 数据与回滚重放
+- 已完成 Lesson：第 1 课、第 2 课、第 3 课、第 4 课、第 5 课、第 6 课、第 7 课、第 8 课
+- 当前 Lesson：第 8 课｜Mini Indexer 设计：把 Checkpoint / Idempotency / Backfill / Reorg 串成一个可运行系统
 - 当前状态：✅ 已完成
-- 最近完成：第 7 课理解检查与校准已完成；已掌握 block_number / block_hash 的位置与身份区分、canonical / orphaned、Common Ancestor、Reorg Detection，以及 Rollback + Replay 的完整恢复流程。
-- 尚未完成：第 8 课
-- 下一步准确入口：开始第 8 课｜Mini Indexer 设计：把 Checkpoint / Idempotency / Backfill / Reorg 串成一个可运行系统。重点把前 7 课的数据路径与可靠性机制整合成最小可用 Indexer 状态机与实现方案。
+- 最近完成：第 8 课理解检查与校准已完成；已能把 Data Path 与 Control Path 整合成最小可靠 Indexer，并掌握 One Processing Engine + Multiple Execution Modes 的架构。
+- 尚未完成：第 9 课
+- 下一步准确入口：开始第 9 课｜Mini Indexer 实践：用 Python + Ethereum JSON-RPC 实现最小 ERC-20 Transfer Indexer。重点把第 8 课设计落成可运行代码，先实现 Fetch → Parse → Decode → Normalize → Idempotent Write → Checkpoint 主流程，再逐步验证 Crash Recovery / Backfill / Reorg。
 
 > 本区块是 Notion「课程总目录」主进度记录的同步镜像；若发生冲突，以课程总目录为准。
 
@@ -56,3 +56,4 @@
 5. [第5课｜Idempotency：Indexer 重复处理同一个 Block 为什么不会重复写数据](lesson-05-idempotency.md)（✅ 已完成）
 6. [第6课｜Backfill：Indexer 如何安全补历史数据，而不是每次从 Genesis 重跑](lesson-06-backfill.md)（✅ 已完成）
 7. [第7课｜Reorg：Indexer 如何处理 canonical / orphaned 数据与回滚重放](lesson-07-reorg.md)（✅ 已完成）
+8. [第8课｜Mini Indexer 设计：把 Checkpoint / Idempotency / Backfill / Reorg 串成一个可运行系统](lesson-08-mini-indexer-design.md)（✅ 已完成）

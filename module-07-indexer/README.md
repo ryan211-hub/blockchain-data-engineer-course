@@ -38,12 +38,12 @@
 
 - 当前阶段：第二阶段 Infrastructure
 - 当前 Module：Module 7 — Indexer
-- 已完成 Lesson：第 1 课、第 2 课、第 3 课、第 4 课、第 5 课、第 6 课、第 7 课、第 8 课、第 9 课
-- 当前 Lesson：第 9 课｜Mini Indexer 实践：用 Python + Ethereum JSON-RPC 实现最小 ERC-20 Transfer Indexer
+- 已完成 Lesson：第 1 课、第 2 课、第 3 课、第 4 课、第 5 课、第 6 课、第 7 课、第 8 课、第 9 课、第 10 课
+- 当前 Lesson：第 10 课｜Mini Indexer 可靠性实践：Crash Recovery / Backfill / Reorg Recovery
 - 当前状态：✅ 已完成
-- 最近完成：第 9 课理解检查与校准已完成；已把 Fetch / Parse / Decode / Normalize / Idempotent Write / Checkpoint 映射到最小 Python 实现，并掌握 Event Signature、Stable Identity、Unique Constraint 与 Crash Recovery 的代码级对应。
-- 尚未完成：第 10 课
-- 下一步准确入口：开始第 10 课｜Mini Indexer 可靠性实践：Crash Recovery / Backfill / Reorg Recovery。重点在第 9 课最小 Processing Engine 上实现独立 Backfill Cursor、Reorg Detection / Common Ancestor / Rollback + Replay，并验证 Realtime / Backfill / Reorg Replay 复用同一 Processing Engine。
+- 最近完成：第 10 课理解检查与校准已完成；已能区分 Realtime Checkpoint 与 Backfill Cursor，描述 Reorg Recovery 完整顺序，并理解多个 Execution Mode 复用同一 Processing Engine 的架构价值。
+- 尚未完成：Module 7 结课综合实践与验收——把第 9～10 课的代码整合成一套可运行 Mini Indexer，并完成正常同步、Crash、Backfill、Reorg 场景验证。
+- 下一步准确入口：Module 7 结课综合实践｜Mini Indexer 集成与验收。整合 Processing Engine、Realtime Controller、Backfill Cursor 与 Reorg Recovery，完成可运行验证后正式结束 Module 7。
 
 > 本区块是 Notion「课程总目录」主进度记录的同步镜像；若发生冲突，以课程总目录为准。
 
@@ -58,3 +58,4 @@
 7. [第7课｜Reorg：Indexer 如何处理 canonical / orphaned 数据与回滚重放](lesson-07-reorg.md)（✅ 已完成）
 8. [第8课｜Mini Indexer 设计：把 Checkpoint / Idempotency / Backfill / Reorg 串成一个可运行系统](lesson-08-mini-indexer-design.md)（✅ 已完成）
 9. [第9课｜Mini Indexer 实践：用 Python + Ethereum JSON-RPC 实现最小 ERC-20 Transfer Indexer](lesson-09-mini-indexer-practice.md)（✅ 已完成）
+10. [第10课｜Mini Indexer 可靠性实践：Crash Recovery / Backfill / Reorg Recovery](lesson-10-mini-indexer-reliability.md)（✅ 已完成）

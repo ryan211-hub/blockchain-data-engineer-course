@@ -38,7 +38,12 @@
 
 - 当前阶段：第三阶段 Data Engineering
 - 当前 Module：Module 8 — 数据建模
-- 当前 Lesson：尚未开始
+- 已完成 Lesson：第 1 课｜为什么链上数据也需要数据建模：从 Indexer Fact 到可分析模型
+- 当前 Lesson：第 2 课｜Grain：为什么“一行代表什么”是数据建模的第一原则
 - 当前状态：待开始
 - 已完成 Module：Module 1～7
-- 下一步准确入口：Module 8 第 1 课｜为什么链上数据也需要数据建模：从 Indexer Fact 到可分析模型。
+- 下一步准确入口：Module 8 第 2 课｜Grain：为什么“一行代表什么”是数据建模的第一原则。
+
+## Lessons
+
+- [第 1 课｜为什么链上数据也需要数据建模：从 Indexer Fact 到可分析模型](lesson-01-why-blockchain-data-modeling.md)

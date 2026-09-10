@@ -36,14 +36,14 @@
 
 ## 当前学习进度
 
-- 当前阶段：第二阶段 Infrastructure
-- 当前 Module：Module 7 — Indexer
+- 当前阶段：第三阶段 Data Engineering
+- 当前 Module：Module 7 — Indexer（✅ 已完成）
 - 已完成 Lesson：第 1 课、第 2 课、第 3 课、第 4 课、第 5 课、第 6 课、第 7 课、第 8 课、第 9 课、第 10 课
-- 当前 Lesson：第 10 课｜Mini Indexer 可靠性实践：Crash Recovery / Backfill / Reorg Recovery
-- 当前状态：✅ 已完成
-- 最近完成：第 10 课理解检查与校准已完成；已能区分 Realtime Checkpoint 与 Backfill Cursor，描述 Reorg Recovery 完整顺序，并理解多个 Execution Mode 复用同一 Processing Engine 的架构价值。
-- 尚未完成：Module 7 结课综合实践与验收——把第 9～10 课的代码整合成一套可运行 Mini Indexer，并完成正常同步、Crash、Backfill、Reorg 场景验证。
-- 下一步准确入口：Module 7 结课综合实践｜Mini Indexer 集成与验收。整合 Processing Engine、Realtime Controller、Backfill Cursor 与 Reorg Recovery，完成可运行验证后正式结束 Module 7。
+- 当前 Lesson：结课综合实践｜Mini Indexer 集成与验收
+- 当前状态：✅ Module 7 已完成
+- 最近完成：结课综合实践五项验收全部通过：Normal Sync、Idempotent Replay、Crash Recovery、Backfill、Reorg Recovery。验收由用户在 Codex 中实际完成并明确确认通过。
+- 尚未完成：本 Module 无。已达到 Module Contract 结束标准。
+- 下一步准确入口：Module 8 第 1 课｜为什么链上数据也需要数据建模：从 Indexer Fact 到可分析模型。
 
 > 本区块是 Notion「课程总目录」主进度记录的同步镜像；若发生冲突，以课程总目录为准。
 
@@ -59,3 +59,4 @@
 8. [第8课｜Mini Indexer 设计：把 Checkpoint / Idempotency / Backfill / Reorg 串成一个可运行系统](lesson-08-mini-indexer-design.md)（✅ 已完成）
 9. [第9课｜Mini Indexer 实践：用 Python + Ethereum JSON-RPC 实现最小 ERC-20 Transfer Indexer](lesson-09-mini-indexer-practice.md)（✅ 已完成）
 10. [第10课｜Mini Indexer 可靠性实践：Crash Recovery / Backfill / Reorg Recovery](lesson-10-mini-indexer-reliability.md)（✅ 已完成）
+11. [结课综合实践｜Mini Indexer 集成与验收](module-07-final-mini-indexer-validation.md)（✅ 五项验收通过）

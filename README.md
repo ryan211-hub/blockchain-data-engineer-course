@@ -23,11 +23,11 @@
 - 当前 Module：Module 8 — 数据建模
 - Module 6 完成结论：第 1～4 课均已完成，已达到 Module Contract 结束标准。已能区分 History / Historical State，解释 Pruning、Archive 成本，并根据 Query Semantics、Derived State、规模与 TCO 判断 Archive RPC / Self-hosted / Hybrid。
 - Module 7 完成结论：第 1～10 课与结课综合实践均已完成；Mini Indexer 五项验收 Normal Sync / Idempotent Replay / Crash Recovery / Backfill / Reorg Recovery 全部通过，已达到 Module Contract 结束标准。五项实践由用户在 Codex 中实际完成并明确确认通过。
-- 当前 Lesson：Module 8 第 1 课｜为什么链上数据也需要数据建模：从 Indexer Fact 到可分析模型
+- 当前 Lesson：Module 8 第 2 课｜Grain：为什么“一行代表什么”是数据建模的第一原则
 - 当前状态：待开始
-- 最近完成：Module 7 结课综合实践五项验收全部通过，Module 7 正式完成。
-- 尚未完成：Module 8 第 1 课
-- 下一步准确入口：开始 Module 8 第 1 课｜为什么链上数据也需要数据建模：从 Indexer Fact 到可分析模型。
+- 最近完成：Module 8 第 1 课《为什么链上数据也需要数据建模：从 Indexer Fact 到可分析模型》已完成理解检查与必要校准，正式通过；Canonical Lesson Content 已同步到 Notion 与 GitHub。
+- 尚未完成：Module 8 第 2 课
+- 下一步准确入口：开始 Module 8 第 2 课｜Grain：为什么“一行代表什么”是数据建模的第一原则。
 
 ## 目录
 

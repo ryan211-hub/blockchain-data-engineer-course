@@ -18,16 +18,16 @@
 
 ## 当前学习进度
 
-- 当前阶段：第二阶段 Infrastructure
-- 已完成 Module：Module 1、Module 2、Module 3、Module 4、Module 5、Module 6
-- 当前 Module：Module 7 — Indexer
+- 当前阶段：第三阶段 Data Engineering
+- 已完成 Module：Module 1、Module 2、Module 3、Module 4、Module 5、Module 6、Module 7
+- 当前 Module：Module 8 — 数据建模
 - Module 6 完成结论：第 1～4 课均已完成，已达到 Module Contract 结束标准。已能区分 History / Historical State，解释 Pruning、Archive 成本，并根据 Query Semantics、Derived State、规模与 TCO 判断 Archive RPC / Self-hosted / Hybrid。
-- Module 7 已完成：第 1 课、第 2 课、第 3 课、第 4 课、第 5 课、第 6 课、第 7 课、第 8 课、第 9 课、第 10 课
-- 当前 Lesson：Module 7 第 10 课｜Mini Indexer 可靠性实践：Crash Recovery / Backfill / Reorg Recovery
-- 当前状态：✅ 已完成
-- 最近完成：Module 7 第 10 课理解检查与校准完成；已能区分 Realtime Checkpoint 与 Backfill Cursor，描述 Detect Reorg → Find Common Ancestor → Invalidate Old Branch → Rollback Checkpoint → Replay New Branch，并理解 Realtime / Backfill / Reorg Replay 复用同一 Processing Engine 的原因。
-- 尚未完成：Module 7 结课综合实践与验收——把第 9～10 课的 Processing Engine、Realtime Controller、Backfill Cursor 与 Reorg Recovery 整合成一套可运行 Mini Indexer，并完成 Crash / Backfill / Reorg 场景验证。
-- 下一步准确入口：Module 7 结课综合实践｜Mini Indexer 集成与验收。把第 9～10 课代码整合成可运行项目，实际验证正常同步、重复执行幂等、Crash Recovery、独立 Backfill 与模拟 Reorg Recovery；通过后再正式结束 Module 7 并进入 Module 8。
+- Module 7 完成结论：第 1～10 课与结课综合实践均已完成；Mini Indexer 五项验收 Normal Sync / Idempotent Replay / Crash Recovery / Backfill / Reorg Recovery 全部通过，已达到 Module Contract 结束标准。五项实践由用户在 Codex 中实际完成并明确确认通过。
+- 当前 Lesson：Module 8 第 1 课｜为什么链上数据也需要数据建模：从 Indexer Fact 到可分析模型
+- 当前状态：待开始
+- 最近完成：Module 7 结课综合实践五项验收全部通过，Module 7 正式完成。
+- 尚未完成：Module 8 第 1 课
+- 下一步准确入口：开始 Module 8 第 1 课｜为什么链上数据也需要数据建模：从 Indexer Fact 到可分析模型。
 
 ## 目录
 
@@ -35,6 +35,7 @@
 - [Module 5 — RPC](module-05-rpc/README.md)
 - [Module 6 — Archive Node](module-06-archive-node/README.md)
 - [Module 7 — Indexer](module-07-indexer/README.md)
+- [Module 8 — 数据建模](module-08-data-modeling/README.md)
 
 ## 同步规则
 

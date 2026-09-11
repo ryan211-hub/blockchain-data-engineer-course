@@ -479,3 +479,25 @@ wallet_daily_token_balances
 > **先定义 Grain，再设计能够唯一标识该 Grain 的 Unique Key。**
 
 问题 1 已通过；问题 2、问题 3 待回答。
+
+### 问题 2｜用户回答
+> 问题二：
+>
+> 因为 tx_gas_used 是 transaction 级别的，然后冗余到了每一个 transfer 行。如果一个 transaction 经过了多次 transfer，那么这条 SQL 统计出来的 gas_used 就会被重复计算多次。
+>
+> 造成这个问题的根源是 token_transfers 表的 Grain（粒度）混乱：
+>
+> 1. 表中一行代表一个 transfer event
+> 2. 但 tx_gas_used 这个字段的 Grain 其实是 transaction
+>
+> 所以这个表中有两种 Grain，导致容易出现问题
+
+### 问题 2｜老师判断与校准
+**判断：通过。**
+
+你的回答已经准确指出了 Mixed Grain 的根因：`token_transfers` 的行级 Grain 是 Transfer Event，而 `tx_gas_used` 属于 Transaction Grain。若一笔 Transaction 产生多个 Transfer，Transaction 级别的 `tx_gas_used` 就会被复制到多行 Transfer 记录中；此时直接 `SUM(tx_gas_used)` 会按照 Transfer 行数重复累计，从而把真实 Gas 放大。
+
+这里可以把本题原则固定为：
+> **字段被 Join 进一张表并不代表它自动拥有当前表 Grain 下的正确聚合语义。**
+
+问题 2 已通过；问题 3 待回答。

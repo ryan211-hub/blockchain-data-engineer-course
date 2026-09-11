@@ -460,3 +460,22 @@ wallet_daily_token_balances
 请你用一句话定义它的 Grain，并尝试给出一个合理的 Unique Key。
 
 本课当前状态：等待理解检查回答，尚未正式结束。
+
+### 问题 1｜用户回答
+> 问题一：
+>
+> 1. transactions 应该产生一行，而 token transfers 应该产生五行。
+> 2. token transfer 不能只使用 chain ID 和 tx hash 作为 unique key，因为这两个字段不能完全确定一条 token transfer。需要增加一个字段 log index，通过这三个字段的组合，才能作为 token transfer 的 unique key
+
+### 问题 1｜老师判断与校准
+**判断：通过。**
+
+你的回答已经完整抓住了两个点：
+
+1. `transactions` 的 Grain 是“一行一笔 Transaction”，所以这一笔交易只产生 1 行；`token_transfers` 的 Grain 是“一行一个 Transfer Event”，同一笔 Transaction 中有 5 个 Transfer Event，因此产生 5 行。
+2. `(chain_id, tx_hash)` 只能唯一标识这笔 Transaction，不能区分同一 Transaction 内的多个 Transfer Event；需要再加入 `log_index`，形成 `(chain_id, tx_hash, log_index)`，才能唯一标识 EVM Log / Transfer Event Grain。
+
+这里可以进一步固定一句本课原则：
+> **先定义 Grain，再设计能够唯一标识该 Grain 的 Unique Key。**
+
+问题 1 已通过；问题 2、问题 3 待回答。

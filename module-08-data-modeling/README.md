@@ -40,11 +40,12 @@
 - 当前 Module：Module 8 — 数据建模
 - 已完成 Lesson：第 1 课｜为什么链上数据也需要数据建模：从 Indexer Fact 到可分析模型；第 2 课｜Grain：为什么“一行代表什么”是数据建模的第一原则
 - 当前 Lesson：第 3 课｜Fact 与 Dimension：哪些数据是事实，哪些数据是维度
-- 当前状态：待开始
+- 当前状态：第 3 课理解检查中
 - 已完成 Module：Module 1～7
-- 下一步准确入口：Module 8 第 3 课｜Fact 与 Dimension：哪些数据是事实，哪些数据是维度。
+- 下一步准确入口：继续 Module 8 第 3 课理解检查：Fact / Dimension、标准化结果与业务衍生结果。
 
 ## Lessons
 
 - [第 1 课｜为什么链上数据也需要数据建模：从 Indexer Fact 到可分析模型](lesson-01-why-blockchain-data-modeling.md)
 - [第 2 课｜Grain：为什么“一行代表什么”是数据建模的第一原则](lesson-02-grain.md)
+- [第 3 课｜Fact 与 Dimension：哪些数据是事实，哪些数据是维度](lesson-03-fact-and-dimension.md)

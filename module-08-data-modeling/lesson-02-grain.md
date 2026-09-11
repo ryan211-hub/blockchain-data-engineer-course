@@ -501,3 +501,35 @@ wallet_daily_token_balances
 > **字段被 Join 进一张表并不代表它自动拥有当前表 Grain 下的正确聚合语义。**
 
 问题 2 已通过；问题 3 待回答。
+
+### 问题 3｜用户回答
+> 它的 Grain 是一行代表一个 wallet address、一个 token 每一天的余额。
+>
+> 它的 unique key 是：
+> chain ID + wallet address + token + 日期
+
+### 问题 3｜老师判断与校准
+**判断：通过。**
+
+这个定义已经正确。更严格地写成 Grain 声明就是：
+> **一行代表一个 Chain 上，一个 Wallet 在某一天、某一个 Token 的日末余额。**
+
+对应的合理 Unique Key 为：
+```text
+(chain_id, date, wallet_address, token_address)
+```
+
+你回答中的 `token` 在实际表设计里应落实成能够稳定标识 Token 的字段。在 EVM 多链模型中，通常使用 `token_address`，并与 `chain_id` 共同确定 Token 身份。
+
+本题再次说明：**先定义 Grain，再让 Unique Key 精确表达这个 Grain。**
+
+---
+## 本课结论
+三道理解检查均已完成并通过必要校准，本课正式结束。
+
+本课需要固定的三个原则：
+1. **Before designing columns, declare the grain.**——先定义“一行代表什么”，再设计字段。
+2. **Unique Key 是 Grain 的数据库表达。**——先有业务语义上的 Grain，再设计能够唯一标识这一行的 Key。
+3. **避免 Mixed Grain。**——字段能够 Join 进一张表，不代表它在当前 Grain 下具有正确的聚合语义。
+
+当前已经能够区分 Transaction Grain、Transfer Event Grain、Pool Swap Grain、User Swap Grain 与 Wallet Daily Token Balance Grain，并能够根据 Grain 设计相应 Unique Key。

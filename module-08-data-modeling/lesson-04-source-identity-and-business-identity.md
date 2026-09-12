@@ -983,3 +983,34 @@ B：
 - A 更应该使用 Source Identity 还是 Business Identity？
 - B 更应该使用 Source Identity 还是 Business Identity？
 - 为什么？
+
+### 问题 1｜用户回答
+> 从 source identity 角度，它们不是同一个对象。它们是在不同的链上的两个不同的token：一个是在 Ethereum 上，另外一个是在 Base 链上。
+> 从 business identity 角度，它们可以映射为同一个 USDC
+> 为什么底层 dim_tokens 不能只保留一条 USDC？
+>
+> 因为为了数据可以追溯，我们必须保留原始数据，而不能在 USDC 业务层面将数据整合后只保留成一条。这样对数据分析来说是丢失了很多信息，无法再追踪还原 token 在链上的真实情况。
+
+### 问题 1｜老师判断与校准
+**判断：通过。**
+
+你的答案已经抓住了本课的核心：
+- Source Identity 负责保留链上真实对象，因此 Ethereum USDC 与 Base USDC 是两个不同的 Source Identity；
+- Business Identity 可以把多个 Source Identity 映射到同一个 `USDC` 业务资产；
+- 底层 `dim_tokens` 不能只保留一条 `USDC`，因为那会丢失链、合约地址等源身份信息，破坏可追溯性，也会使后续按链、按 Contract 的分析无法还原。
+
+这里再固定一个更精确的表达：
+> **底层模型负责保真，业务层负责统一。**
+
+也就是：
+```text
+Source Identity
+(chain_id, token_address)
+        ↓ 保留
+Business Mapping
+        ↓
+Business Identity
+(USDC)
+```
+
+问题 1 已通过；问题 2、问题 3 待回答。

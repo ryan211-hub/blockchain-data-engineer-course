@@ -1070,3 +1070,30 @@ ads_stablecoin_dashboard
 1. 为什么这张表更像 ADS，而不是 DWS？
 2. 如果未来另一个 API 不需要 `rank`，但需要 Wallet Breakdown，它是否应该被迫直接依赖这张 ADS？
 3. 从这个例子解释：为什么“越上层”不等于“越通用”？
+
+## 问题 1｜用户回答
+> RPC 原始 log 更接近 raw，解析之后的更接近 normalized fact。为什么即使已经有 normalized fact，仍然值得保存 raw？因为 raw 层最重要的能力是 replayability。
+>
+> 如果 raw 层不保留的话，那么假设 decoder 有 bug，在 decoder 修复之后，它需要 raw 层的数据重新 decode。如果这时候 raw 层的数据已经没有保存，就只能重新从 RPC 获取。
+
+## 问题 1｜老师判断与校准
+**判断：通过。**
+
+你的判断和理由都正确。RPC 原始 Log 更接近 Raw，Decoder 解析后的 `token_address / from_address / to_address / amount_raw / amount` 更接近 Normalized Fact。
+
+你把 Raw 的核心价值归结为 **Replayability** 是准确的：如果 Decoder 有 Bug，只要 Raw 仍然保留，就可以在修复 Decoder 后直接从 Raw 重新生成下游 Normalized Fact，而不必重新向 RPC 拉取完整历史数据。
+
+这里再补一个更完整的工程表述：Raw 不只是为了“备份原始数据”，而是为了同时保留 **Source Fidelity + Replayability + Auditability**。其中本题最核心的是 Replayability：
+
+```text
+raw_logs
+   ↓
+fixed decoder
+   ↓
+rebuild normalized fact
+```
+
+因此可以固定一句：
+> **Raw 层负责保留可重新解释的源事实；Normalized Fact 负责提供当前版本的稳定分析语义。**
+
+问题 1 已通过；问题 2、问题 3 待回答。

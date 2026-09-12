@@ -38,11 +38,11 @@
 
 - 当前阶段：第三阶段 Data Engineering
 - 当前 Module：Module 8 — 数据建模
-- 已完成 Lesson：第 1 课｜为什么链上数据也需要数据建模：从 Indexer Fact 到可分析模型；第 2 课｜Grain：为什么“一行代表什么”是数据建模的第一原则；第 3 课｜Fact 与 Dimension：哪些数据是事实，哪些数据是维度；第 4 课｜Source Identity 与 Business Identity
-- 当前 Lesson：第 5 课｜Raw / Normalized Fact / DWS / ADS：数据职责边界
-- 当前状态：第 5 课理解检查中
+- 已完成 Lesson：第 1 课｜为什么链上数据也需要数据建模：从 Indexer Fact 到可分析模型；第 2 课｜Grain：为什么“一行代表什么”是数据建模的第一原则；第 3 课｜Fact 与 Dimension：哪些数据是事实，哪些数据是维度；第 4 课｜Source Identity 与 Business Identity；第 5 课｜Raw / Normalized Fact / DWS / ADS：数据职责边界
+- 当前 Lesson：第 6 课｜核心对象最小模型：Wallet / Token / Transfer / Swap
+- 当前状态：待开始
 - 已完成 Module：Module 1～7
-- 下一步准确入口：继续 Module 8 第 5 课理解检查：Raw 保真与重放、Normalized Fact 稳定明细语义、DWS 可复用聚合、ADS 应用服务。
+- 下一步准确入口：开始 Module 8 第 6 课｜核心对象最小模型：Wallet / Token / Transfer / Swap。
 
 ## Lessons
 

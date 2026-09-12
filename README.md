@@ -25,8 +25,8 @@
 - Module 7 完成结论：第 1～10 课与结课综合实践均已完成；Mini Indexer 五项验收 Normal Sync / Idempotent Replay / Crash Recovery / Backfill / Reorg Recovery 全部通过，已达到 Module Contract 结束标准。五项实践由用户在 Codex 中实际完成并明确确认通过。
 - 当前 Lesson：Module 8 第 7 课｜Transaction 建模：Transaction Fact 与 Transfer / Swap 的 Grain 边界
 - 当前状态：第 7 课理解检查中
-- 最近完成：Module 8 第 6 课《核心对象最小模型：Wallet / Token / Transfer / Swap》三道理解检查全部通过并正式结束；Module 8 第 7 课 Canonical Base 已同步到 Notion 与 GitHub，当前进入理解检查。
-- 尚未完成：Module 8 第 7 课理解检查与必要校准；第 4 课 GitHub Lesson 的问题 3 与结课段落待同步；第 5 课 Notion Lesson 存在 Q2 顺序 / 重复 Canonical Drift 待修复，GitHub Lesson 的问题 2、问题 3与结课段落待同步；第 6 课 GitHub Lesson 的 Q1、Q2、Q3 与结课段落待同步
+- 最近完成：Module 8 第 6 课《核心对象最小模型：Wallet / Token / Transfer / Swap》三道理解检查全部通过并正式结束；Module 8 第 7 课 Canonical Base 已同步到 Notion，GitHub Lesson 当前仍为旧版草稿正文，存在教材冲突待同步；当前进入理解检查。
+- 尚未完成：Module 8 第 7 课理解检查与必要校准；第 7 课 GitHub Lesson 旧版正文需按当前 Canonical Base 修复；第 4 课 GitHub Lesson 的问题 3 与结课段落待同步；第 5 课 Notion Lesson 存在 Q2 顺序 / 重复 Canonical Drift 待修复，GitHub Lesson 的问题 2、问题 3与结课段落待同步；第 6 课 GitHub Lesson 的 Q1、Q2、Q3 与结课段落待同步
 - 下一步准确入口：继续 Module 8 第 7 课理解检查：Transaction / Transfer / Pool Swap Grain、transaction.value 语义、Transaction-level Measure 与 Mixed Grain。
 
 ## 目录

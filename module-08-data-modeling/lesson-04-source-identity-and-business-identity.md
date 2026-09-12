@@ -1014,3 +1014,43 @@ Business Identity
 ```
 
 问题 1 已通过；问题 2、问题 3 待回答。
+
+### 问题 2｜用户回答
+> 1. Source Identity 有 3 条
+> 2. Business Identity 可以认为是 1 条
+> 3. 为什么不能因为它们都属于 Binance，就把 3 个地址在底层合并掉？
+>    虽然它们都属于 Binance，但它们分别是 3 个不同的地址，可以认为是对应 3 种不同的账户。如果从账户分析的角度来看，就不能把这 3 个地址直接合并。
+>
+> 在业务层面的话，可以通过数据处理（normalize）建立统一的数据模型，在上层把 3 个地址合并，然后从业务角度、从 entity 的 grain 去进行分析
+
+### 问题 2｜老师判断与校准
+**判断：通过。**
+
+核心判断正确：三个地址在链上仍然是三个独立的 Source Identity，而在业务层可以映射到同一个 `Binance` Entity。
+
+你提到“从账户分析角度不能直接合并”非常关键。底层如果把三个地址覆盖成一条记录，就会失去地址级别的余额、Transfer、交互协议、行为模式等差异，也会破坏从业务实体向原始链上事实的可追溯性。
+
+术语上需要做一个校准：这里更准确的不是 `normalize`，而是 **Business Mapping / Enrichment / Semantic Modeling**。`normalize` 在本课程中更容易让人联想到金额、Decimal、格式等标准化，例如 `amount_raw → amount`；而这里做的是身份语义映射：
+
+```text
+(chain_id, 0xA) ─┐
+(chain_id, 0xB) ─┼──→ entity_id = BINANCE
+(chain_id, 0xC) ─┘
+```
+
+因此可以同时保留两种 Grain：
+
+```text
+Source / Wallet Grain
+一行 = 一个 Chain 上的一个 Wallet Address
+```
+
+以及更高层：
+
+```text
+Business / Entity Grain
+一行 = 一个业务实体，例如 Binance
+```
+
+固定原则：
+> **Source 层保留地址级事实；Business 层通过映射形成 Entity 级语义。两层都保留，而不是用上层 Entity 覆盖底层 Address。**

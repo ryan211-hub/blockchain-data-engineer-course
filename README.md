@@ -23,11 +23,11 @@
 - 当前 Module：Module 8 — 数据建模
 - Module 6 完成结论：第 1～4 课均已完成，已达到 Module Contract 结束标准。已能区分 History / Historical State，解释 Pruning、Archive 成本，并根据 Query Semantics、Derived State、规模与 TCO 判断 Archive RPC / Self-hosted / Hybrid。
 - Module 7 完成结论：第 1～10 课与结课综合实践均已完成；Mini Indexer 五项验收 Normal Sync / Idempotent Replay / Crash Recovery / Backfill / Reorg Recovery 全部通过，已达到 Module Contract 结束标准。五项实践由用户在 Codex 中实际完成并明确确认通过。
-- 当前 Lesson：Module 8 第 5 课｜Raw / Normalized Fact / DWS / ADS：数据职责边界
-- 当前状态：第 5 课理解检查中
-- 最近完成：Module 8 第 4 课《Source Identity 与 Business Identity》三道理解检查全部通过并正式结束；Notion Lesson 已完成增量同步。GitHub Lesson 尚待补入问题 3 与结课段落。
-- 尚未完成：Module 8 第 5 课理解检查与必要校准；第 4 课 GitHub Lesson 的问题 3 与结课段落待同步
-- 下一步准确入口：继续 Module 8 第 5 课理解检查：Raw 保真与重放、Normalized Fact 稳定明细语义、DWS 可复用聚合、ADS 应用服务。
+- 当前 Lesson：Module 8 第 6 课｜核心对象最小模型：Wallet / Token / Transfer / Swap
+- 当前状态：待开始
+- 最近完成：Module 8 第 5 课《Raw / Normalized Fact / DWS / ADS：数据职责边界》三道理解检查全部通过并正式结束；Notion Lesson 已完成增量同步。GitHub Lesson 目前已同步 Canonical Base 与问题 1，问题 2、问题 3及结课段落仍待完整同步。
+- 尚未完成：Module 8 第 6 课；第 4 课 GitHub Lesson 的问题 3 与结课段落待同步；第 5 课 GitHub Lesson 的问题 2、问题 3与结课段落待同步
+- 下一步准确入口：开始 Module 8 第 6 课｜核心对象最小模型：Wallet / Token / Transfer / Swap。
 
 ## 目录
 

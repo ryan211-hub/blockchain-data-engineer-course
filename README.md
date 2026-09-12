@@ -23,11 +23,11 @@
 - 当前 Module：Module 8 — 数据建模
 - Module 6 完成结论：第 1～4 课均已完成，已达到 Module Contract 结束标准。已能区分 History / Historical State，解释 Pruning、Archive 成本，并根据 Query Semantics、Derived State、规模与 TCO 判断 Archive RPC / Self-hosted / Hybrid。
 - Module 7 完成结论：第 1～10 课与结课综合实践均已完成；Mini Indexer 五项验收 Normal Sync / Idempotent Replay / Crash Recovery / Backfill / Reorg Recovery 全部通过，已达到 Module Contract 结束标准。五项实践由用户在 Codex 中实际完成并明确确认通过。
-- 当前 Lesson：Module 8 第 4 课｜Source Identity 与 Business Identity
-- 当前状态：第 4 课理解检查中
-- 最近完成：Module 8 第 3 课《Fact 与 Dimension：哪些数据是事实，哪些数据是维度》三道理解检查全部通过，已完成必要校准并正式结束；Canonical Lesson Content 已同步到 Notion 与 GitHub。
-- 尚未完成：Module 8 第 4 课理解检查与必要校准
-- 下一步准确入口：继续 Module 8 第 4 课理解检查：多链 Token Source Identity、Business Asset Mapping 与 Wallet Entity Identity。
+- 当前 Lesson：Module 8 第 5 课｜Raw / Normalized Fact / DWS / ADS：数据职责边界
+- 当前状态：待开始
+- 最近完成：Module 8 第 4 课《Source Identity 与 Business Identity》三道理解检查全部通过并正式结束；Notion Lesson 已完成增量同步。GitHub Lesson 尚待补入问题 3 与结课段落。
+- 尚未完成：Module 8 第 5 课；第 4 课 GitHub Lesson 的问题 3 与结课段落待同步
+- 下一步准确入口：开始 Module 8 第 5 课｜Raw / Normalized Fact / DWS / ADS：数据职责边界。
 
 ## 目录
 

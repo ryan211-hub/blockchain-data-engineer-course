@@ -40,9 +40,9 @@
 - 当前 Module：Module 8 — 数据建模
 - 已完成 Lesson：第 1 课｜为什么链上数据也需要数据建模：从 Indexer Fact 到可分析模型；第 2 课｜Grain：为什么“一行代表什么”是数据建模的第一原则；第 3 课｜Fact 与 Dimension：哪些数据是事实，哪些数据是维度；第 4 课｜Source Identity 与 Business Identity；第 5 课｜Raw / Normalized Fact / DWS / ADS：数据职责边界；第 6 课｜核心对象最小模型：Wallet / Token / Transfer / Swap
 - 当前 Lesson：第 7 课｜Transaction 建模：Transaction Fact 与 Transfer / Swap 的 Grain 边界
-- 当前状态：待开始
+- 当前状态：第 7 课理解检查中
 - 已完成 Module：Module 1～7
-- 下一步准确入口：开始 Module 8 第 7 课｜Transaction 建模：Transaction Fact 与 Transfer / Swap 的 Grain 边界。
+- 下一步准确入口：继续 Module 8 第 7 课理解检查：Transaction / Transfer / Pool Swap Grain、transaction.value 语义、Transaction-level Measure 与 Mixed Grain。
 
 ## Lessons
 
@@ -52,3 +52,4 @@
 - [第 4 课｜Source Identity 与 Business Identity](lesson-04-source-identity-and-business-identity.md)
 - [第 5 课｜Raw / Normalized Fact / DWS / ADS：数据职责边界](lesson-05-raw-normalized-dws-ads.md)
 - [第 6 课｜核心对象最小模型：Wallet / Token / Transfer / Swap](lesson-06-core-object-minimal-model.md)
+- [第 7 课｜Transaction 建模：Transaction Fact 与 Transfer / Swap 的 Grain 边界](lesson-07-transaction-modeling.md)

@@ -1113,3 +1113,138 @@ fact_balances
 3. 复用；
 
 三个角度回答。
+
+### 问题 1｜用户回答
+> 问题一：
+>
+> 1. chain_id：属于 transfer_fact，同时也属于 token_dimension，它是一个来自链上的事实
+> 2. tx_hash：属于 transfer_fact
+> 3. log_index：属于 transfer_fact
+> 4. token_address：属于来自链上的事实，但是 transfer_fact 和 token_dimension 都需要它
+> 5. from_address：属于 transfer_fact
+> 6. to_address：属于 transfer_fact
+> 7. amount_raw：属于 transfer_fact
+> 8. token_symbol：属于 token_dimension
+> 9. decimals：属于 token_dimension
+>
+> 为什么 decimals 虽然可以来自链上，但仍更适合作为 dimension 属性？
+> 因为 decimals 描述的是 token，它不属于单次 transfer 事件，是 token 的一个属性
+
+### 问题 1｜老师判断与校准
+**判断：通过。**
+
+整体分类正确，尤其是对 `decimals` 的解释已经抓住了核心：Fact / Dimension 按语义角色划分，不按“是否来自链上”划分。
+
+需要把两个角色再区分得更精确：
+- `chain_id` 可以同时存在于 Fact 与 Dimension，但更准确的角色是 **Identity Namespace / Context**，不是像 `amount_raw` 那样的事实度量。
+- `token_address` 在 Fact 中是 Dimension Reference，在 `dim_tokens` 中则是 Token Identity 的组成部分。
+
+因此可以整理为：
+```text
+Transfer Fact
+
+Identity / Context
+- chain_id
+- tx_hash
+- log_index
+
+Participant / Reference
+- token_address
+- from_address
+- to_address
+
+Measure
+- amount_raw
+```
+
+而：
+```text
+Token Dimension
+
+Identity
+- chain_id
+- token_address
+
+Attributes
+- token_symbol
+- decimals
+```
+
+这里还要固定一个原则：
+> **Fact 表不只是 Measure。Fact 表还会包含 Identity、参与者、Dimension Reference 和 Event Time。**
+
+`decimals` 虽然可以从链上 Token Contract 获取，但它回答的是“这个 Token 是什么样的 Token”，而不是“这一笔 Transfer 发生了什么”，因此更适合作为 Token Dimension Attribute。
+
+### 问题 2｜用户回答
+> 问题二：
+>
+> 1. amount_raw 属于链上直接事实
+> 2. decimals 属于对象属性
+> 3. token_symbol 属于对象属性
+> 4. amount 属于标准化结果
+> 5. amount_usd 属于业务衍生结果
+
+### 问题 2｜老师判断与校准
+**判断：通过。**
+
+分类完全正确：
+- `amount_raw`：链上直接事实 / Source Fact；
+- `decimals`：Token 对象属性 / Dimension；
+- `token_symbol`：Token 对象属性 / Dimension；
+- `amount`：由 `amount_raw` 与 `decimals` 计算得到的标准化结果；
+- `amount_usd`：进一步结合价格得到的业务衍生结果。
+
+这里需要固定的层次是：
+```text
+amount_raw
+    ↓ decimals
+amount
+    ↓ price
+amount_usd
+
+Source Fact
+    ↓
+Normalized Measure
+    ↓
+Derived Business Measure
+```
+
+### 问题 3｜用户回答
+> 问题三，如果把 token 的属性全部存到事实表里的话，主要有以下几个问题：
+>
+> 1. 导致重复存储，占用的数据容量会更大
+> 2. 不便维护：如果 token 的属性有改动，就需要修改所有事实表中的历史数据
+> 3. 关于复用：复用性这一块目前还不太清楚
+
+### 问题 3｜老师判断与校准
+**判断：通过，复用部分已补充校准。**
+
+前两点判断正确：
+1. **重复存储**：同一个 Token 的 `symbol / name / decimals / token_type` 会随着大量 Transfer、Swap、Balance 记录反复出现，增加冗余。
+2. **维护成本**：如果 Token 属性、分类或映射需要补充或修正，分散在多张 Fact 中会造成多处更新与口径不一致风险。
+
+“复用”的核心是：
+> **多个 Fact 共享同一个 Dimension，从而复用同一套对象语义和业务口径。**
+
+例如：
+```text
+fact_token_transfers ─┐
+fact_swaps            ├──→ dim_tokens
+fact_balances         ┘
+```
+
+三张 Fact 都通过 `(chain_id, token_address)` 关联同一 `dim_tokens`。这样 `symbol / decimals / token_type / canonical mapping` 只需要在统一维度层定义一次，所有下游模型得到相同解释。
+
+因此 Dimension 的复用价值不仅是“少存几列”，更重要的是：
+> **集中维护、统一语义、统一口径，让不同 Fact 对同一个业务对象使用同一份定义。**
+
+---
+## 本课结论
+三道理解检查已经完成并通过必要校准，本课正式结束。
+
+本课需要固定的核心判断：
+1. **Fact 描述发生了什么；Dimension 描述参与对象是什么。**
+2. **“来自链上”不等于“一定属于 Fact”**；判断依据是字段在模型中的语义角色。
+3. Fact 中既可以有 Measure，也可以有 Identity、Participant、Reference 与 Event Time。
+4. `amount_raw → amount → amount_usd` 分别对应链上直接事实、标准化结果与业务衍生结果。
+5. Dimension 的关键价值是集中维护对象属性，并让多个 Fact 复用统一的业务语义和口径。

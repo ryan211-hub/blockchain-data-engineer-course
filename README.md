@@ -26,8 +26,9 @@
 - 当前 Lesson：Module 8 第 7 课｜Transaction 建模：Transaction Fact 与 Transfer / Swap 的 Grain 边界
 - 当前状态：第 7 课已完成
 - 最近完成：Module 8 第 7 课《Transaction 建模：Transaction Fact 与 Transfer / Swap 的 Grain 边界》三道理解检查全部通过并正式结束；Canonical Base 与 Q1、Q2、Q3、结课判定已同步到 Notion 和 GitHub 并回读校验。
-- 尚未完成：第 4 课 GitHub Lesson 的问题 3 与结课段落待同步；第 5 课 Notion Lesson 存在 Q2 顺序 / 重复 Canonical Drift 待修复，GitHub Lesson 的问题 2、问题 3与结课段落待同步；第 6 课 GitHub Lesson 的 Q1、Q2、Q3 与结课段落待同步；Module 8 第 8 课尚待规划。
-- 下一步准确入口：先修复 Module 8 第 4～6 课的既有同步债务与第 5 课 Canonical Drift，逐项回读验证；然后规划 Module 8 第 8 课。
+- 历史同步债务处理决定：用户已明确要求忽略 Module 8 第 4～6 课的既有 Notion / GitHub 同步债务与第 5 课 Canonical Drift；这些历史问题不再修复，也不再阻塞课程推进。
+- 尚未完成：Module 8 第 8 课尚待规划。
+- 下一步准确入口：规划并开始 Module 8 第 8 课。
 
 ## 目录
 

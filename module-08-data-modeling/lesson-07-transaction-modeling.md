@@ -1174,3 +1174,59 @@ gas_used = 150000
 1. 这样做有什么问题？
 2. `gas_used` 更适合放在哪张表？
 3. 如果以后要分析“发生过 Token Transfer 的 Transaction 平均 gas_used”，应该怎么做？
+
+---
+
+## 理解检查增量｜问题 1
+### 用户回答
+1. fact_transactions 应该保存一行
+2. fact_token_transfers 应该保存三行
+3. fact_pool_swaps 应该保存两行
+为什么这三张表都不是重复数据？
+因为这三张表的数据，它们是从不同的 grain 和不同的需求出发，保存的这三类数据.
+### 老师判断与校准
+判断：通过。
+三张表虽然都关联同一个 `tx_hash`，但描述的是不同的 Business Object：
+```text
+fact_transactions
+Grain = one transaction
+→ 1 row
+
+fact_token_transfers
+Grain = one token transfer event
+→ 3 rows
+
+fact_pool_swaps
+Grain = one pool swap execution
+→ 2 rows
+```
+因此这些记录不是重复数据，而是对同一次链上执行从不同业务对象和 Grain 进行建模。
+更精确地说，区分它们不只是因为“需求不同”，还因为它们所描述的事实本身不同：Transaction 是一次执行请求，Transfer 是一次 Token 移动事件，Pool Swap 是一次池级交换执行。
+固定结论：
+> 同一个 `tx_hash` 可以连接多个事实模型，但是否重复要看 Business Object + Grain，而不是看它们是否来自同一笔 Transaction。
+问题 1：通过。
+## 理解检查增量｜问题 2
+### 用户回答
+Transaction 的 value 等于 0，是因为 value 它自带的是 ETH 的原生代币，而这里 Alice transfer 100 USDC 给 Bob，没有涉及到 ETH 原生代币，所以 value 等于 0 是正常的
+Transactions to address 指的是用户把 transaction 发送给哪个账户，而 Token Transfers to address 指的是这次 token transfer 的接收方。
+### 老师判断与校准
+问题 2 通过。
+- `transaction.value = 0` 的原因是 `value` 表示随 Transaction 直接发送的原生 ETH 数量；这里转移的是 ERC-20 USDC，不是 ETH。
+- `transaction.value = 0` 不代表没有资产转移。本例实际发生了 `100 USDC` 的 Token Transfer。
+- `fact_transactions.to_address` 表示 Transaction 的直接调用目标，本例是 `USDC Contract`。
+- `fact_token_transfers.to_address` 表示 Token Transfer 的接收方，本例是 `Bob`。
+固定结论：字段名相同不代表语义相同；字段语义由 `Business Object + Grain + Role` 决定。
+
+## 理解检查增量｜问题 3
+### 用户回答
+这样做的话，如果从 transfer 表中统计 gas_used 的数量，那么会得到一个翻倍的结果。
+
+gas_used 更适合放在 transaction 表中。如果要统计平均的 gas_used，那么可以通过 transaction 表关联 transfer 来获取，进而计算 gas_used 的平均值。
+### 老师判断与校准
+问题 3 通过。
+将一笔 Transaction 的 `gas_used = 150000` 复制到 3 条 `fact_token_transfers` 记录，会造成 Transaction-level Measure 在 Transfer Grain 下重复。此例若直接 `SUM(gas_used)`，得到 `450000`，是原值的三倍；用户所说的“翻倍”指出了重复放大的问题，但这里应精确为“三倍”。
+`gas_used` 属于 `fact_transactions`，其 Grain 是 one transaction。
+分析“发生过 Token Transfer 的 Transaction 平均 gas_used”时，先从 `fact_token_transfers` 取 `DISTINCT (chain_id, tx_hash)`，再与 `fact_transactions` 按这两个字段关联，最后计算 `AVG(fact_transactions.gas_used)`。这样每笔 Transaction 只计一次，保持 Transaction Grain。
+固定结论：先将 Transfer 侧去重到 Transaction Grain，再聚合 Transaction-level Measure。
+## 本课结束判定
+问题 1、问题 2、问题 3 均已通过，必要校准完成。Module 8 第 7 课正式结束。

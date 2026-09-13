@@ -42,7 +42,8 @@
 - 当前 Lesson：第 7 课｜Transaction 建模：Transaction Fact 与 Transfer / Swap 的 Grain 边界
 - 当前状态：第 7 课已完成
 - 已完成 Module：Module 1～7
-- 下一步准确入口：先修复 Module 8 第 4～6 课的既有同步债务与第 5 课 Canonical Drift，逐项回读验证；然后规划 Module 8 第 8 课。
+- 历史同步债务处理决定：用户已明确要求忽略 Module 8 第 4～6 课的既有 Notion / GitHub 同步债务与第 5 课 Canonical Drift；这些历史问题不再修复，也不再阻塞课程推进。
+- 下一步准确入口：规划并开始 Module 8 第 8 课。
 
 ## Lessons
 

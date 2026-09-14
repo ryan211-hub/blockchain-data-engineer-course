@@ -23,12 +23,13 @@
 - 当前 Module：Module 8 — 数据建模
 - Module 6 完成结论：第 1～4 课均已完成，已达到 Module Contract 结束标准。已能区分 History / Historical State，解释 Pruning、Archive 成本，并根据 Query Semantics、Derived State、规模与 TCO 判断 Archive RPC / Self-hosted / Hybrid。
 - Module 7 完成结论：第 1～10 课与结课综合实践均已完成；Mini Indexer 五项验收 Normal Sync / Idempotent Replay / Crash Recovery / Backfill / Reorg Recovery 全部通过，已达到 Module Contract 结束标准。五项实践由用户在 Codex 中实际完成并明确确认通过。
-- 当前 Lesson：Module 8 第 7 课｜Transaction 建模：Transaction Fact 与 Transfer / Swap 的 Grain 边界
-- 当前状态：第 7 课已完成
-- 最近完成：Module 8 第 7 课《Transaction 建模：Transaction Fact 与 Transfer / Swap 的 Grain 边界》三道理解检查全部通过并正式结束；Canonical Base 与 Q1、Q2、Q3、结课判定已同步到 Notion 和 GitHub 并回读校验。
+- 当前 Lesson：Module 8 第 8 课｜从分析需求反推数据模型：Query Semantics 驱动建模
+- 当前状态：第 8 课已完成
+- 最近完成：Module 8 第 8 课《从分析需求反推数据模型：Query Semantics 驱动建模》三道理解检查全部通过并正式结束；本次重开的 Canonical Base 与 Q1、Q2、Q3 用户原回答、老师校准和结课判定已同步到 Notion 和 GitHub。
+- 最近掌握重点：已形成 `Query Semantics → Business Object → Grain → Source Identity → Unique Key → Fact / Dimension → Relation → Layer` 的完整建模链条；能够从查询需求判断应使用 Transaction / Token Transfer / Pool Swap / User Swap Fact；理解 DWS 是新的稳定分析 Grain，而不是向底层 Fact 塞聚合字段；能够识别 Mixed Grain、Join 后 Measure 重复和万能宽表风险。
 - 历史同步债务处理决定：用户已明确要求忽略 Module 8 第 4～6 课的既有 Notion / GitHub 同步债务与第 5 课 Canonical Drift；这些历史问题不再修复，也不再阻塞课程推进。
-- 尚未完成：Module 8 第 8 课尚待规划。
-- 下一步准确入口：规划并开始 Module 8 第 8 课。
+- 尚未完成：Module 8 的 Module Contract 结束标准尚待综合检查与正式结课判定。
+- 下一步准确入口：进行 Module 8 结束标准综合检查，判断是否正式结束 Module 8 并进入 Module 9。
 
 ## 目录
 

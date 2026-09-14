@@ -39,11 +39,13 @@
 - 当前阶段：第三阶段 Data Engineering
 - 当前 Module：Module 8 — 数据建模
 - 已完成 Lesson：第 1 课｜为什么链上数据也需要数据建模：从 Indexer Fact 到可分析模型；第 2 课｜Grain：为什么“一行代表什么”是数据建模的第一原则；第 3 课｜Fact 与 Dimension：哪些数据是事实，哪些数据是维度；第 4 课｜Source Identity 与 Business Identity；第 5 课｜Raw / Normalized Fact / DWS / ADS：数据职责边界；第 6 课｜核心对象最小模型：Wallet / Token / Transfer / Swap；第 7 课｜Transaction 建模：Transaction Fact 与 Transfer / Swap 的 Grain 边界；第 8 课｜从分析需求反推数据模型：Query Semantics 驱动建模
-- 当前 Lesson：第 8 课｜从分析需求反推数据模型：Query Semantics 驱动建模
-- 当前状态：第 8 课已完成
-- 已完成 Module：Module 1～7
+- 当前 Lesson：Module 8 结课完成
+- 当前状态：✅ Module 8 已正式完成
+- 已完成 Module：Module 1～8
+- Module 8 完成结论：第 1～8 课与结束标准综合检查均已完成，已达到 Module Contract 结束标准。
+- 结课校准：`fact_token_transfers` 的 Grain 为 one Token Transfer Event，Unique Key 为 `(chain_id, tx_hash, log_index)`；`dws_wallet_token_daily_flow` 的 Grain 为 one wallet + one token + one day，Unique Key 为 `(chain_id, date, wallet_address, token_address)`；Source Identity 保留 `(chain_id, token_address)`，Business Identity 在更高业务语义层归类。
 - 历史同步债务处理决定：用户已明确要求忽略 Module 8 第 4～6 课的既有 Notion / GitHub 同步债务与第 5 课 Canonical Drift；这些历史问题不再修复，也不再阻塞课程推进。
-- 下一步准确入口：进行 Module 8 结束标准综合检查，判断是否正式结束 Module 8 并进入 Module 9。
+- 下一步准确入口：Module 9 第 1 课《ETL 到底是什么：从“已有数据”到“可持续数据管道”》。
 
 ## Lessons
 

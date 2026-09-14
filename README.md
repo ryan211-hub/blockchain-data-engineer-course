@@ -25,11 +25,11 @@
 - Module 7 完成结论：第 1～10 课与结课综合实践均已完成；Mini Indexer 五项验收 Normal Sync / Idempotent Replay / Crash Recovery / Backfill / Reorg Recovery 全部通过，已达到 Module Contract 结束标准。五项实践由用户在 Codex 中实际完成并明确确认通过。
 - Module 8 完成结论：第 1～8 课与结束标准综合检查均已完成，已达到 Module Contract 结束标准。已能从 Query Semantics 推导 Business Object、Grain、Source Identity、Unique Key、Fact / Dimension、Relation 与 Layer，并区分 Source Identity 与 Business Identity。
 - 当前 Lesson：Module 9 第 1 课｜ETL 到底是什么：从“已有数据”到“可持续数据管道”
-- 当前状态：Module 8 已正式完成；Module 9 第 1 课准备开始
+- 当前状态：Module 8 已正式完成；Module 9 第 1 课进行中
 - 最近完成：Module 8 结束标准综合检查已通过并正式结课。
 - 最近掌握重点：`fact_token_transfers` 的 Grain 为 one Token Transfer Event，Unique Key 为 `(chain_id, tx_hash, log_index)`；`dws_wallet_token_daily_flow` 的 Grain 为 one wallet + one token + one day，Unique Key 为 `(chain_id, date, wallet_address, token_address)`；Source Identity 保留 `(chain_id, token_address)`，Business Identity 在更高业务语义层归类。
 - 历史同步债务处理决定：用户已明确要求忽略 Module 8 第 4～6 课的既有 Notion / GitHub 同步债务与第 5 课 Canonical Drift；这些历史问题不再修复，也不再阻塞课程推进。
-- 下一步准确入口：开始 Module 9 第 1 课《ETL 到底是什么：从“已有数据”到“可持续数据管道”》。
+- 下一步准确入口：继续 Module 9 第 1 课《ETL 到底是什么：从“已有数据”到“可持续数据管道”》并完成理解检查。
 
 ## 目录
 

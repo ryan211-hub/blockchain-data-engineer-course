@@ -19,17 +19,17 @@
 ## 当前学习进度
 
 - 当前阶段：第三阶段 Data Engineering
-- 已完成 Module：Module 1、Module 2、Module 3、Module 4、Module 5、Module 6、Module 7
-- 当前 Module：Module 8 — 数据建模
+- 已完成 Module：Module 1、Module 2、Module 3、Module 4、Module 5、Module 6、Module 7、Module 8
+- 当前 Module：Module 9 — ETL
 - Module 6 完成结论：第 1～4 课均已完成，已达到 Module Contract 结束标准。已能区分 History / Historical State，解释 Pruning、Archive 成本，并根据 Query Semantics、Derived State、规模与 TCO 判断 Archive RPC / Self-hosted / Hybrid。
 - Module 7 完成结论：第 1～10 课与结课综合实践均已完成；Mini Indexer 五项验收 Normal Sync / Idempotent Replay / Crash Recovery / Backfill / Reorg Recovery 全部通过，已达到 Module Contract 结束标准。五项实践由用户在 Codex 中实际完成并明确确认通过。
-- 当前 Lesson：Module 8 第 8 课｜从分析需求反推数据模型：Query Semantics 驱动建模
-- 当前状态：第 8 课已完成
-- 最近完成：Module 8 第 8 课《从分析需求反推数据模型：Query Semantics 驱动建模》三道理解检查全部通过并正式结束；本次重开的 Canonical Base 与 Q1、Q2、Q3 用户原回答、老师校准和结课判定已同步到 Notion 和 GitHub。
-- 最近掌握重点：已形成 `Query Semantics → Business Object → Grain → Source Identity → Unique Key → Fact / Dimension → Relation → Layer` 的完整建模链条；能够从查询需求判断应使用 Transaction / Token Transfer / Pool Swap / User Swap Fact；理解 DWS 是新的稳定分析 Grain，而不是向底层 Fact 塞聚合字段；能够识别 Mixed Grain、Join 后 Measure 重复和万能宽表风险。
+- Module 8 完成结论：第 1～8 课与结束标准综合检查均已完成，已达到 Module Contract 结束标准。已能从 Query Semantics 推导 Business Object、Grain、Source Identity、Unique Key、Fact / Dimension、Relation 与 Layer，并区分 Source Identity 与 Business Identity。
+- 当前 Lesson：Module 9 第 1 课｜ETL 到底是什么：从“已有数据”到“可持续数据管道”
+- 当前状态：Module 8 已正式完成；Module 9 第 1 课准备开始
+- 最近完成：Module 8 结束标准综合检查已通过并正式结课。
+- 最近掌握重点：`fact_token_transfers` 的 Grain 为 one Token Transfer Event，Unique Key 为 `(chain_id, tx_hash, log_index)`；`dws_wallet_token_daily_flow` 的 Grain 为 one wallet + one token + one day，Unique Key 为 `(chain_id, date, wallet_address, token_address)`；Source Identity 保留 `(chain_id, token_address)`，Business Identity 在更高业务语义层归类。
 - 历史同步债务处理决定：用户已明确要求忽略 Module 8 第 4～6 课的既有 Notion / GitHub 同步债务与第 5 课 Canonical Drift；这些历史问题不再修复，也不再阻塞课程推进。
-- 尚未完成：Module 8 的 Module Contract 结束标准尚待综合检查与正式结课判定。
-- 下一步准确入口：进行 Module 8 结束标准综合检查，判断是否正式结束 Module 8 并进入 Module 9。
+- 下一步准确入口：开始 Module 9 第 1 课《ETL 到底是什么：从“已有数据”到“可持续数据管道”》。
 
 ## 目录
 
@@ -38,6 +38,7 @@
 - [Module 6 — Archive Node](module-06-archive-node/README.md)
 - [Module 7 — Indexer](module-07-indexer/README.md)
 - [Module 8 — 数据建模](module-08-data-modeling/README.md)
+- [Module 9 — ETL](module-09-etl/README.md)
 
 ## 同步规则
 

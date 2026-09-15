@@ -24,12 +24,12 @@
 - Module 6 完成结论：第 1～4 课均已完成，已达到 Module Contract 结束标准。已能区分 History / Historical State，解释 Pruning、Archive 成本，并根据 Query Semantics、Derived State、规模与 TCO 判断 Archive RPC / Self-hosted / Hybrid。
 - Module 7 完成结论：第 1～10 课与结课综合实践均已完成；Mini Indexer 五项验收 Normal Sync / Idempotent Replay / Crash Recovery / Backfill / Reorg Recovery 全部通过，已达到 Module Contract 结束标准。五项实践由用户在 Codex 中实际完成并明确确认通过。
 - Module 8 完成结论：第 1～8 课与结束标准综合检查均已完成，已达到 Module Contract 结束标准。已能从 Query Semantics 推导 Business Object、Grain、Source Identity、Unique Key、Fact / Dimension、Relation 与 Layer，并区分 Source Identity 与 Business Identity。
-- 当前 Lesson：Module 9 第 1 课｜ETL 到底是什么：从“已有数据”到“可持续数据管道”
-- 当前状态：Module 9 第 1 课已完成；Module 9 继续进行中
-- 最近完成：Module 9 第 1 课《ETL 到底是什么：从“已有数据”到“可持续数据管道”》四轮回答与必要校准通过，Canonical Lesson 已同步到 Notion 和 GitHub。
-- 最近掌握重点：Extract = Source + Input Range；Transform 将 Transfer Event Grain 汇总为 wallet + token + date Grain；Load 按 Target Grain / Unique Key 保证幂等；Backfill 按独立日期范围复用同一 Job；Checkpoint 只记录最后完整成功的边界，09-12 处理中途失败时从 09-12 整日重跑。
+- 当前 Lesson：Module 9 第 2 课｜Full Load、Incremental Load 与 Backfill：ETL 到底处理哪一段数据？
+- 当前状态：Module 9 第 2 课已完成；Module 9 继续进行中
+- 最近完成：Module 9 第 2 课《Full Load、Incremental Load 与 Backfill：ETL 到底处理哪一段数据？》三题理解检查通过，教学正式结束；Canonical Lesson 已同步到 Notion 和 GitHub。
+- 最近掌握重点：Full Load 处理完整 Source Range；Incremental Load 只处理新的 Input Range；Backfill 对指定历史范围重跑。同一个 ETL Pipeline 应通过 start/end 参数复用 Transform / Load 逻辑；正常 Incremental Checkpoint 与 Backfill Cursor/Range State 相互独立，历史 Backfill 不倒退正常增量 Checkpoint。
 - 历史同步债务处理决定：用户已明确要求忽略 Module 8 第 4～6 课的既有 Notion / GitHub 同步债务与第 5 课 Canonical Drift；这些历史问题不再修复，也不再阻塞课程推进。
-- 下一步准确入口：规划并开始 Module 9 第 2 课（按 Module Contract 继续学习 ETL）。
+- 下一步准确入口：开始 Module 9 第 3 课｜Watermark / Cursor / Checkpoint：ETL 如何记住处理到哪里。
 
 ## 目录
 

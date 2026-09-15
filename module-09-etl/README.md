@@ -37,13 +37,14 @@
 
 - 当前阶段：第三阶段 Data Engineering
 - 当前 Module：Module 9 — ETL
-- 当前 Lesson：第 1 课｜ETL 到底是什么：从“已有数据”到“可持续数据管道”
-- 当前状态：第 1 课已完成；Module 9 继续进行中
-- 已完成 Lesson：第 1 课｜ETL 到底是什么：从“已有数据”到“可持续数据管道”
+- 当前 Lesson：第 2 课｜Full Load、Incremental Load 与 Backfill：ETL 到底处理哪一段数据？
+- 当前状态：第 2 课已完成；Module 9 继续进行中
+- 已完成 Lesson：第 1 课｜ETL 到底是什么：从“已有数据”到“可持续数据管道”；第 2 课｜Full Load、Incremental Load 与 Backfill：ETL 到底处理哪一段数据？
 - 已完成 Module：Module 1～8
-- 最近掌握重点：Extract = Source + Input Range；Transform 将 Transfer Event Grain 汇总为 wallet + token + date Grain；Load 按 Target Grain / Unique Key 保证幂等；Backfill 按独立日期范围执行，Checkpoint 只记录最后完整成功的处理边界。
-- 下一步准确入口：规划并开始 Module 9 第 2 课（按 Module Contract 继续学习 ETL）。
+- 最近掌握重点：Full Load 处理完整 Source Range；Incremental Load 只处理新的 Input Range；Backfill 对指定历史范围重跑；同一 Pipeline 复用 Transform / Load，只改变 start/end；正常 Incremental Checkpoint 与 Backfill Cursor/Range State 独立。
+- 下一步准确入口：开始 Module 9 第 3 课｜Watermark / Cursor / Checkpoint：ETL 如何记住处理到哪里。
 
 ## Lessons
 
 - [第 1 课｜ETL 到底是什么：从“已有数据”到“可持续数据管道”](lesson-01-what-is-etl.md)
+- [第 2 课｜Full Load、Incremental Load 与 Backfill：ETL 到底处理哪一段数据？](lesson-02-full-incremental-backfill.md)

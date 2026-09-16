@@ -37,12 +37,12 @@
 
 - 当前阶段：第三阶段 Data Engineering
 - 当前 Module：Module 9 — ETL
-- 当前 Lesson：第 5 课｜Late-arriving Data 与 Reorg：为什么已经处理的数据后来还会变化
-- 当前状态：第 5 课已完成；Module 9 继续进行中
-- 已完成 Lesson：第 1 课｜ETL 到底是什么：从“已有数据”到“可持续数据管道”；第 2 课｜Full Load、Incremental Load 与 Backfill：ETL 到底处理哪一段数据？；第 3 课｜Watermark / Cursor / Checkpoint：ETL 如何记住处理到哪里；第 4 课｜Idempotent Load 与失败恢复：为什么 ETL 必须可安全重跑；第 5 课｜Late-arriving Data 与 Reorg：为什么已经处理的数据后来还会变化
+- 当前 Lesson：第 6 课｜Batch Job 的输入输出边界与可验证性：怎么证明这一批数据真的处理对了
+- 当前状态：第 6 课已完成；Module 9 继续进行中
+- 已完成 Lesson：第 1 课｜ETL 到底是什么：从“已有数据”到“可持续数据管道”；第 2 课｜Full Load、Incremental Load 与 Backfill：ETL 到底处理哪一段数据？；第 3 课｜Watermark / Cursor / Checkpoint：ETL 如何记住处理到哪里；第 4 课｜Idempotent Load 与失败恢复：为什么 ETL 必须可安全重跑；第 5 课｜Late-arriving Data 与 Reorg：为什么已经处理的数据后来还会变化；第 6 课｜Batch Job 的输入输出边界与可验证性：怎么证明这一批数据真的处理对了
 - 已完成 Module：Module 1～8
-- 最近掌握重点：Late-arriving Data = Source Truth 未变但 Pipeline 晚看到；Reorg = canonical Source Truth 改变；Checkpoint 不等于 Source Completeness；Lookback Window 用于自动重算近期历史；Historical Repair 与正常 Incremental State 隔离；Repair Range 由 Source Changed Range、Target Partition 与 Dependency / Lineage 决定。
-- 下一步准确入口：开始 Module 9 第 6 课｜Batch Job 的输入输出边界与可验证性：怎么证明这一批数据真的处理对了。
+- 最近掌握重点：Batch Job 显式定义 Input / Output Boundary；Input Range 使用 `[start, end)` 半开区间；Execution Success 不等于 Processing Unit Complete；Validation 通过后才能推进 Checkpoint；Source / Target Grain 不同时应设计 Range、Unique Key、Invariant 与 Reconciliation 验证；Checkpoint 是 State，Job Run 是 History。
+- 下一步准确入口：开始 Module 9 第 7 课｜DAG / Dependency / Scheduler：多个 ETL Job 如何组成一条可运行的数据管道。
 
 ## Lessons
 
@@ -51,3 +51,4 @@
 - [第 3 课｜Watermark / Cursor / Checkpoint：ETL 如何记住处理到哪里](lesson-03-watermark-cursor-checkpoint.md)
 - [第 4 课｜Idempotent Load 与失败恢复：为什么 ETL 必须可安全重跑](lesson-04-idempotent-load-failure-recovery.md)
 - [第 5 课｜Late-arriving Data 与 Reorg：为什么已经处理的数据后来还会变化](lesson-05-late-arriving-reorg.md)
+- [第 6 课｜Batch Job 的输入输出边界与可验证性：怎么证明这一批数据真的处理对了](lesson-06-batch-boundary-validation.md)

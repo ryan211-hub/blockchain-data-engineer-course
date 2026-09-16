@@ -37,15 +37,16 @@
 
 - 当前阶段：第三阶段 Data Engineering
 - 当前 Module：Module 9 — ETL
-- 当前 Lesson：第 3 课｜Watermark / Cursor / Checkpoint：ETL 如何记住处理到哪里
-- 当前状态：第 3 课已完成；Module 9 继续进行中
-- 已完成 Lesson：第 1 课｜ETL 到底是什么：从“已有数据”到“可持续数据管道”；第 2 课｜Full Load、Incremental Load 与 Backfill：ETL 到底处理哪一段数据？；第 3 课｜Watermark / Cursor / Checkpoint：ETL 如何记住处理到哪里
+- 当前 Lesson：第 4 课｜Idempotent Load 与失败恢复：为什么 ETL 必须可安全重跑
+- 当前状态：第 4 课已完成；Module 9 继续进行中
+- 已完成 Lesson：第 1 课｜ETL 到底是什么：从“已有数据”到“可持续数据管道”；第 2 课｜Full Load、Incremental Load 与 Backfill：ETL 到底处理哪一段数据？；第 3 课｜Watermark / Cursor / Checkpoint：ETL 如何记住处理到哪里；第 4 课｜Idempotent Load 与失败恢复：为什么 ETL 必须可安全重跑
 - 已完成 Module：Module 1～8
-- 最近掌握重点：Watermark = logical boundary；Cursor = execution position；Checkpoint = durable recovery point；Checkpoint 只能在处理单元完整成功后推进，并与 Idempotent Load 配合保证失败恢复；每个 Pipeline / Job 独立维护 processing state。
-- 下一步准确入口：开始 Module 9 第 4 课｜Idempotent Load 与失败恢复：为什么 ETL 必须可安全重跑。
+- 最近掌握重点：Idempotent Load = 同一 Input Range 重跑后 Target 最终状态一致；事实表依赖 Stable Identity / Unique Key 做 Insert/Upsert，聚合表可按 Processing Unit 做 Delete + Insert / Replace Partition；Checkpoint 负责最后安全完成位置，Idempotency 保证 Replay 安全。
+- 下一步准确入口：开始 Module 9 第 5 课｜Late-arriving Data 与 Reorg：为什么已经处理的数据后来还会变化。
 
 ## Lessons
 
 - [第 1 课｜ETL 到底是什么：从“已有数据”到“可持续数据管道”](lesson-01-what-is-etl.md)
 - [第 2 课｜Full Load、Incremental Load 与 Backfill：ETL 到底处理哪一段数据？](lesson-02-full-incremental-backfill.md)
 - [第 3 课｜Watermark / Cursor / Checkpoint：ETL 如何记住处理到哪里](lesson-03-watermark-cursor-checkpoint.md)
+- [第 4 课｜Idempotent Load 与失败恢复：为什么 ETL 必须可安全重跑](lesson-04-idempotent-load-failure-recovery.md)

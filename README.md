@@ -24,12 +24,12 @@
 - Module 6 完成结论：第 1～4 课均已完成，已达到 Module Contract 结束标准。已能区分 History / Historical State，解释 Pruning、Archive 成本，并根据 Query Semantics、Derived State、规模与 TCO 判断 Archive RPC / Self-hosted / Hybrid。
 - Module 7 完成结论：第 1～10 课与结课综合实践均已完成；Mini Indexer 五项验收 Normal Sync / Idempotent Replay / Crash Recovery / Backfill / Reorg Recovery 全部通过，已达到 Module Contract 结束标准。五项实践由用户在 Codex 中实际完成并明确确认通过。
 - Module 8 完成结论：第 1～8 课与结束标准综合检查均已完成，已达到 Module Contract 结束标准。已能从 Query Semantics 推导 Business Object、Grain、Source Identity、Unique Key、Fact / Dimension、Relation 与 Layer，并区分 Source Identity 与 Business Identity。
-- 当前 Lesson：Module 9 第 5 课｜Late-arriving Data 与 Reorg：为什么已经处理的数据后来还会变化
-- 当前状态：Module 9 第 5 课已完成；Module 9 继续进行中
-- 最近完成：Module 9 第 5 课《Late-arriving Data 与 Reorg：为什么已经处理的数据后来还会变化》理解检查与追问校准完成，教学正式结束；Canonical Lesson 已同步到 Notion 和 GitHub。
-- 最近掌握重点：Late-arriving Data 是 Source Truth 未变但 Pipeline 晚看到；Reorg 是 canonical Source Truth 发生变化。Checkpoint 是 Processing State，不等于 Source Completeness；Lookback Window 用于自动重算近期历史。Historical Repair 应与正常 Incremental Checkpoint 隔离；Reorg 的下游 Repair Range 由 Source Changed Range、Target Partition 与 Dependency / Lineage 决定。
+- 当前 Lesson：Module 9 第 6 课｜Batch Job 的输入输出边界与可验证性：怎么证明这一批数据真的处理对了
+- 当前状态：Module 9 第 6 课已完成；Module 9 继续进行中
+- 最近完成：Module 9 第 6 课《Batch Job 的输入输出边界与可验证性：怎么证明这一批数据真的处理对了》三题理解检查通过，必要校准完成，教学正式结束；Canonical Lesson 已同步到 Notion 和 GitHub。
+- 最近掌握重点：Batch Job 必须显式定义 Input Boundary 与 Output Boundary；Input Range 推荐使用 `[start, end)` 半开区间。Execution Success 不等于 Processing Unit Complete，必须在必要 Validation 通过后才能推进 Checkpoint。Source / Target Grain 不同时不能直接比较 Row Count，应基于数据模型语义设计 Range、Unique Key、Invariant 与 Reconciliation 验证；Checkpoint 是当前 State，Job Run History 是执行 History。
 - 历史同步债务处理决定：用户已明确要求忽略 Module 8 第 4～6 课的既有 Notion / GitHub 同步债务与第 5 课 Canonical Drift；这些历史问题不再修复，也不再阻塞课程推进。
-- 下一步准确入口：开始 Module 9 第 6 课｜Batch Job 的输入输出边界与可验证性：怎么证明这一批数据真的处理对了。
+- 下一步准确入口：开始 Module 9 第 7 课｜DAG / Dependency / Scheduler：多个 ETL Job 如何组成一条可运行的数据管道。
 
 ## 目录
 

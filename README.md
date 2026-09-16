@@ -24,12 +24,12 @@
 - Module 6 完成结论：第 1～4 课均已完成，已达到 Module Contract 结束标准。已能区分 History / Historical State，解释 Pruning、Archive 成本，并根据 Query Semantics、Derived State、规模与 TCO 判断 Archive RPC / Self-hosted / Hybrid。
 - Module 7 完成结论：第 1～10 课与结课综合实践均已完成；Mini Indexer 五项验收 Normal Sync / Idempotent Replay / Crash Recovery / Backfill / Reorg Recovery 全部通过，已达到 Module Contract 结束标准。五项实践由用户在 Codex 中实际完成并明确确认通过。
 - Module 8 完成结论：第 1～8 课与结束标准综合检查均已完成，已达到 Module Contract 结束标准。已能从 Query Semantics 推导 Business Object、Grain、Source Identity、Unique Key、Fact / Dimension、Relation 与 Layer，并区分 Source Identity 与 Business Identity。
-- 当前 Lesson：Module 9 第 3 课｜Watermark / Cursor / Checkpoint：ETL 如何记住处理到哪里
-- 当前状态：Module 9 第 3 课已完成；Module 9 继续进行中
-- 最近完成：Module 9 第 3 课《Watermark / Cursor / Checkpoint：ETL 如何记住处理到哪里》三题理解检查通过，教学正式结束；Canonical Lesson 已同步到 Notion 和 GitHub。
-- 最近掌握重点：Watermark 表示逻辑增量边界；Cursor 表示当前任务执行位置；Checkpoint 表示最后安全完成、可恢复的位置。Checkpoint 只能在完整 Load 成功后推进；Checkpoint 与 Idempotent Load 共同保证失败恢复；每个 Pipeline / Job 必须维护自己的 processing state。
+- 当前 Lesson：Module 9 第 4 课｜Idempotent Load 与失败恢复：为什么 ETL 必须可安全重跑
+- 当前状态：Module 9 第 4 课已完成；Module 9 继续进行中
+- 最近完成：Module 9 第 4 课《Idempotent Load 与失败恢复：为什么 ETL 必须可安全重跑》三题理解检查通过，教学正式结束；Canonical Lesson 已同步到 Notion 和 GitHub。
+- 最近掌握重点：Idempotent Load 要保证同一 Input Range 重跑多次后 Target 最终状态一致；普通 INSERT 会在失败重跑时制造重复。事实表可依赖 Stable Identity + Unique Key 做 Insert/Upsert，聚合表可按 Processing Unit 做 Delete + Insert / Replace Partition。Checkpoint 记录最后安全完成位置，Idempotency 保证从该位置后重复处理是安全的。
 - 历史同步债务处理决定：用户已明确要求忽略 Module 8 第 4～6 课的既有 Notion / GitHub 同步债务与第 5 课 Canonical Drift；这些历史问题不再修复，也不再阻塞课程推进。
-- 下一步准确入口：开始 Module 9 第 4 课｜Idempotent Load 与失败恢复：为什么 ETL 必须可安全重跑。
+- 下一步准确入口：开始 Module 9 第 5 课｜Late-arriving Data 与 Reorg：为什么已经处理的数据后来还会变化。
 
 ## 目录
 

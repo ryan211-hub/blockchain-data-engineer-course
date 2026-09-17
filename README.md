@@ -25,12 +25,12 @@
 - Module 7 完成结论：第 1～10 课与结课综合实践均已完成；Mini Indexer 五项验收 Normal Sync / Idempotent Replay / Crash Recovery / Backfill / Reorg Recovery 全部通过，已达到 Module Contract 结束标准。五项实践由用户在 Codex 中实际完成并明确确认通过。
 - Module 8 完成结论：第 1～8 课与结束标准综合检查均已完成，已达到 Module Contract 结束标准。已能从 Query Semantics 推导 Business Object、Grain、Source Identity、Unique Key、Fact / Dimension、Relation 与 Layer，并区分 Source Identity 与 Business Identity。
 - Module 9 完成结论：第 1～7 课与结束标准综合检查均已完成，达到 Module Contract 结束标准。已能独立设计基础 Blockchain Batch ETL Pipeline，并解释 Source / Target、Processing Range、Grain、Unique Key、Watermark / Cursor / Checkpoint、Idempotency、Validation、Late-arriving / Reorg、Lookback / Backfill / Historical Repair、DAG Dependency 与 Scheduler / Orchestrator。
-- 当前 Lesson：Module 10 第 1 课｜实时数据到底是什么：为什么不是“把 ETL 跑快一点”
-- 当前状态：Module 10 Contract 已建立；第 1 课开始
-- 最近完成：Module 9 结束标准综合检查通过，综合检查记录已同步到 Notion 和 GitHub。
-- 最近掌握重点：Blockchain ETL 与传统 ETL 共享 Source → Extract → Transform → Load → Validation → Checkpoint → Retry / Recovery → DAG / Scheduler 的基本结构；Blockchain ETL 还必须接受 canonical history 后续可能因 Reorg 改变，并通过 Lookback / Backfill / Historical Repair 修复下游结果。
+- 当前 Lesson：Module 10 第 2 课｜Kafka 在实时 Pipeline 中到底解决什么问题
+- 当前状态：Module 10 第 1 课已完成并通过理解检查；准备进入第 2 课
+- 最近完成：Module 10 第 1 课《实时数据到底是什么：为什么不是“把 ETL 跑快一点”》理解检查通过；Canonical Lesson Content 已同步到 Notion 和 GitHub。
+- 最近掌握重点：已建立 Batch vs Streaming 核心心智模型：bounded dataset vs unbounded stream、Processing Range vs Stream Position；理解 Streaming 不等于更快的 Batch，实时处理仍需与 Batch / Backfill / Reconciliation 并存。
 - 历史同步债务处理决定：用户已明确要求忽略 Module 8 第 4～6 课的既有 Notion / GitHub 同步债务与第 5 课 Canonical Drift；这些历史问题不再修复，也不再阻塞课程推进。
-- 下一步准确入口：继续 Module 10 第 1 课，建立 Batch vs Streaming 的核心心智模型。
+- 下一步准确入口：开始 Module 10 第 2 课《Kafka 在实时 Pipeline 中到底解决什么问题》。
 
 ## 目录
 

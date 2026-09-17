@@ -19,17 +19,18 @@
 ## 当前学习进度
 
 - 当前阶段：第三阶段 Data Engineering
-- 已完成 Module：Module 1、Module 2、Module 3、Module 4、Module 5、Module 6、Module 7、Module 8
-- 当前 Module：Module 9 — ETL
+- 已完成 Module：Module 1、Module 2、Module 3、Module 4、Module 5、Module 6、Module 7、Module 8、Module 9
+- 当前 Module：Module 10 — 实时数据
 - Module 6 完成结论：第 1～4 课均已完成，已达到 Module Contract 结束标准。已能区分 History / Historical State，解释 Pruning、Archive 成本，并根据 Query Semantics、Derived State、规模与 TCO 判断 Archive RPC / Self-hosted / Hybrid。
 - Module 7 完成结论：第 1～10 课与结课综合实践均已完成；Mini Indexer 五项验收 Normal Sync / Idempotent Replay / Crash Recovery / Backfill / Reorg Recovery 全部通过，已达到 Module Contract 结束标准。五项实践由用户在 Codex 中实际完成并明确确认通过。
 - Module 8 完成结论：第 1～8 课与结束标准综合检查均已完成，已达到 Module Contract 结束标准。已能从 Query Semantics 推导 Business Object、Grain、Source Identity、Unique Key、Fact / Dimension、Relation 与 Layer，并区分 Source Identity 与 Business Identity。
-- 当前 Lesson：Module 9 第 7 课｜DAG / Dependency / Scheduler：多个 ETL Job 如何组成一条可运行的数据管道
-- 当前状态：Module 9 第 7 课已完成；Module 9 进入结束标准综合检查
-- 最近完成：Module 9 第 7 课《DAG / Dependency / Scheduler：多个 ETL Job 如何组成一条可运行的数据管道》理解检查与必要校准完成，教学正式结束；Canonical Lesson 已同步到 Notion 和 GitHub。
-- 最近掌握重点：Dependency 描述 Job 间真实数据依赖，DAG 描述依赖拓扑，Scheduler / Orchestrator 根据 Schedule + Dependency + Runtime State 决定执行；FAILED 与 BLOCKED / UPSTREAM_FAILED 不同；每个 Job 独立维护 Checkpoint；真实依赖应落实到对应 Processing Unit / Partition；Historical Repair Range 由 Source Changed Range、下游 Dependency / Lineage、Processing Unit 与跨时间依赖共同决定。
+- Module 9 完成结论：第 1～7 课与结束标准综合检查均已完成，达到 Module Contract 结束标准。已能独立设计基础 Blockchain Batch ETL Pipeline，并解释 Source / Target、Processing Range、Grain、Unique Key、Watermark / Cursor / Checkpoint、Idempotency、Validation、Late-arriving / Reorg、Lookback / Backfill / Historical Repair、DAG Dependency 与 Scheduler / Orchestrator。
+- 当前 Lesson：Module 9 结束标准综合检查已完成；准备进入 Module 10
+- 当前状态：Module 9 已完成；第三阶段 Data Engineering 继续进入 Module 10 — 实时数据
+- 最近完成：Module 9 结束标准综合检查通过，综合检查记录已同步到 Notion 和 GitHub。
+- 最近掌握重点：Blockchain ETL 与传统 ETL 共享 Source → Extract → Transform → Load → Validation → Checkpoint → Retry / Recovery → DAG / Scheduler 的基本结构；Blockchain ETL 还必须接受 canonical history 后续可能因 Reorg 改变，并通过 Lookback / Backfill / Historical Repair 修复下游结果。
 - 历史同步债务处理决定：用户已明确要求忽略 Module 8 第 4～6 课的既有 Notion / GitHub 同步债务与第 5 课 Canonical Drift；这些历史问题不再修复，也不再阻塞课程推进。
-- 下一步准确入口：进行 Module 9 结束标准综合检查：独立设计一条 Blockchain Batch ETL Pipeline，并说明 Source、Transform、Target、Processing Range、Watermark / Cursor / Checkpoint、Idempotency、Validation、Backfill / Repair、DAG Dependency 与传统 ETL / Blockchain ETL 的差异。
+- 下一步准确入口：进入 Module 10 — 实时数据；先建立并确认 Module 10 Contract，再开始第 1 课。
 
 ## 目录
 

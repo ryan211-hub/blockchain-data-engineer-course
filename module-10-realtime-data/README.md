@@ -76,7 +76,7 @@ Serving DB / Warehouse / Alert / API
 
 - 当前阶段：第三阶段 Data Engineering
 - 当前 Module：Module 10 — 实时数据
-- 已完成 Lesson：暂无
-- 当前 Lesson：第 1 课｜实时数据到底是什么：为什么不是“把 ETL 跑快一点”
-- 当前状态：Module 10 Contract 已建立；第 1 课开始
-- 下一步准确入口：继续 Module 10 第 1 课，建立 Batch vs Streaming 的核心心智模型。
+- 已完成 Lesson：第 1 课｜实时数据到底是什么：为什么不是“把 ETL 跑快一点”
+- 当前 Lesson：第 2 课｜Kafka 在实时 Pipeline 中到底解决什么问题
+- 当前状态：第 1 课理解检查通过并已完成同步；准备进入第 2 课
+- 下一步准确入口：开始 Module 10 第 2 课｜Kafka 在实时 Pipeline 中到底解决什么问题。

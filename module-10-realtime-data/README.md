@@ -78,5 +78,5 @@ Serving DB / Warehouse / Alert / API
 - 当前 Module：Module 10 — 实时数据
 - 已完成 Lesson：第 1 课｜实时数据到底是什么：为什么不是“把 ETL 跑快一点”；第 2 课｜Kafka 在实时 Pipeline 中到底解决什么问题
 - 当前 Lesson：第 3 课｜Topic、Partition、Offset：数据流如何被切分和定位
-- 当前状态：第 2 课理解检查通过并已完成同步；准备进入第 3 课
+- 当前状态：第 3 课开始
 - 下一步准确入口：开始 Module 10 第 3 课｜Topic、Partition、Offset：数据流如何被切分和定位。

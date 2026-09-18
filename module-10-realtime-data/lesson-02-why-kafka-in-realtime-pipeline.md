@@ -1014,3 +1014,24 @@ Risk Consumer 从 14:00 到 14:10 宕机，但 Indexer 和 Kafka 一直正常。
 这里 Kafka 必须具备哪两类能力，才能支持这个恢复过程？
 
 请先用自己的话回答，不要求使用完整 Kafka 术语。
+
+## 用户回答
+
+问题一：这里的数据场景很简单，所以不需要加入 Kafka，也能满足需求。最主要的是可以让系统更简洁，出故障的概率也越小
+
+问题2：最核心的是明确了 Indexer 的职责边界
+
+问题三，这里 Kafka 具有 buffer 的功能，能把一部分的数据储存在缓存里面，供下游使用。
+另一个能力是 Offset 功能，它可以记录 consumer 的进度
+
+## 老师判断与校准
+
+三题全部通过。
+
+- 问题一：判断正确。Kafka 不是默认必选组件；当系统只有单一下游、数据量较小、直接链路已经能够满足可靠性与恢复要求时，不引入 Kafka 可以减少基础设施复杂度、运维成本和新的故障点。是否加入 Kafka，应由系统的解耦、缓冲、分发、恢复和扩展需求决定，而不是由“是否实时”决定。
+- 问题二：判断正确，而且抓住了架构核心。加入 Kafka 后，Indexer 的职责可以稳定在“读取链上数据 → Decode / Normalize → 形成 Canonical Event → Publish”；它不再负责知道所有下游系统、逐个调用下游、处理各下游的超时与故障。更完整地说，这就是 Producer 与 Consumer 的 Decoupling。
+- 问题三：整体正确，但需要一个关键术语校准。Kafka 的 Buffer 更准确地说不是普通“缓存”，而是可持久保存一段时间的 Event Log。Consumer 宕机期间，Event 仍保留在 Log 中；恢复后，再根据 Consumer 的 Offset 找到自己之前消费到的位置并继续读取。因此这里依赖的是两类能力：一是 Durable Event Retention / Buffer，二是 Consumer Position / Offset。
+
+## 结课判定
+
+Module 10 第 2 课理解检查通过，正式完成。已建立 Kafka 的系统角色心智模型：Kafka 不是为了“让数据变实时”，而是作为 Event Streaming Infrastructure，在 Producer 与 Consumer 之间提供 Buffer、Decoupling、Fan-out 和 Replay；WebSocket 主要承担实时 Push，Kafka 则承担可持久的事件日志与消费恢复。

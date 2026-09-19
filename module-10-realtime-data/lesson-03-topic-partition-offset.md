@@ -1072,3 +1072,24 @@ Parallelism
 ```
 
 这个 trade-off 来解释。
+
+## 用户回答
+
+问题一：可以选择 wallet address 作为 partition key。
+因为这样的话，同一个 wallet address 会被归类到同一个 partition 里面。而同一个 partition 里面，Kafka 可以保证是按顺序处理的。
+
+问题 2：因为 offset 和 partition 相关的 ，它并不是相对于 consumer 来说的，它在 partition 之内才有意义
+
+问题3：因为在一个 partition 之内，Kafka 是能保证 ordering 的，但是多个 partition 的话，它是并行执行的，所以从 topic 来说，它并不是有顺序的
+
+## 老师判断与校准
+
+三题全部通过。
+
+- 问题一：判断正确。选择 wallet_address 作为 Partition Key，可以让同一个 Wallet 的 Event 被路由到同一个 Partition，从而利用 Kafka 的 partition-level ordering 保持该 Wallet 事件的局部顺序。这里体现的是“Preserve order where it matters; parallelize where it does not.”
+- 问题二：判断正确。Offset 本身是 partition-local position，也就是它只在某一个具体 Partition 内有意义。需要进一步精确区分：Offset 属于 Partition Log 的位置；Consumer Progress 则是某个 Consumer / Consumer Group 对每个 Partition 已经处理或提交到哪个 Offset。
+- 问题三：判断正确。Kafka 用多个 Partition 换取 parallelism 和 scalability，因此只保证 partition-level ordering，而不保证整个 Topic 的 global ordering。要求严格 global ordering 会压缩并行度，最简单的方式通常是把相关数据放进同一个 Partition，但 throughput 会受限。
+
+## 结课判定
+
+Module 10 第 3 课理解检查通过，正式完成。已建立 Topic / Partition / Offset 的核心结构模型：Topic 是 Logical Stream，Partition 是 Physical Shard 和 parallelism 的基本单位，Offset 是 Partition 内的位置；Ordering 保证发生在 Partition 范围内，Consumer Progress 需要按 Partition 维护。

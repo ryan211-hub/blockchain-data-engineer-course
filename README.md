@@ -25,12 +25,12 @@
 - Module 7 完成结论：第 1～10 课与结课综合实践均已完成；Mini Indexer 五项验收 Normal Sync / Idempotent Replay / Crash Recovery / Backfill / Reorg Recovery 全部通过，已达到 Module Contract 结束标准。五项实践由用户在 Codex 中实际完成并明确确认通过。
 - Module 8 完成结论：第 1～8 课与结束标准综合检查均已完成，已达到 Module Contract 结束标准。已能从 Query Semantics 推导 Business Object、Grain、Source Identity、Unique Key、Fact / Dimension、Relation 与 Layer，并区分 Source Identity 与 Business Identity。
 - Module 9 完成结论：第 1～7 课与结束标准综合检查均已完成，达到 Module Contract 结束标准。已能独立设计基础 Blockchain Batch ETL Pipeline，并解释 Source / Target、Processing Range、Grain、Unique Key、Watermark / Cursor / Checkpoint、Idempotency、Validation、Late-arriving / Reorg、Lookback / Backfill / Historical Repair、DAG Dependency 与 Scheduler / Orchestrator。
-- 当前 Lesson：Module 10 第 6 课｜Retry、Replay、Backpressure 与实时故障恢复
-- 当前状态：Module 10 第 6 课开始
-- 最近完成：Module 10 第 5 课《Delivery Semantics：At-most-once、At-least-once、Exactly-once》理解检查通过；Canonical Lesson Content 已同步到 Notion 和 GitHub。
-- 最近掌握重点：已理解 Delivery Semantics：At-most-once 可能 data loss；At-least-once 可能 duplicate processing；Exactly-once 需要明确 atomic boundary。已能解释 At-least-once + Idempotent Sink 如何把 duplicate delivery 收敛为 effectively-once business outcome。
+- 当前 Lesson：Module 10 第 7 课｜Blockchain Streaming：Reorg、Finality、Reconciliation 与 Batch + Stream
+- 当前状态：Module 10 第 6 课已完成并通过理解检查；准备进入第 7 课
+- 最近完成：Module 10 第 6 课《Retry、Replay、Backpressure 与实时故障恢复》理解检查通过；Canonical Lesson Content 已同步到 Notion 和 GitHub。
+- 最近掌握重点：已建立实时故障恢复模型：Retry 用于 transient failure，Replay 用于 historical reprocessing；Backpressure 来源于 incoming rate > processing rate；Consumer Lag 反映积压；Replay 依赖 Retained Data + Known Position + Idempotent Processing。
 - 历史同步债务处理决定：用户已明确要求忽略 Module 8 第 4～6 课的既有 Notion / GitHub 同步债务与第 5 课 Canonical Drift；这些历史问题不再修复，也不再阻塞课程推进。
-- 下一步准确入口：开始 Module 10 第 6 课《Retry、Replay、Backpressure 与实时故障恢复》。
+- 下一步准确入口：开始 Module 10 第 7 课《Blockchain Streaming：Reorg、Finality、Reconciliation 与 Batch + Stream》。
 
 ## 目录
 

@@ -609,3 +609,20 @@ Consumer Rate = 6,000 msg/s
 为什么这里应该使用 Replay，而不是普通 Retry？
 
 要让 Replay 安全成立，至少需要哪几个前提？
+
+## 用户回答
+
+问题一，这里更适合 Retry，但是不能无限立即 Retry。
+无限立即 Retry 的话，会导致系统资源被 Retry 一直占用，使得 Postgres 的问题更不好解决。
+问题二：如果持续 60 秒，理论上大约会新增 24 万条 lag，说明系统 producer 的速度远大于 consumer 的速度，会导致 lag 越积越多
+问题 3：
+
+这里使用 replay 而不是普通的 retry，因为这是 decoder bug 导致的数据问题，而不是系统的临时故障，所以需要 replay 重跑，重新 consume 历史的数据。
+
+而正好这些历史数据还在 Kafka retention 之中仍然保留着，所以这个时候 replay 是可行的。
+
+## 老师判断与校准
+
+- 问题一：通过。这里属于 transient downstream failure，更适合 Retry。不能无限立即 Retry，因为会形成 retry storm，持续占用连接、线程和数据库资源，反而加剧下游故障。更合理的是 bounded retry + backoff。
+- 问题二：通过。Producer 与 Consumer 的速率差是 4,000 msg/s，持续 60 秒会新增约 240,000 条 Lag。说明 incoming rate 持续高于 processing rate；如果这个趋势持续，就是结构性 Backpressure，Lag 会不断扩大。
+- 问题三：判断方向正确，但尚未完整通过。Decoder Bug 导致的是一段历史数据已经被错误处理，不是某一条 Event 的临时失败，因此应做 Replay / historical reprocessing，而不是普通 Retry。你也正确指出 Kafka Retention 中数据仍然存在，因此具备 Replay 的第一个前提。还需要补充另外两个关键前提：需要知道从哪个 Topic / Partition / Offset 范围重新开始（Position），并且重复处理必须是安全的（Idempotent Processing）。

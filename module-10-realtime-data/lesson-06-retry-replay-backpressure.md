@@ -626,3 +626,24 @@ Consumer Rate = 6,000 msg/s
 - 问题一：通过。这里属于 transient downstream failure，更适合 Retry。不能无限立即 Retry，因为会形成 retry storm，持续占用连接、线程和数据库资源，反而加剧下游故障。更合理的是 bounded retry + backoff。
 - 问题二：通过。Producer 与 Consumer 的速率差是 4,000 msg/s，持续 60 秒会新增约 240,000 条 Lag。说明 incoming rate 持续高于 processing rate；如果这个趋势持续，就是结构性 Backpressure，Lag 会不断扩大。
 - 问题三：判断方向正确，但尚未完整通过。Decoder Bug 导致的是一段历史数据已经被错误处理，不是某一条 Event 的临时失败，因此应做 Replay / historical reprocessing，而不是普通 Retry。你也正确指出 Kafka Retention 中数据仍然存在，因此具备 Replay 的第一个前提。还需要补充另外两个关键前提：需要知道从哪个 Topic / Partition / Offset 范围重新开始（Position），并且重复处理必须是安全的（Idempotent Processing）。
+
+## 用户补充回答
+
+Replay 需要 Position，可以知道从哪个位置开始 Replay。
+
+然后是 Idempotency（幂等性），可以保证 Replay 的数据写到数据库里不会导致重复或者其他问题，保证数据正常更新
+
+## 老师补充校准
+
+问题三补充通过。
+
+- Position 的作用是明确 Replay 的起点和范围，例如 Topic / Partition / Offset，从而知道历史数据从哪里重新开始处理。
+- Idempotency 的作用是保证历史 Event 被再次处理时，不会产生重复行、重复累加或其他重复 side effect，从而让 Replay 本身成为安全操作。
+
+至此，Replay 的三个关键前提已经完整：
+
+Retained Data + Known Position + Idempotent Processing。
+
+## 结课判定
+
+Module 10 第 6 课理解检查全部通过，正式完成。已掌握 Retry、Replay、Backpressure 与 Failure Recovery 的核心模型：Retry 处理局部 transient failure；Replay 用于历史重处理；Backpressure 来源于 incoming rate 持续高于 processing rate；Consumer Lag 用于衡量积压；Replay 依赖 Retention、Position 与 Idempotency；生产级实时系统需要 Happy Path、Failure Path 与 Repair Path。

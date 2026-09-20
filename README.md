@@ -26,7 +26,7 @@
 - Module 8 完成结论：第 1～8 课与结束标准综合检查均已完成，已达到 Module Contract 结束标准。已能从 Query Semantics 推导 Business Object、Grain、Source Identity、Unique Key、Fact / Dimension、Relation 与 Layer，并区分 Source Identity 与 Business Identity。
 - Module 9 完成结论：第 1～7 课与结束标准综合检查均已完成，达到 Module Contract 结束标准。已能独立设计基础 Blockchain Batch ETL Pipeline，并解释 Source / Target、Processing Range、Grain、Unique Key、Watermark / Cursor / Checkpoint、Idempotency、Validation、Late-arriving / Reorg、Lookback / Backfill / Historical Repair、DAG Dependency 与 Scheduler / Orchestrator。
 - 当前 Lesson：Module 10 第 4 课｜Consumer Group 与 Ordering：如何同时获得并行处理和局部有序
-- 当前状态：Module 10 第 3 课已完成并通过理解检查；准备进入第 4 课
+- 当前状态：Module 10 第 4 课开始
 - 最近完成：Module 10 第 3 课《Topic、Partition、Offset：数据流如何被切分和定位》理解检查通过；Canonical Lesson Content 已同步到 Notion 和 GitHub。
 - 最近掌握重点：已建立 Kafka Topic / Partition / Offset 心智模型：Topic 是 Logical Stream；Partition 是 Physical Shard 和 parallelism 的基本单位；Offset 是 Partition 内的 log position；Ordering 只在 Partition 内保证；Consumer Progress 需要按 Partition 维护。
 - 历史同步债务处理决定：用户已明确要求忽略 Module 8 第 4～6 课的既有 Notion / GitHub 同步债务与第 5 课 Canonical Drift；这些历史问题不再修复，也不再阻塞课程推进。

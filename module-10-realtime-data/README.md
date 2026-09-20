@@ -78,5 +78,5 @@ Serving DB / Warehouse / Alert / API
 - 当前 Module：Module 10 — 实时数据
 - 已完成 Lesson：第 1 课｜实时数据到底是什么：为什么不是“把 ETL 跑快一点”；第 2 课｜Kafka 在实时 Pipeline 中到底解决什么问题；第 3 课｜Topic、Partition、Offset：数据流如何被切分和定位；第 4 课｜Consumer Group 与 Ordering：如何同时获得并行处理和局部有序；第 5 课｜Delivery Semantics：At-most-once、At-least-once、Exactly-once
 - 当前 Lesson：第 6 课｜Retry、Replay、Backpressure 与实时故障恢复
-- 当前状态：第 5 课理解检查通过并已完成同步；准备进入第 6 课
+- 当前状态：第 6 课开始
 - 下一步准确入口：开始 Module 10 第 6 课｜Retry、Replay、Backpressure 与实时故障恢复。

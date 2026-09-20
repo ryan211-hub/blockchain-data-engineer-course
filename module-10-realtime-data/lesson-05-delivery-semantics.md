@@ -521,3 +521,25 @@ Consumer 重启后会发生什么？为什么这种模式通常需要 Idempotenc
 请解释：为什么 Event 即使被重复 Delivery，最终数据库仍然可以只有一条 Transfer Fact？
 
 以及，这是否意味着 Kafka 本身已经变成 Exactly-once？
+
+## 用户回答
+
+问题一：这更接近 at-most-once 这种 delivery semantics，最主要的风险是数据丢失
+问题二：Consumer 重启后会发现当前的 Offset 在 99，然后会开始处理 Offset 100 位置的 Event。但是这个数据对 database 来说，之前已经处理过一次了，这次是重复执行，所以需要 idempotency（幂等）这个模式，使得处理结果保持一致性
+问题 3：
+
+因为数据库的写入模式是幂等写入（Idempotent Write），当已经存在这条数据的时候，重复提交会被数据库忽略，所以数据库最终只会有一条数据。
+
+但是，这并不意味着 Kafka 本身已经变成了 Exactly-once。因为 Kafka 的 partition 里面，event 它是可以被重复消费的
+
+## 老师判断与校准
+
+三题全部通过。
+
+- 问题一：判断正确。先 Commit Offset、后处理业务，如果中间 Crash，就会出现 Offset 已推进但业务结果未产生，因此更接近 At-most-once，核心风险是 data loss。
+- 问题二：判断正确。Database 已成功写入但 Offset 未 Commit，Consumer 重启后会从旧的 committed position 重新消费 Event 100，因此发生 duplicate processing。此时需要 Idempotency，使重复执行不会改变最终业务结果。
+- 问题三：判断正确，而且区分得很准确。UNIQUE(chain_id, tx_hash, log_index) + ON CONFLICT DO NOTHING 让 Sink 具备幂等能力，因此重复 Delivery / Consumption 不会形成重复 Transfer Fact。但这并不意味着 Kafka 本身变成 Exactly-once；Kafka 仍然可能发生重复消费，只是最终 business effect 被幂等机制收敛为 effectively-once outcome。
+
+## 结课判定
+
+Module 10 第 5 课理解检查通过，正式完成。已掌握 Delivery Semantics 的核心 trade-off：At-most-once 可能丢数据；At-least-once 可能重复处理；Exactly-once 必须在明确的 atomic boundary 内讨论。能够解释为什么 At-least-once 通常要与 Idempotency 搭配，以及为什么 duplicate delivery 不等于 duplicate business effect。

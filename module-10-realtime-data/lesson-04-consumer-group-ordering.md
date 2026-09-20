@@ -1063,3 +1063,21 @@ Rebalance 后 Consumer A 接管 P2。
 为了让 A 正确继续处理，系统最关键需要知道什么信息？
 
 请联系上一课 Offset 的概念回答。
+
+## 用户回答
+
+问题一：最多有 4 个 consumer 能真正同时承担 partition processing。另外的两个 consumer 可能 idle，因为在同一个 consumer group 内，一个 partition 不能同时分配给两个 consumer。
+问题二：他们应该使用两个不同的 consumer group。
+因为在同一个 consumer group 里面，消费者不能同时拥有同一个 partition；而在不同的 consumer group 里面，他们可以同时读取所有完整的 topic。 问题三，为了让 A 正确地继续处理，系统最关键需要知道 offset 信息。那这里的 offset 信息特指的是 consumer group， topic， partition这三个组成的 key 所对应的 offset
+
+## 老师判断与校准
+
+三题全部通过。
+
+- 问题一：判断正确。4 个 Partition 决定了这个 Consumer Group 最多只有 4 个 active partition owners；第 5、6 个 Consumer 没有 Partition 可分，因此会 idle。这里体现的是：Effective consumer parallelism is bounded by the number of partitions。
+- 问题二：判断正确。Wallet Balance Service 和 Risk Alert Service 需要各自完整读取整个 Topic，因此应使用两个不同的 Consumer Group。Same Group means work sharing；Different Groups means independent consumption of the same topic。
+- 问题三：判断正确，而且表达得很精确。这里需要恢复的不是一个脱离上下文的 Offset 数字，而是这个 Consumer Group 在该 Topic 的该 Partition 上的消费进度。可以抽象为：(consumer_group, topic, partition) -> offset。Rebalance 后新的 Consumer 根据这一进度继续处理。
+
+## 结课判定
+
+Module 10 第 4 课理解检查通过，正式完成。已掌握 Consumer Group 的核心模型：同组 Consumer 通过 Partition Assignment 分担工作；不同 Group 可以独立消费同一 Topic；一个 Partition 在同一 Group 内同一时刻最多有一个 active owner；Consumer Progress 需要按 Group / Topic / Partition 维护；Rebalance 通过重新分配 Partition 支持扩缩容和故障恢复。

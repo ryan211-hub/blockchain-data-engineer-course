@@ -258,3 +258,63 @@ wallet activity topic 应该是要统计 wallet 的活动情况，那么就需�
 - wallet_activity 的 Message Grain 应定义为 one wallet activity event。因为原始 one transfer 同时包含 from 和 to，可能对应两个 Wallet；如果要使用 wallet_address 作为 Partition Key，就需要将 Transfer fan-out / transform 为面向单个 Wallet 的 activity event，使每条消息只有一个明确的 wallet_address。
 
 结论：综合检查问题一、问题二正式通过。
+
+## 用户回答（问题三、问题四、问题五）
+
+问题三：
+
+1. 重启后，Consumer 会检查 Offset 进度。因为之前 Offset 没有正常 Commit，所以它会再次把刚才的 Event 再消费一次，2
+2. 这更接近 At-least-once 这种 Delivery Semantics。
+3. Sink   必须支持 Idempotency（幂等性）。就是有刚才这种情况出现，因为 Consumer 有可能会多次对同一份 Event 进行写入操作，那么 Synker 它必须支持 Idempotency，这样才不会导致有数据问题。
+4. 对 ERC-20 Transfer Fact，它的 Unique Key 应该是 Chain ID、Wallet Address、TX Hash、Log Index
+
+问题是：A 应该用 retry，因为它是临时性的故障，所以用 retry 可以过会儿重试. B 应该用 replay，Replay 的三个前提是 durable retention、position，还有 idempotency。
+
+判断是不是会发生 back pressure，主要观察的指标是 product 速度和 consumer 速度的差是不是越来越大？
+
+主要处理的办法有：
+
+1. Scale consumers
+2. Optimize processing
+3. Reduce downstream pressure
+
+问题 5
+
+1：这是 canonical correctness 问题？
+
+2. pipeline 应该如何修复旧数据？
+
+pipeline 可以再创建一个 reorg pipeline，专门用来处理这种情况。
+
+3. block number 只是 block 的一个高度的位置，但是这个高度位置上具体的 block 内容是有可能发生变化的，所以它并不稳定，不能作为稳定的 block identity
+4. 因为它把数据状态更清晰化，这样下游更能区分 fresh but mutable vs stable canonical fact
+
+## 老师判断与校准（问题三、问题四、问题五）
+
+### 问题三：第 1、2、3 小题通过；第 4 小题需要校准
+
+- Consumer 在 DB write 成功但 Offset 未 Commit 时 Crash，重启后会从旧的 committed position 重新读取该 Event，因此发生 duplicate processing，这一判断正确。
+- 这属于 At-least-once 语义，判断正确。
+- Sink 必须支持 Idempotency，因为同一 Event 可能被重复处理；重复执行必须收敛到同一业务结果，这一点正确。
+- ERC-20 Transfer Fact 的 Source Identity / Unique Key 不应包含 wallet_address。更合适的是：
+  (chain_id, tx_hash, log_index)
+  因为一条 Transfer Fact 本身已经由交易哈希和日志位置唯一确定；wallet_address 是该 Transfer 的业务字段之一，不是唯一身份的一部分。
+
+### 问题四：A、B 和处理手段通过；Backpressure 指标需要校准
+
+- A：Postgres 网络超时属于 transient failure，使用 Retry，正确。
+- B：Decoder Bug 影响历史范围，应使用 Replay；Replay 需要 Retention、Position、Idempotency，正确。
+- C：Producer 15,000 msg/s、Consumer 9,000 msg/s 时，会持续新增约 6,000 msg/s 的积压，属于持续 Backpressure。
+- “Producer 与 Consumer 速度差”是根因 / capacity gap，但运行时最关键的观测指标应是 Consumer Lag，尤其是 Lag Trend。若 Lag 持续增长，说明 Consumer 长期追不上 Producer。
+- Scale Consumers、Optimize Processing、Reduce Downstream Pressure 三类处理办法正确。需要同时记住：增加 Consumer 的有效并行度仍受 Partition Count 限制。
+
+### 问题五：第 1、3、4 小题通过；第 2 小题需要补完整
+
+- 第 1 小题：这是 Canonical-chain Correctness 问题，正确。
+- 第 2 小题：可以有独立的 Reorg Correction Flow / Reorg Pipeline，但关键不是“多建一个 Pipeline”本身，而是它必须执行正确的修复动作：
+  Detect Reorg → Find Common Ancestor → Invalidate / Rollback Old Branch → Replay New Canonical Branch。
+  Realtime、Backfill、Reorg Replay 可以复用同一套 processing logic，但应维护 separate execution state。
+- 第 3 小题：block_number 只表示高度，不表示 immutable block identity；同一高度在 Reorg 前后可以对应不同 block_hash，判断正确。
+- 第 4 小题：区分 latest / unconfirmed 与 confirmed / finalized，是为了让下游明确 fresh but mutable 与 stable canonical fact，判断正确。
+
+结论：问题三、问题四、问题五均已基本掌握；需要补充三点：Transfer Fact Unique Key、Backpressure 的核心运行指标 Consumer Lag、Reorg Correction 的完整修复流程。

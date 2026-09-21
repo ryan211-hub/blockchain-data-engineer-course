@@ -20,17 +20,17 @@
 
 - 当前阶段：第三阶段 Data Engineering
 - 已完成 Module：Module 1、Module 2、Module 3、Module 4、Module 5、Module 6、Module 7、Module 8、Module 9
-- 当前 Module：Module 10 — 实时数据
+- 当前 Module：Module 11 — 分析数据库
 - Module 6 完成结论：第 1～4 课均已完成，已达到 Module Contract 结束标准。已能区分 History / Historical State，解释 Pruning、Archive 成本，并根据 Query Semantics、Derived State、规模与 TCO 判断 Archive RPC / Self-hosted / Hybrid。
 - Module 7 完成结论：第 1～10 课与结课综合实践均已完成；Mini Indexer 五项验收 Normal Sync / Idempotent Replay / Crash Recovery / Backfill / Reorg Recovery 全部通过，已达到 Module Contract 结束标准。五项实践由用户在 Codex 中实际完成并明确确认通过。
 - Module 8 完成结论：第 1～8 课与结束标准综合检查均已完成，已达到 Module Contract 结束标准。已能从 Query Semantics 推导 Business Object、Grain、Source Identity、Unique Key、Fact / Dimension、Relation 与 Layer，并区分 Source Identity 与 Business Identity。
 - Module 9 完成结论：第 1～7 课与结束标准综合检查均已完成，达到 Module Contract 结束标准。已能独立设计基础 Blockchain Batch ETL Pipeline，并解释 Source / Target、Processing Range、Grain、Unique Key、Watermark / Cursor / Checkpoint、Idempotency、Validation、Late-arriving / Reorg、Lookback / Backfill / Historical Repair、DAG Dependency 与 Scheduler / Orchestrator。
-- 当前 Lesson：Module 10 结束标准综合检查｜设计一条完整 Blockchain Realtime Data Pipeline
-- 当前状态：Module 10 结束标准综合检查开始
-- 最近完成：Module 10 第 7 课《Blockchain Streaming：Reorg、Finality、Reconciliation 与 Batch + Stream》理解检查通过；Canonical Lesson Content 已同步到 Notion 和 GitHub。
-- 最近掌握重点：已理解 Blockchain Streaming 的特殊正确性模型：Delivery Correctness 与 Canonical-chain Correctness 分离；Reorg 需要 rollback / invalidate + replay；Finality / Confirmation 用于平衡 Freshness 与 Certainty；Streaming 与 Batch Backfill / Reconciliation 共同保证实时性与最终正确性。
+- 当前 Lesson：Module 11 第 1 课｜为什么需要分析数据库：OLTP、OLAP 与不同 Workload
+- 当前状态：Module 10 综合检查剩余项由用户主动跳过；已进入 Module 11 第 1 课
+- 最近完成：Module 10 第 1～7 课全部完成；结束标准综合检查已进行至问题五，用户明确选择跳过剩余校准与后续问题，不记录为“通过”，但不阻塞进入 Module 11。
+- 最近掌握重点：Module 10 已完成 Kafka / Streaming 核心学习，包括 Topic / Partition / Offset / Consumer Group、Delivery Semantics、Idempotency、Retry / Replay / Backpressure，以及 Reorg / Finality / Reconciliation。当前进入分析数据库与查询引擎。
 - 历史同步债务处理决定：用户已明确要求忽略 Module 8 第 4～6 课的既有 Notion / GitHub 同步债务与第 5 课 Canonical Drift；这些历史问题不再修复，也不再阻塞课程推进。
-- 下一步准确入口：开始 Module 10 结束标准综合检查《设计一条完整 Blockchain Realtime Data Pipeline》。
+- 下一步准确入口：开始 Module 11 第 1 课《为什么需要分析数据库：OLTP、OLAP 与不同 Workload》。
 
 ## 目录
 
@@ -41,6 +41,7 @@
 - [Module 8 — 数据建模](module-08-data-modeling/README.md)
 - [Module 9 — ETL](module-09-etl/README.md)
 - [Module 10 — 实时数据](module-10-realtime-data/README.md)
+- [Module 11 — 分析数据库](module-11-analytics-database/README.md)
 
 ## 同步规则
 

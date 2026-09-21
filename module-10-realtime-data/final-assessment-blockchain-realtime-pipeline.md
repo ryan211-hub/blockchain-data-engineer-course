@@ -240,3 +240,21 @@ wallet activity topic 应该是要统计 wallet 的活动情况，那么就需�
   每条消息只有一个明确 wallet_address，因此可以稳定用 wallet_address 作为 Partition Key。
 
 结论：问题一尚未完全通过；问题二中第 2、3、4 小题通过，第 1 小题需要将 Grain 从 one transfer 调整为 one wallet activity event。
+
+## 用户补充回答（问题一、问题二）
+
+问题一：因为不同的业务职责会从不同的方面、不同的维度对同一批数据进行分析，所以我们应该将不同的业务职责划分成不同的 Consumer Group。
+
+如果它们在同一个 Group 里面的话，就会因为竞争关系而获取不到完整的 Event 数据。
+问题二：wallet activity的grain应该是one wallet activity event，而不是one transfer。
+
+因为one transfer里面实际上会包含多个wallet的activity。比如一条transfer，因为它会有from和to，这样的话它有可能就会有两个wallet address。但是我们把wallet作为key的话，所以得需要把transfer再拆分。
+
+## 老师补充校准（问题一、问题二）
+
+问题一、问题二补充通过。
+
+- Consumer Group 按独立业务职责划分，而不是按 Partition 数量划分。不同 Consumer Group 可以独立读取完整 Topic；如果多个业务逻辑放在同一个 Group 中，它们会形成 work-sharing / competition，只会分摊 Partition，而不是每套业务都完整读取全部 Event。
+- wallet_activity 的 Message Grain 应定义为 one wallet activity event。因为原始 one transfer 同时包含 from 和 to，可能对应两个 Wallet；如果要使用 wallet_address 作为 Partition Key，就需要将 Transfer fan-out / transform 为面向单个 Wallet 的 activity event，使每条消息只有一个明确的 wallet_address。
+
+结论：综合检查问题一、问题二正式通过。

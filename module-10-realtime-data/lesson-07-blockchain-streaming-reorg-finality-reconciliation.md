@@ -710,3 +710,15 @@ Finality / Confirmation
 为什么一个已经有 Kafka Streaming、Retry、Replay、Idempotency 的系统，仍然需要 Batch Backfill / Reconciliation？
 
 请至少说出两个原因。
+
+## 用户回答
+
+问题一：这个 pipeline 还没有应对 Reorg 这种情况的处理，这里暴露的是 Canonical-chain Correctness 问题
+问题二：将Streaming Path  的lag block 尽可能小， 并增加 Reorg Correction 以应对reorg的情况。
+问题三：1.Retention 不一定能覆盖全部历史 2. Logic bug 可能影响了大范围的历史，所以也需要 backfill， 3.Reconciliation 需要大范围对账
+
+## 老师判断与校准
+
+- 问题一：通过。这里不是 Delivery Correctness 问题，因为 Event 已经成功消费、没有重复、没有丢失；真正的问题是 Reorg 使原先的 canonical fact 变成 orphan，因此暴露的是 Canonical-chain Correctness。
+- 问题二：方向正确，但尚未完整通过。你已经提出两点：Streaming Path 尽量降低延迟，以获得 Freshness；同时增加 Reorg Correction，以修正后来发生的 canonical change。还需要显式补充 Finality / Confirmation 的分层：刚出现的数据可以先作为 latest / unconfirmed 展示，随着 confirmation 增加或达到 finalized，再提升为更稳定的状态。也就是说，需要同时表达“低延迟展示”和“延迟确认”两条路径。
+- 问题三：通过。你列出的三个原因都正确：Kafka Retention 可能覆盖不了全部历史；Logic Bug 可能影响大范围历史，需要 Batch Backfill；Reconciliation 需要大范围独立对账来发现 realtime state drift。

@@ -722,3 +722,17 @@ Finality / Confirmation
 - 问题一：通过。这里不是 Delivery Correctness 问题，因为 Event 已经成功消费、没有重复、没有丢失；真正的问题是 Reorg 使原先的 canonical fact 变成 orphan，因此暴露的是 Canonical-chain Correctness。
 - 问题二：方向正确，但尚未完整通过。你已经提出两点：Streaming Path 尽量降低延迟，以获得 Freshness；同时增加 Reorg Correction，以修正后来发生的 canonical change。还需要显式补充 Finality / Confirmation 的分层：刚出现的数据可以先作为 latest / unconfirmed 展示，随着 confirmation 增加或达到 finalized，再提升为更稳定的状态。也就是说，需要同时表达“低延迟展示”和“延迟确认”两条路径。
 - 问题三：通过。你列出的三个原因都正确：Kafka Retention 可能覆盖不了全部历史；Logic Bug 可能影响大范围历史，需要 Batch Backfill；Reconciliation 需要大范围独立对账来发现 realtime state drift。
+
+## 用户补充回答
+
+这样便于区分 fresh but mutable vs stable canonical fact
+
+## 老师补充校准
+
+问题二补充通过。
+
+你的补充已经准确点出了 Finality / Confirmation 分层的意义：系统需要区分 fresh but mutable 与 stable canonical fact。前者用于低延迟展示，但仍可能因 Reorg 改变；后者经过更多确认或达到 finalized 状态，更适合作为稳定业务事实。这样既保留 Freshness，又显式表达数据的不确定性和最终稳定性。
+
+## 结课判定
+
+Module 10 第 7 课理解检查全部通过，正式完成。已掌握 Blockchain Streaming 的核心特殊性：Delivery Correctness 与 Canonical-chain Correctness 是不同问题；Reorg 需要回滚 / 失效旧分支并重放新 canonical branch；Finality / Confirmation 用于平衡 Freshness 与 Certainty；Streaming 负责低延迟，Batch Backfill / Reconciliation 负责历史修复、完整性检查和最终正确性。

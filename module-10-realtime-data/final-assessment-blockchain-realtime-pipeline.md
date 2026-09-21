@@ -318,3 +318,9 @@ pipeline 可以再创建一个 reorg pipeline，专门用来处理这种情况�
 - 第 4 小题：区分 latest / unconfirmed 与 confirmed / finalized，是为了让下游明确 fresh but mutable 与 stable canonical fact，判断正确。
 
 结论：问题三、问题四、问题五均已基本掌握；需要补充三点：Transfer Fact Unique Key、Backpressure 的核心运行指标 Consumer Lag、Reorg Correction 的完整修复流程。
+
+## 用户决定：结束综合检查
+
+用户明确决定：当前综合检查剩余校准项以及后续问题全部跳过，不再继续回答。
+
+本次综合检查不记录为“通过”；记录为用户主动结束 / 跳过。Module 10 第 1～7 课均已完成，综合检查未完成但不阻塞用户进入 Module 11。

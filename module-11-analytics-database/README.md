@@ -66,7 +66,7 @@
 
 - 当前阶段：第三阶段 Data Engineering
 - 当前 Module：Module 11 — 分析数据库
-- 已完成 Lesson：无
-- 当前 Lesson：第 1 课｜为什么需要分析数据库：OLTP、OLAP 与不同 Workload
-- 当前状态：第 1 课开始
-- 下一步准确入口：开始 Module 11 第 1 课｜为什么需要分析数据库：OLTP、OLAP 与不同 Workload。
+- 已完成 Lesson：第 1 课｜为什么需要分析数据库：OLTP、OLAP 与不同 Workload
+- 当前 Lesson：第 2 课｜Row Store vs Column Store：为什么列式数据库适合分析
+- 当前状态：第 1 课理解检查通过并已完成同步；准备进入第 2 课
+- 下一步准确入口：开始 Module 11 第 2 课｜Row Store vs Column Store：为什么列式数据库适合分析。

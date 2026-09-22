@@ -68,9 +68,10 @@
 - 当前 Module：Module 11 — 分析数据库
 - 已完成 Lesson：第 1 课｜为什么需要分析数据库：OLTP、OLAP 与不同 Workload
 - 当前 Lesson：第 2 课｜Row Store vs Column Store：为什么列式数据库适合分析
-- 当前状态：第 1 课理解检查通过并已完成同步；准备进入第 2 课
+- 当前状态：第 2 课开始
 - 下一步准确入口：开始 Module 11 第 2 课｜Row Store vs Column Store：为什么列式数据库适合分析。
 
 ## 课程路径
 
 - [第 1 课｜为什么需要分析数据库：OLTP、OLAP 与不同 Workload](lesson-01-oltp-olap-workloads.md)
+- [第 2 课｜Row Store vs Column Store：为什么列式数据库适合分析](lesson-02-row-store-vs-column-store.md)

@@ -898,3 +898,51 @@ ClickHouse
 而不是只选择其中一个？
 
 请分别说明它们更适合承担什么角色。
+
+## 用户回答
+
+问题一：为什么不能简单说 Blockchain 数据量很大，所以应该使用 ClickHouse？请从 Workload 的角度解释
+
+因为是否应该使用 ClickHouse，不单单是因为 Blockchain 数据量很大，而更应该从实际的使用情况角度去分析。
+
+从 Workload 的角度看，是否应该使用 ClickHouse 应该考察几个方面：
+
+1. 查询的数据量是否很大？
+2. 查询是否会影响到对数据库资源的占用（比如占用比比较高）？
+3. 查询是否会对数据库的其他功能产生影响？
+
+问题2
+
+historical
+
+large scan
+
+few columns
+
+aggregation
+
+问题3
+
+Postgres 更偏：
+
+> General-purpose relational + transactional + serving database.
+
+ClickHouse：
+
+column-oriented
+
+analytical
+
+high-throughput
+
+## 老师判断与校准
+
+三题总体通过。
+
+- 问题一：方向正确。不能仅凭 Blockchain 数据量大就决定使用 ClickHouse，必须看 workload。这里需要进一步固定几个更具体的判断维度：是否是 historical scan、是否 touch many rows but read few columns、是否 heavy GROUP BY / aggregation、是否 append-heavy、是否有较高 dashboard concurrency，以及 analytical workload 是否开始影响 serving workload。资源占用高只是结果，前面的 Query Pattern 才是根因。
+- 问题二：回答正确。你列出的 historical、large scan、few columns、aggregation 正是这个 workload 适合 ClickHouse 的核心原因。还可以补充 append-heavy、high compression potential，以及如果 Dashboard 并发较高，ClickHouse 的分析型角色会更加明显。
+- 问题三：方向正确。Postgres 更适合 General-purpose Relational / Transactional / Serving workload，例如 Current State、Operational State、Metadata、API point lookup；ClickHouse 更适合 Column-oriented Analytical workload，例如 Historical Facts、Large Scan、Aggregation、Dashboard。之所以同时保留，是因为它们服务不同 workload，角色互补，而不是谁完全替代谁。
+
+## 结课判定
+
+Module 11 第 4 课理解检查通过，正式完成。已经能够从 workload 角度解释 ClickHouse 为什么适合 Blockchain Analytics，并能区分 Postgres 的 Serving / Operational 角色与 ClickHouse 的 Historical / Analytical 角色。

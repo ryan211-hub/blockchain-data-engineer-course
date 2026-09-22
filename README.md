@@ -25,12 +25,12 @@
 - Module 7 完成结论：第 1～10 课与结课综合实践均已完成；Mini Indexer 五项验收 Normal Sync / Idempotent Replay / Crash Recovery / Backfill / Reorg Recovery 全部通过，已达到 Module Contract 结束标准。五项实践由用户在 Codex 中实际完成并明确确认通过。
 - Module 8 完成结论：第 1～8 课与结束标准综合检查均已完成，已达到 Module Contract 结束标准。已能从 Query Semantics 推导 Business Object、Grain、Source Identity、Unique Key、Fact / Dimension、Relation 与 Layer，并区分 Source Identity 与 Business Identity。
 - Module 9 完成结论：第 1～7 课与结束标准综合检查均已完成，达到 Module Contract 结束标准。已能独立设计基础 Blockchain Batch ETL Pipeline，并解释 Source / Target、Processing Range、Grain、Unique Key、Watermark / Cursor / Checkpoint、Idempotency、Validation、Late-arriving / Reorg、Lookback / Backfill / Historical Repair、DAG Dependency 与 Scheduler / Orchestrator。
-- 当前 Lesson：Module 11 第 3 课｜Postgres 的位置：什么时候够用，什么时候开始吃力
-- 当前状态：Module 11 第 3 课开始
-- 最近完成：Module 11 第 2 课《Row Store vs Column Store：为什么列式数据库适合分析》理解检查通过；Canonical Lesson Content 已同步到 Notion 和 GitHub。
-- 最近掌握重点：已理解 Row Store vs Column Store 的 Physical Storage 差异；Row Store 更匹配少量行、多字段访问，Column Store 更匹配 many rows + few columns，并通过更高 Compression 降低大规模 Scan 的 I/O 成本。
+- 当前 Lesson：Module 11 第 4 课｜ClickHouse：为什么适合 Blockchain Analytics
+- 当前状态：Module 11 第 3 课已完成并通过理解检查；准备进入第 4 课
+- 最近完成：Module 11 第 3 课《Postgres 的位置：什么时候够用，什么时候开始吃力》理解检查通过；Canonical Lesson Content 已同步到 Notion 和 GitHub。
+- 最近掌握重点：已能从 Query Pattern、Selectivity、Concurrency、Serving Interference 与 Cost 判断 Postgres 的边界；理解 Index / Partitioning 只能减少 irrelevant access，不能消除 genuinely relevant large scans；常见演进方式是 Postgres + ClickHouse Role Separation。
 - 历史同步债务处理决定：用户已明确要求忽略 Module 8 第 4～6 课的既有 Notion / GitHub 同步债务与第 5 课 Canonical Drift；这些历史问题不再修复，也不再阻塞课程推进。
-- 下一步准确入口：开始 Module 11 第 3 课《Postgres 的位置：什么时候够用，什么时候开始吃力》。
+- 下一步准确入口：开始 Module 11 第 4 课《ClickHouse：为什么适合 Blockchain Analytics》。
 
 ## 目录
 

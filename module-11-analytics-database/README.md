@@ -68,7 +68,7 @@
 - 当前 Module：Module 11 — 分析数据库
 - 已完成 Lesson：第 1 课｜为什么需要分析数据库：OLTP、OLAP 与不同 Workload；第 2 课｜Row Store vs Column Store：为什么列式数据库适合分析；第 3 课｜Postgres 的位置：什么时候够用，什么时候开始吃力；第 4 课｜ClickHouse：为什么适合 Blockchain Analytics
 - 当前 Lesson：第 5 课｜Partition、Order Key、Data Skipping 与大表查询
-- 当前状态：第 4 课理解检查通过并已完成同步；准备进入第 5 课
+- 当前状态：第 5 课开始
 - 下一步准确入口：开始 Module 11 第 5 课｜Partition、Order Key、Data Skipping 与大表查询。
 
 ## 课程路径
@@ -77,3 +77,4 @@
 - [第 2 课｜Row Store vs Column Store：为什么列式数据库适合分析](lesson-02-row-store-vs-column-store.md)
 - [第 3 课｜Postgres 的位置：什么时候够用，什么时候开始吃力](lesson-03-postgres-boundary.md)
 - [第 4 课｜ClickHouse：为什么适合 Blockchain Analytics](lesson-04-clickhouse-blockchain-analytics.md)
+- [第 5 课｜Partition、Order Key、Data Skipping 与大表查询](lesson-05-partition-order-data-skipping.md)

@@ -80,3 +80,14 @@ Serving DB / Warehouse / Alert / API
 - 当前 Lesson：Module 10 已结束
 - 当前状态：第 1～7 课完成；结束标准综合检查由用户主动跳过剩余项，未记录为通过；已进入 Module 11
 - 下一步准确入口：进入 Module 11 第 1 课｜为什么需要分析数据库：OLTP、OLAP 与不同 Workload。
+
+## 课程路径
+
+- [第 1 课｜实时数据到底是什么：为什么不是“把 ETL 跑快一点”](lesson-01-realtime-data-vs-faster-etl.md)
+- [第 2 课｜Kafka 在实时 Pipeline 中到底解决什么问题](lesson-02-why-kafka-in-realtime-pipeline.md)
+- [第 3 课｜Topic、Partition、Offset：数据流如何被切分和定位](lesson-03-topic-partition-offset.md)
+- [第 4 课｜Consumer Group 与 Ordering：如何同时获得并行处理和局部有序](lesson-04-consumer-group-ordering.md)
+- [第 5 课｜Delivery Semantics：At-most-once、At-least-once、Exactly-once](lesson-05-delivery-semantics.md)
+- [第 6 课｜Retry、Replay、Backpressure 与实时故障恢复](lesson-06-retry-replay-backpressure.md)
+- [第 7 课｜Blockchain Streaming：Reorg、Finality、Reconciliation 与 Batch + Stream](lesson-07-blockchain-streaming-reorg-finality-reconciliation.md)
+- [结束标准综合检查｜设计一条完整 Blockchain Realtime Data Pipeline](final-assessment-blockchain-realtime-pipeline.md)

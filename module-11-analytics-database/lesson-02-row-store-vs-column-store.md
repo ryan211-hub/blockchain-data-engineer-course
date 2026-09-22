@@ -781,3 +781,32 @@ Compression 除了节省磁盘，还有什么性能价值？
 A. 根据 wallet_address 查询一个 Wallet 当前 Balance，并返回完整状态。
 
 B. 扫描 50 亿条 Swap，只读取 block_time、pool_address、amount_usd，然后统计每个 Pool 每天的 Volume。
+
+## 用户回答
+
+问题一：因为这个场景下需要扫描大量的历史数据，而返回呢只需要很小的一个数据集，所以 column store 通常比 row store 更适合这个 query
+
+问题二：
+
+因为 Column Store 的设计下，相同的 column 数据会放在一块，并且同一个 column 字段的数据格式都是相同的，非常固定。
+
+所以，它很适合做 compression。做了 compression 之后，不仅可以节省磁盘，还可以提高查询效率
+
+问题 3：A 偏向于 row store，B 偏向于 column store。
+
+原因是：
+
+1. A 是查询一个随机的 wallet_address，然后返回它的余额，这很适合 row store 的情况
+2. B 需要扫描 50 亿 swap 数据，这个数据量非常大，然后返回一个小的数据集，这种情况下适合 column store
+
+## 老师判断与校准
+
+三题全部通过。
+
+- 问题一：方向正确。需要进一步固定的关键表达是：Column Store 的优势并不主要来自“最终返回结果少”，而是这个 Query 会 touch many rows but read only a few columns（block_time、token_address、amount）。列式布局可以避免读取大量无关列，从而减少 unnecessary I/O。
+- 问题二：判断正确。同一 Column 内数据类型一致、分布相似、重复或顺序规律更容易被 Compression 利用。Compression 除了节省磁盘，还会减少查询需要从存储层读取的数据量：less data read → less disk I/O → often faster scans。
+- 问题三：判断正确。A 是少量行 / point lookup，并需要返回当前 Wallet 的完整状态，更偏 Row Store；B 需要扫描 50 亿行但只读取 block_time、pool_address、amount_usd 三列，并进行 aggregation，是典型 many rows + few columns，更偏 Column Store。
+
+## 结课判定
+
+Module 11 第 2 课理解检查全部通过，正式完成。已经能够从 Physical Storage Layout 解释 Row Store 与 Column Store 的差异，并建立核心判断：Row Store 更适合 small number of rows + many fields；Column Store 更适合 many rows + few columns，同时利用更高 Compression 降低大规模 Scan 的 I/O 成本。

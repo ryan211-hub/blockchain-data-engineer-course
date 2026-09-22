@@ -25,12 +25,12 @@
 - Module 7 完成结论：第 1～10 课与结课综合实践均已完成；Mini Indexer 五项验收 Normal Sync / Idempotent Replay / Crash Recovery / Backfill / Reorg Recovery 全部通过，已达到 Module Contract 结束标准。五项实践由用户在 Codex 中实际完成并明确确认通过。
 - Module 8 完成结论：第 1～8 课与结束标准综合检查均已完成，已达到 Module Contract 结束标准。已能从 Query Semantics 推导 Business Object、Grain、Source Identity、Unique Key、Fact / Dimension、Relation 与 Layer，并区分 Source Identity 与 Business Identity。
 - Module 9 完成结论：第 1～7 课与结束标准综合检查均已完成，达到 Module Contract 结束标准。已能独立设计基础 Blockchain Batch ETL Pipeline，并解释 Source / Target、Processing Range、Grain、Unique Key、Watermark / Cursor / Checkpoint、Idempotency、Validation、Late-arriving / Reorg、Lookback / Backfill / Historical Repair、DAG Dependency 与 Scheduler / Orchestrator。
-- 当前 Lesson：Module 11 第 1 课｜为什么需要分析数据库：OLTP、OLAP 与不同 Workload
-- 当前状态：Module 10 综合检查剩余项由用户主动跳过；已进入 Module 11 第 1 课
-- 最近完成：Module 10 第 1～7 课全部完成；结束标准综合检查已进行至问题五，用户明确选择跳过剩余校准与后续问题，不记录为“通过”，但不阻塞进入 Module 11。
-- 最近掌握重点：Module 10 已完成 Kafka / Streaming 核心学习，包括 Topic / Partition / Offset / Consumer Group、Delivery Semantics、Idempotency、Retry / Replay / Backpressure，以及 Reorg / Finality / Reconciliation。当前进入分析数据库与查询引擎。
+- 当前 Lesson：Module 11 第 2 课｜Row Store vs Column Store：为什么列式数据库适合分析
+- 当前状态：Module 11 第 1 课已完成并通过理解检查；准备进入第 2 课
+- 最近完成：Module 11 第 1 课《为什么需要分析数据库：OLTP、OLAP 与不同 Workload》理解检查通过；Canonical Lesson Content 已同步到 Notion 和 GitHub。
+- 最近掌握重点：已能区分 OLTP 与 OLAP，并从 Query Pattern / Data Volume / Latency Requirement 等 Workload 特征推导数据库角色；理解 Postgres 与 ClickHouse 并非简单替代关系。
 - 历史同步债务处理决定：用户已明确要求忽略 Module 8 第 4～6 课的既有 Notion / GitHub 同步债务与第 5 课 Canonical Drift；这些历史问题不再修复，也不再阻塞课程推进。
-- 下一步准确入口：开始 Module 11 第 1 课《为什么需要分析数据库：OLTP、OLAP 与不同 Workload》。
+- 下一步准确入口：开始 Module 11 第 2 课《Row Store vs Column Store：为什么列式数据库适合分析》。
 
 ## 目录
 

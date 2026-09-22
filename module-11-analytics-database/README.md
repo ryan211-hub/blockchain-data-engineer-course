@@ -66,10 +66,10 @@
 
 - 当前阶段：第三阶段 Data Engineering
 - 当前 Module：Module 11 — 分析数据库
-- 已完成 Lesson：第 1 课｜为什么需要分析数据库：OLTP、OLAP 与不同 Workload；第 2 课｜Row Store vs Column Store：为什么列式数据库适合分析
-- 当前 Lesson：第 3 课｜Postgres 的位置：什么时候够用，什么时候开始吃力
-- 当前状态：第 3 课开始
-- 下一步准确入口：开始 Module 11 第 3 课｜Postgres 的位置：什么时候够用，什么时候开始吃力。
+- 已完成 Lesson：第 1 课｜为什么需要分析数据库：OLTP、OLAP 与不同 Workload；第 2 课｜Row Store vs Column Store：为什么列式数据库适合分析；第 3 课｜Postgres 的位置：什么时候够用，什么时候开始吃力
+- 当前 Lesson：第 4 课｜ClickHouse：为什么适合 Blockchain Analytics
+- 当前状态：第 3 课理解检查通过并已完成同步；准备进入第 4 课
+- 下一步准确入口：开始 Module 11 第 4 课｜ClickHouse：为什么适合 Blockchain Analytics。
 
 ## 课程路径
 

@@ -26,7 +26,7 @@
 - Module 8 完成结论：第 1～8 课与结束标准综合检查均已完成，已达到 Module Contract 结束标准。已能从 Query Semantics 推导 Business Object、Grain、Source Identity、Unique Key、Fact / Dimension、Relation 与 Layer，并区分 Source Identity 与 Business Identity。
 - Module 9 完成结论：第 1～7 课与结束标准综合检查均已完成，达到 Module Contract 结束标准。已能独立设计基础 Blockchain Batch ETL Pipeline，并解释 Source / Target、Processing Range、Grain、Unique Key、Watermark / Cursor / Checkpoint、Idempotency、Validation、Late-arriving / Reorg、Lookback / Backfill / Historical Repair、DAG Dependency 与 Scheduler / Orchestrator。
 - 当前 Lesson：Module 11 第 5 课｜Partition、Order Key、Data Skipping 与大表查询
-- 当前状态：Module 11 第 4 课已完成并通过理解检查；准备进入第 5 课
+- 当前状态：Module 11 第 5 课开始
 - 最近完成：Module 11 第 4 课《ClickHouse：为什么适合 Blockchain Analytics》理解检查通过；Canonical Lesson Content 已同步到 Notion 和 GitHub。
 - 最近掌握重点：已能从 historical scan、many rows + few columns、aggregation、append-heavy、compression potential 与 concurrency 等 workload 特征解释 ClickHouse 的适用性，并区分 Postgres Serving / Operational 与 ClickHouse Historical / Analytical 的互补角色。
 - 历史同步债务处理决定：用户已明确要求忽略 Module 8 第 4～6 课的既有 Notion / GitHub 同步债务与第 5 课 Canonical Drift；这些历史问题不再修复，也不再阻塞课程推进。

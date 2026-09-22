@@ -532,3 +532,28 @@ B. 扫描过去一年 10 亿条 Transfer，统计每个 Token 每天的 Transfer
 2. Dashboard 查询过去一年每个月的 Wallet Transfer Volume。
 
 你会倾向让这两个 workload 使用完全相同的数据库角色吗？为什么？
+
+## 用户回答
+
+问题一：A 偏向于 OLTP，B 偏向于 OLAP
+
+问题二：ClickHouse 和 Postgres 它们是面向不同 workload 的数据库产品。PostgreSQL 是面向小范围、低延迟的事务型访问，而 ClickHouse 是面向大范围扫描和聚合的数据库产品
+
+问题三：这两个 workload 应该是用不相同的数据库角色。
+
+1. API 实时返回某个 wallet 当前 token balance：
+   这个是小范围查询，即时性要求高。针对这种小范围、低延迟查询，可以使用 PostgreSQL，属于 OLTP 型数据库。
+2. Dashboard 查询过去一年每个月的 wallet transfer volume：
+   这个属于 OLAP 型数据库。
+
+## 老师判断与校准
+
+三题全部通过。
+
+- 问题一：判断正确。根据 tx_hash 查询单条 / 少量记录属于 point lookup，更偏 OLTP；扫描一年、10 亿条 Transfer 并按 Token / 日期聚合属于 large scan + aggregation，更偏 OLAP。
+- 问题二：判断正确。ClickHouse 与 Postgres 面向的是不同 workload。数据库选型的核心不是“谁更快”，而是具体 Query Pattern、Data Volume、Latency Requirement 和 Write / Update Pattern。
+- 问题三：判断正确。实时 Wallet Balance 更偏 Serving / OLTP，适合低延迟点查和频繁状态更新；历史 Wallet Transfer Volume 更偏 OLAP，适合大范围扫描和聚合。两者可以共享逻辑数据模型，但物理存储和查询引擎角色可以不同。
+
+## 结课判定
+
+Module 11 第 1 课理解检查全部通过，正式完成。已建立本 Module 的核心判断框架：Database choice should follow workload。能够区分 OLTP 与 OLAP，并能从 Query Pattern 推导 Postgres / ClickHouse 等数据库在架构中的不同角色。

@@ -856,3 +856,29 @@ A. 完全替换 Postgres。
 B. 让 Postgres 和 ClickHouse 分别承担不同角色。
 
 为什么？
+
+## 用户回答
+
+问题一，不能仅凭数据量这一项就判断必须从 Postgres 迁移到 ClickHouse。是否迁移，不是仅凭数据量就能决定的，而必须考虑其他很多因素。
+
+比如需要考虑 Postgres 的实际使用场景是怎么样的：如果它的使用场景里面有大量的历史查询和大量的统计查询，而且这些查询会影响到 Postgres 的一些其他服务，那么可以考虑是否需要迁移
+
+问题 2：为什么这个 index 仍然不能解决根本的 OLAP 性能问题？
+
+因为这个 index 的设计是为了快速定位到查询的目标数据，但现在的问题是，这个 query 要查询的数据量涉及到了过去两年 70% 的 transfer。它的查询所涉及的数据并不是一个小范围的数据，而是占了 70% 的量，所以 index 并不适用于这个场景
+
+问题 3：如果两个 workload 都压在同一个 Postgres 上，那最大的架构风险是 historical dashboard 的运行会影响到 API 的服务。
+
+我会更倾向于使用 B 方案，让 Postgres 和 ClickHouse 分别承担不同的角色，而不是完全替换掉 Postgres。因为 Postgres 和 ClickHouse 并不能互相完全替换掉对方，它们分属于不同的角色，服务不同的目的
+
+## 老师判断与校准
+
+三题全部通过。
+
+- 问题一：判断正确。不能仅凭 5 亿行这一项决定迁移。真正要看的是 workload：是否存在频繁 Historical Scan、Heavy Aggregation、High Concurrency，以及这些 Analytics Query 是否已经影响 Serving SLA 或让成本持续上升。
+- 问题二：判断正确。Index 的核心作用是快速定位少量目标行；但这个 Query 命中约 70% 的 Transfer，属于 low selectivity。即使通过 Index 定位，数据库最终仍然要处理大量 relevant rows，所以 Index 不能根本改变这个 OLAP workload。
+- 问题三：判断正确。最大的架构风险是 Historical Dashboard 与 Current Balance API 争抢 CPU / Memory / Disk I/O 等资源，从而导致 Serving Latency 不稳定。更合理的方向是角色分离：Postgres 继续承担 Serving / Operational State，ClickHouse 承担 Historical Analytics，而不是把 Postgres 完全替换掉。
+
+## 结课判定
+
+Module 11 第 3 课理解检查全部通过，正式完成。已经能够从 Query Pattern、Selectivity、Concurrency、Serving Interference 和 Cost 等维度判断 Postgres 的 Architecture Boundary，并理解常见演进路径是 Role Separation，而不是简单 Database Replacement。

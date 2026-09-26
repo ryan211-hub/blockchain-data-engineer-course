@@ -1143,3 +1143,21 @@ B. Wallet Analytics：最常见查询是按 `wallet_address + time range`
 为什么它们可能不应该使用完全相同的 Order Key？
 
 请从 Query Pattern / Physical Locality 的角度解释。
+
+## 问题一｜用户回答
+
+Partition 能帮他解决数据分区的问题。如果我把 Partition 设置为按月份来分区，那么在查询这个 factor_transfer 表的时候，就可以忽略其他的月份，直接查 3 月份的数据。
+
+如果 3 月本身仍然有 30 亿行，那 Partition 这个数据量还是比较大，仅靠 Partition 的话还不够，我们可以通过 Order Key 的方式再进行优化
+
+## 问题一｜老师判断与校准
+
+回答正确。
+
+- 第一部分判断准确：按月份 Partition 后，查询 2026 年 3 月时，可以通过 Partition Pruning 排除其他月份，只读取 3 月对应的大块数据。
+- 第二部分也正确：如果 3 月 Partition 本身仍有 30 亿行，Partition 只能完成 coarse-grained elimination，剩余数据量仍然很大。
+- 下一步需要依赖 Order Key 提高 Physical Locality，并让 Data Skipping 有机会进一步跳过不可能命中的数据块。
+
+可以把这一题压缩成：
+
+> Partition 解决“先排除哪些大块”；Order Key + Data Skipping 解决“在剩下的大块里还能少读多少”。

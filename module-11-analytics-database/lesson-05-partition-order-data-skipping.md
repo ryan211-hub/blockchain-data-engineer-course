@@ -1161,3 +1161,17 @@ Partition 能帮他解决数据分区的问题。如果我把 Partition 设置�
 可以把这一题压缩成：
 
 > Partition 解决“先排除哪些大块”；Order Key + Data Skipping 解决“在剩下的大块里还能少读多少”。
+
+## 问题二｜用户回答
+
+这里我将 token address 来做 order key 处理，那么相同的 token 就会被分在一起。如果不对数据做 OrderKey 处理，那么 Token 就会随机分布在各个 block 数据块里面。这样一来，查询的时候就会把范围内的所有 block 都搜索查询一遍。在 order key 处理之后，USDC 这个 token 数据已经被聚集到一块了，在相对集中的几个 block 里面，这样就可以忽略其他的无关的block，它们会被 data skipping，从而减少查询范围。
+
+## 问题二｜老师判断与校准
+
+回答正确。
+
+- 核心因果链已经完整：Order Key 让相同 token 的数据形成更强的 Physical Locality；USDC 不再随机散布在大量 data blocks / granules 中。
+- 如果数据随机分布，很多数据块都可能包含 USDC，因此查询引擎很难证明这些块与条件无关，也就难以跳过。
+- 按 token_address 排序后，USDC 会集中在较少的连续区域；其他区域更容易根据 metadata 判断“不可能命中”，从而执行 Data Skipping，减少实际读取的数据块数量。
+
+更精确地说，不是“必须搜索每一个 block”，而是“随机分布会让更多 data blocks 保持 potentially relevant，降低 skipping effectiveness”。

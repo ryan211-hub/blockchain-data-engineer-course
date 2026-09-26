@@ -1175,3 +1175,24 @@ Partition 能帮他解决数据分区的问题。如果我把 Partition 设置�
 - 按 token_address 排序后，USDC 会集中在较少的连续区域；其他区域更容易根据 metadata 判断“不可能命中”，从而执行 Data Skipping，减少实际读取的数据块数量。
 
 更精确地说，不是“必须搜索每一个 block”，而是“随机分布会让更多 data blocks 保持 potentially relevant，降低 skipping effectiveness”。
+
+## 问题三｜用户回答
+
+问题三：A、B 两种产品，它们的 query pattern 不完全相同，但在 time range 这个条件上，它们是相同的，那我们可以根据 time 来做 partition 分区。但是另一个查询条件，一个是 token address，另外一个是 wallet address。
+
+对产品 A 来说，它要做 token analytics，需要根据 token address 来做 order key。但是对于产品 B（Wallet Analytics）来说，它要根据 wallet address 来做 order key。
+
+所以，它们使用的是不相同的 order key
+
+## 问题三｜老师判断与校准
+
+回答正确。
+
+- 你已经正确区分了可以共享的物理设计维度和不能共享的物理设计维度：两种产品都常见 time range，因此都可以考虑 time-based Partition。
+- 但主要 Query Pattern 不同：Token Analytics 主要围绕 token_address，Wallet Analytics 主要围绕 wallet_address。
+- 因此，为了形成更好的 Physical Locality，A 更适合围绕 token_address 设计 Order Key，B 更适合围绕 wallet_address 设计 Order Key。
+- 核心原则不是“某个字段重要就拿来排序”，而是 Physical Design follows Query Pattern。
+
+可以压缩成：
+
+> Same partitioning dimension does not imply the same ordering dimension. Partition answers “which large time chunks can I prune?”, while Order Key answers “which query dimension should be physically clustered inside those chunks?”

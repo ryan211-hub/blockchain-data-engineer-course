@@ -1196,3 +1196,7 @@ Partition 能帮他解决数据分区的问题。如果我把 Partition 设置�
 可以压缩成：
 
 > Same partitioning dimension does not imply the same ordering dimension. Partition answers “which large time chunks can I prune?”, while Order Key answers “which query dimension should be physically clustered inside those chunks?”
+
+## 结课判定
+
+Module 11 第 5 课理解检查全部通过，正式完成。已经能够区分 Partition、Order Key 与 Data Skipping 的不同职责，并能从 Query Pattern 反推 Physical Design：使用 Partition 做 coarse-grained pruning，使用 Order Key 提高 Physical Locality，并通过 Data Skipping 减少实际读取的数据块。

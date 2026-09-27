@@ -1281,3 +1281,37 @@ Parquet
 → ?
 → ClickHouse
 ```
+
+## 用户回答
+
+问题一：A、B 都长期压在同一个 PostgreSQL 上，B 的产品有可能会对 A 产生影响。因为 B 需要扫描几十亿行数据，这个 dashboard 的占用资源会比较高。可以把产品 A 分配给 Postgres，产品 B 分配给 ClickHouse
+
+问题二：Postgres Consumer 和 ClickHouse Consumer 它们是各自独立的。它们各自维护自己的 checkpoint 进度，所以它们不同步并不代表数据管道出错。正是因为它们有各自独立的进度情况，所以需要单独维护自己的 checkpoint
+
+问题三：这个时候正好可以使用 DuckDB 直接查询 Parquet 历史数据，得到恢复的结果导入到 ClickHouse。
+所以这里完整链路是：
+Parquet 
+→ DuckDB 
+→ Compare aggregates  
+→ ClickHouse
+
+## 老师判断与校准
+
+三题全部通过。
+
+- 问题一：回答正确。把 Current Balance API 和 5 年 Historical Dashboard 都长期压在同一个 Postgres 上，会产生 Resource Contention 风险。Dashboard 的 large scan / aggregation 会竞争 CPU、Memory、Disk I/O、Buffer Cache 等资源，从而让 Serving Latency 和 SLA 变得不稳定。合理分工是 Postgres 承担 Current State / API Serving，ClickHouse 承担 Historical Facts / Dashboard / Aggregation。
+- 问题二：回答正确。Postgres Consumer 与 ClickHouse Consumer 是两个独立的 processing path / sink，它们有各自的 lag、failure、retry、replay 和 freshness SLA，因此应维护独立 Checkpoint。Checkpoint 不一致只说明处理进度不同，不等于 Pipeline 出错。
+- 问题三：思路正确。Parquet Historical Facts 在 Kafka Retention 不足时可以作为长期 Recovery Asset。你写的 DuckDB + Compare aggregates 很适合作为 Validation / Reconciliation 步骤，但恢复主链路更适合表达为：
+
+```text
+Parquet
+→ Backfill / Replay
+→ Rebuild / Load
+→ ClickHouse
+```
+
+DuckDB 可以插在 Backfill / Replay 之后或 Load 之前，用于 Row Count、Aggregate Reconciliation、Distribution Check 等校验。
+
+## 结课判定
+
+Module 11 第 7 课理解检查全部通过，正式完成。已经能够设计 Serving DB + Analytics DB 的基础混合存储架构，并能解释 Workload Isolation、独立 Checkpoint、Eventual Consistency、Recovery Asset 与多 Sink Role Separation。

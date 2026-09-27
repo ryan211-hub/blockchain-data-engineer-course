@@ -19,18 +19,18 @@
 ## 当前学习进度
 
 - 当前阶段：第三阶段 Data Engineering
-- 已完成 Module：Module 1、Module 2、Module 3、Module 4、Module 5、Module 6、Module 7、Module 8、Module 9
+- 已完成 Module：Module 1、Module 2、Module 3、Module 4、Module 5、Module 6、Module 7、Module 8、Module 9、Module 10、Module 11
 - 当前 Module：Module 12 — 数据质量
 - Module 6 完成结论：第 1～4 课均已完成，已达到 Module Contract 结束标准。已能区分 History / Historical State，解释 Pruning、Archive 成本，并根据 Query Semantics、Derived State、规模与 TCO 判断 Archive RPC / Self-hosted / Hybrid。
 - Module 7 完成结论：第 1～10 课与结课综合实践均已完成；Mini Indexer 五项验收 Normal Sync / Idempotent Replay / Crash Recovery / Backfill / Reorg Recovery 全部通过，已达到 Module Contract 结束标准。五项实践由用户在 Codex 中实际完成并明确确认通过。
 - Module 8 完成结论：第 1～8 课与结束标准综合检查均已完成，已达到 Module Contract 结束标准。已能从 Query Semantics 推导 Business Object、Grain、Source Identity、Unique Key、Fact / Dimension、Relation 与 Layer，并区分 Source Identity 与 Business Identity。
 - Module 9 完成结论：第 1～7 课与结束标准综合检查均已完成，达到 Module Contract 结束标准。已能独立设计基础 Blockchain Batch ETL Pipeline，并解释 Source / Target、Processing Range、Grain、Unique Key、Watermark / Cursor / Checkpoint、Idempotency、Validation、Late-arriving / Reorg、Lookback / Backfill / Historical Repair、DAG Dependency 与 Scheduler / Orchestrator。
-- 当前 Lesson：Module 12 第 1 课｜数据质量到底是什么：为什么 Pipeline 成功不代表数据正确
-- 当前状态：Module 12 第 1 课开始
-- 最近完成：Module 11 第 1～7 课完成；结束标准综合检查由用户主动跳过。Module 11 正式结束。
-- 最近掌握重点：已能从 Workload 出发设计 Postgres / ClickHouse / DuckDB / Parquet 的角色分工，并理解 Serving / Analytics / Archive 多路径架构。
+- 当前 Lesson：Module 12 第 2 课｜Completeness：Missing Block、Missing Log 与 Provider Gap
+- 当前状态：Module 12 第 1 课已完成；下一步进入第 2 课
+- 最近完成：Module 12 第 1 课《数据质量到底是什么：为什么 Pipeline 成功不代表数据正确》理解检查通过，正式完成。
+- 最近掌握重点：已能区分 Pipeline Health 与 Data Correctness，识别 Completeness / Accuracy / Consistency / Freshness / Uniqueness / Validity，区分 Source Quality 与 Derived Data Quality，并理解 Validation Failure 时不能推进 Checkpoint。
 - 历史同步债务处理决定：用户已明确要求忽略 Module 8 第 4～6 课的既有 Notion / GitHub 同步债务与第 5 课 Canonical Drift；这些历史问题不再修复，也不再阻塞课程推进。
-- 下一步准确入口：开始 Module 12 第 1 课《数据质量到底是什么：为什么 Pipeline 成功不代表数据正确》。
+- 下一步准确入口：开始 Module 12 第 2 课《Completeness：Missing Block、Missing Log 与 Provider Gap》。
 
 ## 目录
 

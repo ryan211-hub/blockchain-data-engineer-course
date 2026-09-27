@@ -72,5 +72,9 @@
 - 当前 Module：Module 12 — 数据质量
 - 已完成 Lesson：无
 - 当前 Lesson：第 1 课｜数据质量到底是什么：为什么 Pipeline 成功不代表数据正确
-- 当前状态：第 1 课准备开始
+- 当前状态：第 1 课开始
 - 下一步准确入口：开始 Module 12 第 1 课｜数据质量到底是什么：为什么 Pipeline 成功不代表数据正确。
+
+## 课程路径
+
+- [第 1 课｜数据质量到底是什么：为什么 Pipeline 成功不代表数据正确](lesson-01-data-quality-foundation.md)

@@ -1373,3 +1373,40 @@ Raw Logs 完整，但 Swap Decoder 把 token0 / token1 的 amount 方向解析�
 ```
 
 分别说明理由。
+
+## 用户回答
+
+问题一：
+
+这不属于 Pipeline failure，主要属于 Decoder 阶段的问题。
+
+这个情况单看系统健康监控是发现不了的，因为系统健康监控的是 Job 的执行情况。只要 Job 执行没有报错，系统就会被认为是健康的。
+
+但这个问题其实属于数据问题，只有在数据校验的时候才会发现。
+问题 2：这种情况下不应该推进 checkpoint，因为 aggregate reconciliation 失败，说明数据质量有问题。
+问题 3：
+
+A 情况更接近 source quality，B 情况更接近 derived data quality。
+
+原因如下：
+
+1. A 情况是 provider 遗漏了 block 的部分 logs 数据。provider 提供的是 raw data（原始数据），所以这属于源头数据质量问题。
+2. B 情况是 swap decoder 的逻辑有问题。B 情况的 raw logs 是完整的，说明不是 source quality 有问题，而是 decoder 有 bug，它导致了衍生数据质量问题。
+
+## 老师判断与校准
+
+三题全部通过。
+
+- 问题一：判断正确。这不是 Pipeline Failure，因为 RPC、Indexer、Kafka、Consumer、ClickHouse INSERT 都可以正常完成；问题发生在数据语义层。这里需要再补一个更精确的 Data Quality Dimension：**Accuracy**。Decoder 使用错误的 decimals，导致 amount 值错误，因此属于 Accuracy / Decoder Quality 问题。你关于“系统健康监控无法发现，因为它主要观察执行状态”的解释正确。
+- 问题二：判断正确。Aggregate Reconciliation 失败意味着这一处理区间尚未满足完成条件，所以不能推进 Checkpoint。Checkpoint 应代表 **validated completion**，而不是仅仅表示“程序已经跑过这里”。
+- 问题三：判断正确。A 属于 Source Quality：Provider 在输入阶段漏掉部分 Logs，意味着进入 Pipeline 的原始输入已经不完整。B 属于 Derived Data Quality：Raw Logs 完整，但 Decoder 逻辑错误，导致由 Raw Data 派生出的 Swap Fact 语义错误。
+
+需要特别保留的一点是：
+
+> Decoder Bug 本身发生在 Processing / Transformation 层，但它最终表现为 Derived Data Quality Failure；在本题 decimals 场景中，主要质量维度是 Accuracy。
+
+## 结课判定
+
+Module 12 第 1 课理解检查全部通过，正式完成。
+
+已经能够区分 Pipeline Health 与 Data Correctness，识别主要 Data Quality Dimensions，区分 Source Quality 与 Derived Data Quality，并理解 Validation Failure 时 Checkpoint 不能推进，因为 Checkpoint 表示经过正确性规则确认后的完成位置。

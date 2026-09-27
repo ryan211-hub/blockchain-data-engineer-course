@@ -26,7 +26,7 @@
 - Module 8 完成结论：第 1～8 课与结束标准综合检查均已完成，已达到 Module Contract 结束标准。已能从 Query Semantics 推导 Business Object、Grain、Source Identity、Unique Key、Fact / Dimension、Relation 与 Layer，并区分 Source Identity 与 Business Identity。
 - Module 9 完成结论：第 1～7 课与结束标准综合检查均已完成，达到 Module Contract 结束标准。已能独立设计基础 Blockchain Batch ETL Pipeline，并解释 Source / Target、Processing Range、Grain、Unique Key、Watermark / Cursor / Checkpoint、Idempotency、Validation、Late-arriving / Reorg、Lookback / Backfill / Historical Repair、DAG Dependency 与 Scheduler / Orchestrator。
 - 当前 Lesson：Module 11 结束标准综合检查｜设计 Blockchain Analytics Storage Architecture
-- 当前状态：Module 11 第 7 课已完成并通过理解检查；准备进入结束标准综合检查
+- 当前状态：Module 11 结束标准综合检查开始
 - 最近完成：Module 11 第 7 课《Serving DB + Analytics DB：混合存储架构》理解检查通过；Canonical Lesson Content 已同步到 Notion 和 GitHub。
 - 最近掌握重点：已能设计 Serving DB + Analytics DB 的混合存储架构，并解释 Workload Isolation、独立 Checkpoint、Eventual Consistency、Parquet Recovery Asset 与多 Sink Role Separation。
 - 历史同步债务处理决定：用户已明确要求忽略 Module 8 第 4～6 课的既有 Notion / GitHub 同步债务与第 5 课 Canonical Drift；这些历史问题不再修复，也不再阻塞课程推进。

@@ -67,9 +67,9 @@
 - 当前阶段：第三阶段 Data Engineering
 - 当前 Module：Module 11 — 分析数据库
 - 已完成 Lesson：第 1 课｜为什么需要分析数据库：OLTP、OLAP 与不同 Workload；第 2 课｜Row Store vs Column Store：为什么列式数据库适合分析；第 3 课｜Postgres 的位置：什么时候够用，什么时候开始吃力；第 4 课｜ClickHouse：为什么适合 Blockchain Analytics；第 5 课｜Partition、Order Key、Data Skipping 与大表查询；第 6 课｜DuckDB + Parquet：本地分析与低成本历史查询；第 7 课｜Serving DB + Analytics DB：混合存储架构
-- 当前 Lesson：结束标准综合检查｜设计 Blockchain Analytics Storage Architecture
-- 当前状态：结束标准综合检查开始
-- 下一步准确入口：进入 Module 11 结束标准综合检查｜设计 Blockchain Analytics Storage Architecture。
+- 当前 Lesson：无；Module 11 已结束
+- 当前状态：第 1～7 课完成；结束标准综合检查由用户主动跳过；Module 11 正式结束
+- 下一步准确入口：进入 Module 12 — 数据质量。
 
 ## 课程路径
 

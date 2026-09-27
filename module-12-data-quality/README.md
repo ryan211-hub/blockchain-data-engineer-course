@@ -70,10 +70,10 @@
 
 - 当前阶段：第三阶段 Data Engineering
 - 当前 Module：Module 12 — 数据质量
-- 已完成 Lesson：无
-- 当前 Lesson：第 1 课｜数据质量到底是什么：为什么 Pipeline 成功不代表数据正确
-- 当前状态：第 1 课开始
-- 下一步准确入口：开始 Module 12 第 1 课｜数据质量到底是什么：为什么 Pipeline 成功不代表数据正确。
+- 已完成 Lesson：第 1 课｜数据质量到底是什么：为什么 Pipeline 成功不代表数据正确
+- 当前 Lesson：第 2 课｜Completeness：Missing Block、Missing Log 与 Provider Gap
+- 当前状态：第 1 课已完成；下一步进入第 2 课
+- 下一步准确入口：开始 Module 12 第 2 课｜Completeness：Missing Block、Missing Log 与 Provider Gap。
 
 ## 课程路径
 

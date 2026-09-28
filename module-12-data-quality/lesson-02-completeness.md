@@ -1332,3 +1332,25 @@ A.
 ```
 
 请选择并说明原因。
+
+## 用户回答（问题一）
+
+问题 1：
+1.Block completeness 是否通过？
+通过。
+2：Transaction completeness 是否通过？
+不通过。
+3：为什么不能只检查 Blocks 表？
+因为不同的层级需要分别检查。Block 作为最高层级的 grain，它检查通过了，不能保证更细粒度的 grain 检查也能通过，所以不能只检查 Block 表。
+
+## 老师判断 / 校准（问题一）
+
+通过。
+
+- Block Completeness 判断正确：blocks 表中存在 Block 18,000,000，因此在 block grain 上这一项通过。
+- Transaction Completeness 判断正确：RPC 显示该 Block 有 125 个 transactions，而数据库只有 124 条，因此 transaction grain 上存在缺失。
+- 第三点解释正确，而且抓到了本课最关键原则：**Completeness is grain-dependent.** 更高层级的数据完整，只能证明该层级本身通过，不能推出更细粒度的 Transaction / Receipt / Log / Decoded Event 也完整。
+
+这一题可以概括为：
+
+> High-level completeness does not imply lower-level completeness.

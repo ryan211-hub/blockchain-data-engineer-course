@@ -72,10 +72,11 @@
 - 当前 Module：Module 12 — 数据质量
 - 已完成 Lesson：第 1 课｜数据质量到底是什么：为什么 Pipeline 成功不代表数据正确；第 2 课｜Completeness：Missing Block、Missing Log 与 Provider Gap
 - 当前 Lesson：第 3 课｜Uniqueness & Idempotency：Duplicate Delivery 与重复事实
-- 当前状态：第 2 课已完成；下一步进入第 3 课
-- 下一步准确入口：开始 Module 12 第 3 课｜Uniqueness & Idempotency：Duplicate Delivery 与重复事实。
+- 当前状态：第 3 课进行中；等待理解检查回答
+- 下一步准确入口：继续 Module 12 第 3 课理解检查。
 
 ## 课程路径
 
 - [第 1 课｜数据质量到底是什么：为什么 Pipeline 成功不代表数据正确](lesson-01-data-quality-foundation.md)
 - [第 2 课｜Completeness：Missing Block、Missing Log 与 Provider Gap](lesson-02-completeness.md)
+- [第 3 课｜Uniqueness & Idempotency：Duplicate Delivery 与重复事实](lesson-03-uniqueness-idempotency.md)

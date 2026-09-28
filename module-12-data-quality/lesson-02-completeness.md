@@ -1378,3 +1378,59 @@ A.
 本题最重要的校准是：
 
 > Consistency discrepancy is evidence; after aligning comparison conditions, it can help identify a Completeness failure.
+
+## 用户回答（问题三）
+
+问题三，我会选择方案 B。
+
+因为在这个情况下，有问题批次的数据已经处理完成，Checkpoint 已经推进到更新的高度，所以现在发现历史 Block 有缺失，选用方案 B 更好。方案 B 是保留 real-time checkpoint，建立独立的 backfill range
+
+## 老师判断 / 校准（问题三）
+
+通过。
+
+选择方案 B 正确。
+
+这里的关键判断是：这个 Missing Block 不是“当前批次在推进 Checkpoint 前刚刚发现”的 Validation Failure，而是 **Checkpoint 已经推进以后才发现的 Historical Data Quality Incident**。
+
+因此不应该为了修复一个历史缺口，把 Realtime Checkpoint 从 21,000,000 回退到 20,500,122。否则会让实时 Pipeline 重新处理一个很大的已完成区间，带来不必要的 Replay、重复写风险、资源压力，以及对实时数据链路的干扰。
+
+更合理的修复方式是：
+
+```text
+Keep realtime checkpoint
+↓
+Create isolated backfill range
+20,500,123 → 20,500,123
+↓
+Reuse process_block(...)
+↓
+Repair downstream data
+↓
+Re-run completeness validation
+↓
+Mark issue VERIFIED
+```
+
+这和前面 Module 7 / Module 9 的原则一致：
+
+> Realtime progress and historical repair should use independent processing state.
+
+同时要保留最后一步：
+
+> Repair execution succeeded ≠ Repair correctness verified.
+
+Backfill 跑完以后仍然必须重新执行 Completeness Validation，确认这个历史缺口已经真正修复。
+
+## 结课判定
+
+Module 12 第 2 课理解检查全部通过，正式完成。
+
+已经能够：
+- 理解 Completeness 是 grain-dependent 的，高层粒度完整不代表更细粒度完整。
+- 区分 Block / Transaction / Receipt / Log 等不同层级的 Completeness。
+- 理解 RPC success 只证明请求成功，不证明返回数据完整。
+- 使用 Cross-provider Comparison 发现 Consistency discrepancy，并将其作为进一步定位 Completeness Gap 的证据。
+- 区分 Pre-checkpoint Validation Failure 与 Post-checkpoint Historical Data Quality Incident。
+- 对历史缺口使用独立 Backfill / Replay，而不是直接回退 Realtime Checkpoint。
+- 理解历史修复完成后必须重新 Validation，才能把问题状态推进到 VERIFIED。

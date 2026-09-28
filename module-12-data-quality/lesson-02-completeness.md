@@ -1354,3 +1354,27 @@ A.
 这一题可以概括为：
 
 > High-level completeness does not imply lower-level completeness.
+
+## 用户回答（问题二）
+
+问题二：
+1，这是不是 provide ingestion 层的 completeness 问题？是的，因为通过对比两个不同 provider 提供的数据，它们并不一致，说明其中一个 provider 的 completeness 有问题。
+2，为什么 RPC success 不能证明 completeness？
+
+因为 RPC success 只能保证这个请求访问的过程是成功的，但所请求的数据是否完整，这个不能保证。
+3. 第二个 provider 在这里起对比、验证、校验的作用
+
+## 老师判断 / 校准（问题二）
+
+通过。
+
+- 第一问方向正确：这是 Provider / ingestion 层需要关注的 Completeness 问题。但要更精确地区分“发现”与“归因”：两个 Provider 结果不一致时，首先能直接证明的是 **Consistency discrepancy**。只有进一步确认双方使用的是同一 block hash、同一 canonical chain、同一 filter、同一 query range、同一 finality point 等条件后，才能更有把握地判断某一侧存在 Completeness Gap。
+- 第二问正确：`RPC success` 只能说明请求/响应流程在协议和执行层成功完成，并不能证明返回结果在数据语义上是完整的。也就是：
+
+> Request success ≠ Result completeness.
+
+- 第三问正确：第二个 Provider 主要作为独立参考源，用于 cross-provider comparison、validation / verification，帮助发现单一 Provider 可能存在的 silent gap。
+
+本题最重要的校准是：
+
+> Consistency discrepancy is evidence; after aligning comparison conditions, it can help identify a Completeness failure.

@@ -25,12 +25,12 @@
 - Module 7 完成结论：第 1～10 课与结课综合实践均已完成；Mini Indexer 五项验收 Normal Sync / Idempotent Replay / Crash Recovery / Backfill / Reorg Recovery 全部通过，已达到 Module Contract 结束标准。五项实践由用户在 Codex 中实际完成并明确确认通过。
 - Module 8 完成结论：第 1～8 课与结束标准综合检查均已完成，已达到 Module Contract 结束标准。已能从 Query Semantics 推导 Business Object、Grain、Source Identity、Unique Key、Fact / Dimension、Relation 与 Layer，并区分 Source Identity 与 Business Identity。
 - Module 9 完成结论：第 1～7 课与结束标准综合检查均已完成，达到 Module Contract 结束标准。已能独立设计基础 Blockchain Batch ETL Pipeline，并解释 Source / Target、Processing Range、Grain、Unique Key、Watermark / Cursor / Checkpoint、Idempotency、Validation、Late-arriving / Reorg、Lookback / Backfill / Historical Repair、DAG Dependency 与 Scheduler / Orchestrator。
-- 当前 Lesson：Module 12 第 3 课｜Uniqueness & Idempotency：Duplicate Delivery 与重复事实
-- 当前状态：Module 12 第 3 课进行中；等待理解检查回答
-- 最近完成：Module 12 第 2 课《Completeness：Missing Block、Missing Log 与 Provider Gap》理解检查通过，正式完成。
-- 最近掌握重点：已理解 Completeness 是 grain-dependent 的；能够区分 Block / Transaction / Receipt / Log 层级完整性，理解 RPC success ≠ result completeness，使用跨 Provider 对比发现异常，并区分当前批次 Validation Failure 与历史 Completeness Incident 的修复方式。
+- 当前 Lesson：Module 12 第 4 课｜Accuracy & Decoder Quality：解析正确不等于业务语义正确
+- 当前状态：Module 12 第 3 课已完成；下一步进入第 4 课
+- 最近完成：Module 12 第 3 课《Uniqueness & Idempotency：Duplicate Delivery 与重复事实》理解检查通过，正式完成。
+- 最近掌握重点：已区分 Duplicate Delivery 与 Duplicate Fact，理解 At-least-once delivery 需要 Idempotent Sink；能够从 Grain 推导 Stable Unique Key，并区分 DO NOTHING 的防重复语义与 DO UPDATE / Replace 的修复语义。
 - 历史同步债务处理决定：用户已明确要求忽略 Module 8 第 4～6 课的既有 Notion / GitHub 同步债务与第 5 课 Canonical Drift；这些历史问题不再修复，也不再阻塞课程推进。
-- 下一步准确入口：继续 Module 12 第 3 课理解检查。
+- 下一步准确入口：开始 Module 12 第 4 课《Accuracy & Decoder Quality：解析正确不等于业务语义正确》。
 
 ## 目录
 

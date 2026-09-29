@@ -1835,3 +1835,84 @@ block 10,000,000 → 10,500,000
 以及：
 
 > At-least-once delivery requires an idempotent sink.
+
+## 用户回答（问题二）
+
+问题二，更适合的唯一键是 chain ID、tx hash、log index
+
+## 老师判断 / 校准（问题二）
+
+通过。
+
+对于 `fact_token_transfer`，如果 Grain 是 one decoded Transfer event，并且每条 Transfer 一对一来源于一个 Ethereum Log，那么：
+
+```text
+chain_id
++
+tx_hash
++
+log_index
+```
+
+可以稳定标识这一条链上事实。
+
+这里的关键原因是：
+
+- `chain_id + tx_hash` 只能定位到 Transaction；
+- 一笔 Transaction 可以产生多个 Logs；
+- `log_index` 用来区分同一 Transaction 内的不同 Log；
+- 因此这个组合和该 Fact 的 Grain 对齐。
+
+核心原则仍然是：
+
+> Unique Key must be derived from Grain.
+
+## 用户回答（问题三）
+
+问题三：
+1.如果表没有任何的 unique constraint，那么所有 replay 的数据都会进入到这张表里，而先前已经进入了这张表里的数据也都存在在那里，那么这个表里会有 uniqueness 的数据问题
+2.On conflict do nothing 可能还不够，是因为如果 replay 修正了旧的错误字段，那么修正后的数据，因为表的 unique constraint，会导致无法修正表里的错误数据。
+3.这个场景需要的是 do update replay。因为这样的话，会根据 unique key 将表里的数据 update，既保证了表的 uniqueness，又修复了数据
+
+## 老师判断 / 校准（问题三）
+
+通过。
+
+- 第一问正确：如果没有 Unique Constraint 或其他 Idempotent Sink 机制，Replay 会把已经存在的历史事实再次写入，从而形成 Duplicate Fact，导致 Uniqueness Failure。
+- 第二问正确：`ON CONFLICT DO NOTHING` 只能做到“遇到同一个 Unique Key 时不再插入”，但不能修正该 Key 对应的旧错误属性。如果 Replay 的目标包含 Decoder Bug Correction，那么仅防重复是不够的。
+- 第三问正确：这里更合适的是 `DO UPDATE / Replace` 一类语义。这样可以基于稳定 Unique Key 收敛到正确最终状态，同时避免重复事实。
+
+这个场景可以概括为：
+
+```text
+Stable Unique Key
++
+Replay
++
+UPSERT / Replace
+=
+Duplicate-safe correction
+```
+
+最重要的区分是：
+
+> Duplicate Protection and Data Correction are related, but they are not the same operation.
+
+以及：
+
+> Idempotency means repeated processing converges to the correct final state, not merely that duplicate INSERTs are rejected.
+
+## 结课判定
+
+Module 12 第 3 课理解检查全部通过，正式完成。
+
+已经能够：
+- 区分 Duplicate Delivery 与 Duplicate Fact。
+- 理解 At-least-once delivery 为什么天然要求 Idempotent Sink。
+- 区分 Kafka Message Identity 与 Blockchain Business / Source Identity。
+- 从 Grain 推导 Stable Unique Key。
+- 为 Ethereum Log-derived Fact 使用 `chain_id + tx_hash + log_index` 作为典型 Source Identity。
+- 理解 Unique Constraint、Idempotent Write、UPSERT 的不同作用。
+- 区分 `DO NOTHING` 的防重复语义与 `DO UPDATE / Replace` 的修复语义。
+- 理解 Replay / Backfill 安全执行依赖 Stable Identity + Idempotent Processing。
+- 理解修复 Duplicate Fact 时不仅要修 Fact，还要考虑下游 DWS / ADS 的 Blast Radius。

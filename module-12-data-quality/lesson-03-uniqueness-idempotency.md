@@ -1812,3 +1812,26 @@ block 10,000,000 → 10,500,000
 1. 为什么这张表比“没有任何 Unique Constraint 的表”更适合 Replay？
 2. 如果 Replay 的目的不仅是防止重复，而是修正旧的错误字段，为什么 `ON CONFLICT DO NOTHING` 可能还不够？
 3. 这个场景最终更可能需要 `DO NOTHING` 还是 `DO UPDATE / Replace`？为什么？
+
+## 用户回答（问题一）
+
+问题一：
+1.Kafka 再次发送这条消息，不一定意味着 Kafka 出错，对 Kafka 来说，offset 保存 consumer 的进度信息。Consumer 按照正常的 offset 进度来消费 message，是否重复消费并不是他需要关注的。
+2.如果数据库最终出现了两条完全相同的 transfer fact，这应该属于 uniqueness data quality 问题。
+3.应该在 fact 层解决这个问题。出现这个问题，说明在 fact 层 preventive 的功能没有做好
+
+## 老师判断 / 校准（问题一）
+
+通过。
+
+- 第一问判断正确：Kafka 再次投递这条消息并不意味着 Kafka 出错。在 At-least-once 语义下，如果 Consumer 在数据库写入成功后、提交 offset 前崩溃，那么重启后再次消费同一 offset 是正常行为。这里 Kafka 维护的是消费位置（topic / partition / offset），而不是业务事实是否已经成功落库。
+- 第二问正确：如果同一个 Transfer Fact 最终在数据库中实际存储了两次，直接的数据质量维度就是 **Uniqueness Failure**。
+- 第三问方向正确。更精确地说，应主要在 **Sink / Fact storage layer** 做 Preventive Control，例如稳定的 Business / Source Identity、Unique Constraint、Idempotent Write、UPSERT 等。你说“Fact 层 preventive 没做好”抓到了核心。
+
+这一题最重要的结论是：
+
+> Duplicate Delivery is acceptable; Duplicate Fact is not.
+
+以及：
+
+> At-least-once delivery requires an idempotent sink.

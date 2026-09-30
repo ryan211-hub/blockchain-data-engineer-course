@@ -72,8 +72,8 @@
 - 当前 Module：Module 12 — 数据质量
 - 已完成 Lesson：第 1 课｜数据质量到底是什么：为什么 Pipeline 成功不代表数据正确；第 2 课｜Completeness：Missing Block、Missing Log 与 Provider Gap；第 3 课｜Uniqueness & Idempotency：Duplicate Delivery 与重复事实；第 4 课｜Accuracy & Decoder Quality：解析正确不等于业务语义正确
 - 当前 Lesson：第 5 课｜Reconciliation：Row Count、Aggregate Check 与 Invariant
-- 当前状态：第 4 课已完成；下一步进入第 5 课
-- 下一步准确入口：开始 Module 12 第 5 课｜Reconciliation：Row Count、Aggregate Check 与 Invariant。
+- 当前状态：第 5 课进行中；等待理解检查回答
+- 下一步准确入口：继续 Module 12 第 5 课理解检查。
 
 ## 课程路径
 
@@ -81,3 +81,4 @@
 - [第 2 课｜Completeness：Missing Block、Missing Log 与 Provider Gap](lesson-02-completeness.md)
 - [第 3 课｜Uniqueness & Idempotency：Duplicate Delivery 与重复事实](lesson-03-uniqueness-idempotency.md)
 - [第 4 课｜Accuracy & Decoder Quality：解析正确不等于业务语义正确](lesson-04-accuracy-decoder-quality.md)
+- [第 5 课｜Reconciliation：Row Count、Aggregate Check 与 Invariant](lesson-05-reconciliation.md)

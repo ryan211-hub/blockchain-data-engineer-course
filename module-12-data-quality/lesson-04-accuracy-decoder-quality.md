@@ -1700,3 +1700,51 @@ chain_id + tx_hash + log_index
 > Syntactically valid output can still be semantically wrong.
 
 因此，本题结论为：**通过，但需记住“执行成功”和“结果正确”是两个不同判断维度。**
+
+## 用户回答（问题二）
+
+问题2：
+1.amount_raw 准确
+2.amount 不准确
+3.这个问题属于 Metadata / Enrichment Accuracy Error  
+4.因为不同字段，decode过程中，处理的方式是不一样的，像amount_raw 需要和decimals 结合得到amount ，而topic[0] 则是映射到from_address，没有计算的过程。所有有些字段可以 Accuracy PASS，而另一些字段 Accuracy FAIL
+
+## 老师判断 / 校准（问题二）
+
+通过，但第 4 小问中的一个具体字段例子需要修正。
+
+1. **amount_raw 准确**：正确。题目给定 Raw Data 正确，且 amount_raw 本身已经正确 decode。
+2. **amount 不准确**：正确。因为系统错误使用了 `decimals = 18`，导致派生出来的 amount 错误。
+3. **问题类型**：正确，更接近 **Metadata / Enrichment Accuracy Error**，不是 Raw Decoder Error。
+4. **为什么同一行中有的字段 PASS、有的字段 FAIL**：你的核心理解正确。不同字段位于不同的数据处理层级，有的直接来自 Raw Log，有的依赖 Metadata 或后续计算，因此 Accuracy 可以分层判断。
+
+这里需要修正一个具体例子：
+
+在 ERC-20 Transfer 中：
+
+```text
+topics[0] = Event Signature
+topics[1] = from_address
+topics[2] = to_address
+data      = amount_raw
+```
+
+所以不是 `topics[0] → from_address`。
+
+更准确的理解是：
+
+```text
+amount_raw
+→ 直接来自 Raw Log 的 data
+→ Decode Accuracy 可以 PASS
+
+amount
+→ amount_raw + decimals
+→ Metadata / Enrichment 出错时 Accuracy 可以 FAIL
+```
+
+这说明：
+
+> Accuracy is field-level and layer-dependent.
+
+也就是说，同一行数据里，不同字段可以处在不同的 Accuracy 状态。

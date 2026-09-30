@@ -1673,3 +1673,30 @@ chain_id + tx_hash + log_index
 2. 你会如何修复历史数据？
 3. 为什么这次 Replay 更可能使用 `DO UPDATE / Replace` 而不是 `DO NOTHING`？
 4. 修复 Fact 后，为什么还要检查 DWS / ADS？
+
+## 用户回答（问题一）
+
+问题一：
+1.Source Quality 没有问题  
+2.Decoder   失败了
+3.属于accuracy  Data Quality Dimension  
+4.没有异常，只是证明 Decode 的程序执行是成功的，但不能代表 Decode 的结果数据是正确的
+
+## 老师判断 / 校准（问题一）
+
+基本通过，但第 2 小问需要校准。
+
+1. **Source Quality 没有问题**：正确。题目明确说明 Raw Data 完全正确，因此 Source Accuracy / Source Quality 可以判定为 PASS。
+2. **Decoder 是否“成功”**：这里应回答“执行成功”。因为 Decoder 没有报错，并且正常产出了字段结果，所以从 Processing / Execution 视角看，Decoder 是成功的。真正失败的是 **Decode Accuracy / Semantic Correctness**。
+3. **Data Quality Dimension**：正确，主要属于 **Accuracy Failure**。
+4. **为什么没有异常不能证明正确**：回答正确。没有异常只说明程序流程执行成功，不代表输出数据忠实表达了真实链上事实。
+
+这道题最重要的区分是：
+
+> Decoder Execution Success ≠ Decoder Accuracy.
+
+以及：
+
+> Syntactically valid output can still be semantically wrong.
+
+因此，本题结论为：**通过，但需记住“执行成功”和“结果正确”是两个不同判断维度。**

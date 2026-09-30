@@ -1748,3 +1748,58 @@ amount
 > Accuracy is field-level and layer-dependent.
 
 也就是说，同一行数据里，不同字段可以处在不同的 Accuracy 状态。
+
+## 用户回答（问题三）
+
+问题3：
+1.‘修代码’可以保证在此之后的数据没有问题，但是历史数据并没有被修复，所有不算完成  Data Repair 
+2.历史数据需要先确认好bug radius，再通过backfill来修复。
+3.DO UPDATE / Replace  是根据历史数据主键更新错误数据，而DO NOTHING  因为历史数据主键都已存在，而不对数据做任何操作。
+4.因为DWS/ADS是由fact Derived 而来的，upstream data 有问题，那downstream data 肯定也会受影响。
+
+## 老师判断 / 校准（问题三）
+
+通过。
+
+1. **修代码不等于 Data Repair 完成**：正确。代码修复只保证后续使用新逻辑处理的数据正确，历史两个月已经写入的错误 Fact 不会自动变化，因此历史数据仍需单独修复。
+2. **历史修复流程**：正确。应先确定 **Bug Blast Radius**，明确受影响的 block range、contract / event、decoder version 等范围，再对该范围执行 Backfill / Replay。
+3. **DO UPDATE / Replace vs DO NOTHING**：正确。由于历史错误记录的 Stable Unique Key 已经存在，`DO NOTHING` 会保留旧错误值；`DO UPDATE / Replace` 才能基于同一主键把错误属性更新为正确结果。
+4. **为什么还要检查 DWS / ADS**：正确。DWS / ADS 是从 Fact 派生的 Downstream Data Product；如果错误 Fact 已经参与聚合或业务计算，那么即使 Fact 被修复，下游历史结果也不会自动恢复正确，通常还需要 Rebuild / Recompute / Re-validate。
+
+完整修复链路可以概括为：
+
+```text
+Fix Decoder
+↓
+Identify Blast Radius
+↓
+Replay / Backfill
+↓
+Update / Replace Fact
+↓
+Rebuild DWS / ADS
+↓
+Re-validate
+```
+
+这里最重要的工程结论是：
+
+> Code Fix repairs future processing; Data Repair must also repair historical state and downstream derivations.
+
+## 结课判定
+
+Module 12 第 4 课理解检查全部通过，正式完成。
+
+已经能够：
+- 区分 Source Quality 与 Derived Accuracy。
+- 理解 Decoder Execution Success 与 Decoder Accuracy 是两个不同判断维度。
+- 区分 Parser Correctness、Decode Correctness、Metadata Accuracy、Business Semantic Accuracy 与 Enrichment Accuracy。
+- 理解 Accuracy 可以是 field-level and layer-dependent。
+- 识别 Token Decimals / Symbol / Price 等 Metadata / Enrichment 错误。
+- 理解 Schema Validity PASS 并不能证明 Accuracy PASS。
+- 理解 Golden Samples、Reference Dataset、Invariant Check 与 Cross-source Comparison 在 Decoder Quality Validation 中的作用。
+- 理解 Decoder Version 与 Bug Blast Radius 对历史修复的重要性。
+- 理解 Fix Decoder 只修复 future processing，历史错误需要 Replay / Backfill。
+- 理解 Accuracy Repair 通常需要 DO UPDATE / Replace，而不是仅 DO NOTHING。
+- 理解 Fact 修复后还需要沿 Blast Radius 重建并验证 DWS / ADS。
+- 理解 Raw / Bronze Layer 的 Re-decodability 价值。

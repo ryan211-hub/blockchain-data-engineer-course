@@ -25,12 +25,12 @@
 - Module 7 完成结论：第 1～10 课与结课综合实践均已完成；Mini Indexer 五项验收 Normal Sync / Idempotent Replay / Crash Recovery / Backfill / Reorg Recovery 全部通过，已达到 Module Contract 结束标准。五项实践由用户在 Codex 中实际完成并明确确认通过。
 - Module 8 完成结论：第 1～8 课与结束标准综合检查均已完成，已达到 Module Contract 结束标准。已能从 Query Semantics 推导 Business Object、Grain、Source Identity、Unique Key、Fact / Dimension、Relation 与 Layer，并区分 Source Identity 与 Business Identity。
 - Module 9 完成结论：第 1～7 课与结束标准综合检查均已完成，达到 Module Contract 结束标准。已能独立设计基础 Blockchain Batch ETL Pipeline，并解释 Source / Target、Processing Range、Grain、Unique Key、Watermark / Cursor / Checkpoint、Idempotency、Validation、Late-arriving / Reorg、Lookback / Backfill / Historical Repair、DAG Dependency 与 Scheduler / Orchestrator。
-- 当前 Lesson：Module 12 第 5 课｜Reconciliation：Row Count、Aggregate Check 与 Invariant
-- 当前状态：Module 12 第 5 课进行中；等待理解检查回答
-- 最近完成：Module 12 第 4 课《Accuracy & Decoder Quality：解析正确不等于业务语义正确》理解检查通过，正式完成。
-- 最近掌握重点：已理解 Decode Success ≠ Decode Accuracy；能够区分 Source / Decoder / Metadata / Business Semantic / Enrichment Accuracy，并理解历史 Decoder Bug 需要界定 Blast Radius、Replay / Backfill、Update / Replace 以及下游 DWS / ADS 重建验证。
+- 当前 Lesson：Module 12 第 6 课｜Freshness & Lag：数据正确但太晚也可能不可用
+- 当前状态：Module 12 第 5 课已完成；下一步进入第 6 课
+- 最近完成：Module 12 第 5 课《Reconciliation：Row Count、Aggregate Check 与 Invariant》理解检查通过，正式完成。
+- 最近掌握重点：已区分 Validation 与 Reconciliation；理解 Reconciliation 必须尊重 Grain，并能使用 Key-level Reconciliation 识别 Missing / Unexpected Keys，使用 Aggregate Reconciliation 核对不同 Grain 的上下游，同时理解当前处理范围内 Reconciliation Failure 必须阻止 Checkpoint 推进。
 - 历史同步债务处理决定：用户已明确要求忽略 Module 8 第 4～6 课的既有 Notion / GitHub 同步债务与第 5 课 Canonical Drift；这些历史问题不再修复，也不再阻塞课程推进。
-- 下一步准确入口：继续 Module 12 第 5 课理解检查。
+- 下一步准确入口：开始 Module 12 第 6 课《Freshness & Lag：数据正确但太晚也可能不可用》。
 
 ## 目录
 

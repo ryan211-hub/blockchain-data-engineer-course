@@ -1703,3 +1703,47 @@ canonical rule
 以及：
 
 > Before comparing counts, first define what one row means on each side.
+
+## 用户回答（问题二）
+
+问题2：
+1.不能
+2.接下来可以对比 unique key 是否一致。
+3.说明Source Keys  和 Fact Keys   的数据不一致。需要进一步检查Source Keys 中的D 是从哪里来的，而Fact Keys中x怎么丢失了
+
+## 老师判断 / 校准（问题二）
+
+基本通过，但第 3 小问的方向需要修正。
+
+1. **Row Count 相等不能证明数据正确**：正确。相同数量只能说明两边行数一致，不能证明成员集合一致，也不能证明字段值一致。
+2. **下一步做更强的 Reconciliation**：正确。可以做 **Key-level Reconciliation**，比较双方的 Stable Unique Key / Source Identity。
+3. **Source Keys = A B C D，Fact Keys = A B C X**：你已经判断出双方数据不一致，这一点正确。但具体方向应是：
+
+```text
+D
+→ exists in Source
+→ missing in Fact
+→ Missing Key / Missing Fact
+
+X
+→ exists in Fact
+→ no matching Source
+→ Unexpected Key / Unexpected Fact
+```
+
+所以不是“检查 Source 中的 D 从哪里来”，而是应该检查：
+
+```text
+为什么 D 没有进入 Fact？
+为什么 Fact 中出现了没有 Source Evidence 的 X？
+```
+
+这正是 Key-level Reconciliation 比 Row Count 更有诊断价值的原因。
+
+核心结论是：
+
+> Equal Row Count does not imply equal membership.
+
+以及：
+
+> Key-level reconciliation should identify both Missing Keys and Unexpected Keys.

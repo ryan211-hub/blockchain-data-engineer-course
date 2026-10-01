@@ -1747,3 +1747,76 @@ X
 以及：
 
 > Key-level reconciliation should identify both Missing Keys and Unexpected Keys.
+
+## 用户回答（问题三）
+
+问题3：
+1.因为两个表的grain不同，直接比较没有意义。
+2.限定好数据范围，可以比较 sum(amount)
+3.Checkpoint  不应该推进。Reconciliation Failure in the current processing range should block checkpoint advancement
+
+## 老师判断 / 校准（问题三）
+
+通过。
+
+1. **不能直接比较 Row Count**：正确。两张表 Grain 不同：
+
+```text
+fact_token_transfer
+→ one Transfer
+
+dws_wallet_token_daily_flow
+→ one date + wallet + token
+```
+
+因此 Row Count 没有直接可比性。
+
+2. **更适合比较什么**：正确。应使用 **Aggregate Reconciliation**，例如比较：
+
+```text
+SUM(amount)
+SUM(inflow)
+SUM(outflow)
+net flow
+```
+
+但在比较前，必须确保双方口径一致，包括：
+
+```text
+scope
+filter
+time boundary
+token
+canonical rule
+decimals / normalization rule
+business definition
+```
+
+否则 Aggregate mismatch 可能只是口径不同，并不一定是数据错误。
+
+3. **Checkpoint 是否推进**：正确。当前处理范围内如果 Aggregate Reconciliation FAIL，则 Checkpoint 不应推进，因为该范围尚未完成 validated completion。
+
+核心结论：
+
+> Different Grain requires Aggregate Reconciliation rather than direct Row Count comparison.
+
+以及：
+
+> Reconciliation Failure in the current processing range should block checkpoint advancement.
+
+## 结课判定
+
+Module 12 第 5 课理解检查全部通过，正式完成。
+
+已经能够：
+- 区分 Validation 与 Reconciliation。
+- 理解 Reconciliation 前必须先确认 Grain / row meaning。
+- 理解 Row Count 只能作为 coarse-grained signal，不能证明内容正确。
+- 使用 Key-level Reconciliation 识别 Missing Keys 与 Unexpected Keys。
+- 理解 Equal Row Count does not imply equal membership。
+- 在 Grain 不同的上下游之间使用 Aggregate Reconciliation。
+- 理解 Aggregate Reconciliation 前必须对齐 scope / filter / time boundary / canonical rule / business definition。
+- 区分 Reconciliation 与 Invariant Check。
+- 理解 Multi-sink Reconciliation 必须先做 processing boundary alignment。
+- 理解 Reconciliation mismatch 是 symptom，而不是自动等于 root cause。
+- 理解当前处理范围 Reconciliation Failure 必须阻止 Checkpoint 推进。

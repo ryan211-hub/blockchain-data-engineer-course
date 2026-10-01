@@ -1663,3 +1663,43 @@ grain = one date + wallet + token
 1. 为什么不能直接比较两张表的 Row Count？
 2. 更适合比较什么？
 3. 如果当前 Batch 写完 Fact 后，Aggregate Reconciliation FAIL，Checkpoint 是否应该推进？为什么？
+
+## 用户回答（问题一）
+
+问题1 ：
+1.不能
+2.transactions 和 token_transfers  的grain不同，不能直接比较。
+3.先确认业务语义是否一致。
+
+## 老师判断 / 校准（问题一）
+
+基本通过。
+
+1. **不能因为 Row Count 不相等就判断数据质量失败**：正确。
+2. **原因是 Grain 不同**：正确。transactions 的 Grain 是 one transaction，而 token_transfers 的 Grain 是 one Transfer event。一笔 Transaction 可以产生 0、1 或多条 Transfer，因此两张表的 Row Count 天然没有一一对应关系。
+3. **第一步应该先确认什么**：你的“先确认业务语义是否一致”方向是对的，但还需要更精确。第一步应先确认：
+
+```text
+What does one row represent in Dataset A?
+What does one row represent in Dataset B?
+```
+
+也就是先确认两边的 **Grain / row meaning**。
+
+在 Grain 对齐或明确映射关系之后，再继续确认：
+
+```text
+business definition
+scope
+filter
+time boundary
+canonical rule
+```
+
+因此，这道题最重要的原则是：
+
+> Reconciliation must respect Grain.
+
+以及：
+
+> Before comparing counts, first define what one row means on each side.

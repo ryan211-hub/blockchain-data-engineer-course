@@ -72,8 +72,8 @@
 - 当前 Module：Module 12 — 数据质量
 - 已完成 Lesson：第 1 课｜数据质量到底是什么：为什么 Pipeline 成功不代表数据正确；第 2 课｜Completeness：Missing Block、Missing Log 与 Provider Gap；第 3 课｜Uniqueness & Idempotency：Duplicate Delivery 与重复事实；第 4 课｜Accuracy & Decoder Quality：解析正确不等于业务语义正确；第 5 课｜Reconciliation：Row Count、Aggregate Check 与 Invariant
 - 当前 Lesson：第 6 课｜Freshness & Lag：数据正确但太晚也可能不可用
-- 当前状态：第 5 课已完成；下一步进入第 6 课
-- 下一步准确入口：开始 Module 12 第 6 课｜Freshness & Lag：数据正确但太晚也可能不可用。
+- 当前状态：第 6 课进行中；等待理解检查回答
+- 下一步准确入口：继续 Module 12 第 6 课理解检查。
 
 ## 课程路径
 
@@ -82,3 +82,4 @@
 - [第 3 课｜Uniqueness & Idempotency：Duplicate Delivery 与重复事实](lesson-03-uniqueness-idempotency.md)
 - [第 4 课｜Accuracy & Decoder Quality：解析正确不等于业务语义正确](lesson-04-accuracy-decoder-quality.md)
 - [第 5 课｜Reconciliation：Row Count、Aggregate Check 与 Invariant](lesson-05-reconciliation.md)
+- [第 6 课｜Freshness & Lag：数据正确但太晚也可能不可用](lesson-06-freshness-lag.md)

@@ -1632,3 +1632,72 @@ ClickHouse up to 20,999,500
 > Multi-sink reconciliation must align the same processing boundary.
 
 > Different checkpoints can indicate different freshness without indicating incorrect data.
+
+## 用户补充回答（问题二第 3 小问）
+
+比较
+incoming_rate
+vs
+processing_rate
+
+## 老师判断 / 校准（问题二第 3 小问）
+
+正确，问题二正式通过。
+
+应该比较：
+
+```text
+incoming_rate
+vs
+processing_rate
+```
+
+三种典型状态：
+
+```text
+processing_rate < incoming_rate
+→ backlog grows
+→ lag increases
+→ freshness keeps degrading
+```
+
+```text
+processing_rate ≈ incoming_rate
+→ backlog roughly stable
+→ lag remains roughly stable
+```
+
+```text
+processing_rate > incoming_rate
+→ backlog shrinks
+→ catch-up possible
+→ freshness can recover
+```
+
+因此，判断一个 Lagging Pipeline 是否有能力恢复，不能只看当前 Lag 数值，还必须观察 Input / Processing Throughput。
+
+核心结论：
+
+> Lag level tells us how far behind the pipeline is.
+
+> Incoming rate vs processing rate tells us whether the situation is improving or worsening.
+
+## 结课判定
+
+Module 12 第 6 课理解检查全部通过，正式完成。
+
+已经能够：
+- 区分 Freshness、Accuracy 与 Completeness。
+- 理解 Correct Data 仍然可能是 Stale Data。
+- 区分 Event Time、Processing Time 与 Availability Time。
+- 理解 Freshness 是 End-to-End Quality，而不是只看 Kafka Consumer Lag。
+- 使用 Block Lag / Time Lag / Consumer Lag 描述实时数据链路状态。
+- 理解 Freshness SLA / SLO 必须根据具体 Product / Workload 定义。
+- 区分 Stable Lag、Increasing Lag 与 Stalled Pipeline。
+- 使用 incoming_rate vs processing_rate 判断 Backlog 趋势和 Catch-up 能力。
+- 理解 Back Pressure 会直接表现为 Lag Growth 和 Freshness Degradation。
+- 理解不同 Sink 可以拥有独立 Checkpoint 和不同 Freshness，而不代表 Accuracy Failure。
+- 理解 Multi-sink Reconciliation 必须先对齐共同 Processing Boundary。
+- 理解 Checkpoint Advancement 与 Freshness SLA 是两个不同状态。
+- 理解 Freshness Failure 本身不一定阻止 Checkpoint；只有当前处理范围无法完成正确写入 / Validation 时才应阻止推进。
+- 理解 Blockchain 中 Freshness 与 Canonical Stability / Finality 之间存在工程 Trade-off。

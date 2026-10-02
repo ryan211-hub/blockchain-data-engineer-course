@@ -1531,3 +1531,104 @@ Freshness SLA failing
 > Being behind the chain head does not automatically mean the processed data is inaccurate.
 
 > Freshness Failure alone does not necessarily block checkpoint advancement.
+
+## 用户回答（问题二）
+
+问题二：
+
+1. lag一直在增长，说明Pipeline 消费速度比生产速度慢，这个情况是有问题的，会导致数据延迟越来越高。
+2. 说明系统在 消费处理上有问题
+
+## 老师判断 / 校准（问题二）
+
+前两小问正确，第 3 小问尚未回答，因此本题暂不判定完成。
+
+1. **Increasing Lag 和稳定 Lag 的区别**：正确。Lag 持续增长说明 Pipeline 正在持续落后，Freshness 会不断恶化；而 Lag 稳定在 100 blocks，说明系统虽然存在固定延迟，但处理能力大体能跟上输入速度。
+2. **更可能说明什么系统问题**：正确。更可能说明 Processing Capacity 不足，常见表现是 Consumer / Processor 的处理速度低于上游产生速度，形成 Backlog。
+3. **下一步最应该比较哪两个 rate**：尚未回答。
+
+这里应比较：
+
+```text
+incoming_rate
+vs
+processing_rate
+```
+
+例如：
+
+```text
+incoming_rate = 1000 events/s
+processing_rate = 800 events/s
+```
+
+那么：
+
+```text
+backlog grows by 200 events/s
+```
+
+说明系统会越来越落后。
+
+核心结论：
+
+> Increasing Lag usually means processing capacity is below incoming rate.
+
+> To judge whether the pipeline can recover, compare incoming rate and processing rate.
+
+## 用户回答（问题三）
+
+问题三：
+
+1.不能
+
+2.Postgres和ClickHouse是不同的数据库，他们有各自的checkpoint 。
+
+3. 虽然Postgres和ClickHouse是不同的数据库， 但是它们都是对fact数据的不同处理，可以说它们的来源是相同的，所以在相同的processing boundary之内是可以做  Reconciliation&#x20;
+
+## 老师判断 / 校准（问题三）
+
+通过。
+
+1. **不能直接说 ClickHouse 数据错误**：正确。两边已经处理完成的数据都正确，因此 ClickHouse 只是处理进度更落后。
+2. **主要体现的差异**：你的“各自有独立 checkpoint”是正确基础。更准确地说，这里体现的是 **Freshness / Processing Progress Difference**，不是 Accuracy Failure。
+3. **为什么 Reconciliation 前要对齐共同 Processing Boundary**：正确。Postgres 和 ClickHouse 虽然是不同 Sink，但来源于同一套业务事实。只有在相同 processing boundary 下比较，才是在比较“同一范围的同一业务事实”。
+
+例如：
+
+```text
+Postgres checkpoint   = 21,000,000
+ClickHouse checkpoint = 20,999,500
+```
+
+如果直接比较各自最新全量结果：
+
+```text
+Postgres
+包含 20,999,501 → 21,000,000
+
+ClickHouse
+还没有这些数据
+```
+
+此时 mismatch 只是 Freshness Difference，不代表数据错误。
+
+所以更合理的是对齐：
+
+```text
+common boundary = 20,999,500
+```
+
+然后比较：
+
+```text
+Postgres up to 20,999,500
+vs
+ClickHouse up to 20,999,500
+```
+
+核心结论：
+
+> Multi-sink reconciliation must align the same processing boundary.
+
+> Different checkpoints can indicate different freshness without indicating incorrect data.

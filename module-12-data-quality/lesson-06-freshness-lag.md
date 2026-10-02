@@ -1481,3 +1481,53 @@ checkpoint = 20,999,500
 1. 能不能直接说 ClickHouse 数据错误？
 2. 这里主要体现的是哪一种差异？
 3. 做 Postgres vs ClickHouse Reconciliation 时，为什么还要先对齐共同 processing boundary？
+
+## 用户回答（问题一）
+
+问题一：
+
+1.freshness 可能由问题
+
+2. Accuracy 不一定有问题
+3. Checkpoint可以推进，因为当前并没有accuracy 等其他数据问题
+
+## 老师判断 / 校准（问题一）
+
+通过。
+
+1. **当前主要是哪一种 Data Quality 问题**：你的方向正确。更准确地说，当前主要是 **Freshness / Lag 问题**。Chain Head 已经到 21,000,000，而 Indexer Checkpoint 还在 20,999,800，说明 Pipeline 落后于当前链头。
+2. **Accuracy 是否一定有问题**：正确，不一定。题目已经明确说明 20,999,800 之前的数据都正确处理并通过 Validation，因此可以出现：
+
+```text
+Accuracy = PASS
+Freshness = FAIL
+```
+
+3. **Checkpoint 是否可以继续推进**：正确，可以。因为 Checkpoint 表示：
+
+> validated completion up to this processed boundary.
+
+只要后续 block 被正确处理并通过 Validation，Checkpoint 就应该继续前进。不能因为 Pipeline 还落后于 Chain Head，就阻止已经完成的数据推进 Checkpoint。
+
+这里最重要的区分是：
+
+```text
+Checkpoint
+→ processing / validated completion state
+
+Freshness
+→ distance from current source reality
+```
+
+因此可以同时出现：
+
+```text
+Checkpoint advancing
+Freshness SLA failing
+```
+
+核心结论：
+
+> Being behind the chain head does not automatically mean the processed data is inaccurate.
+
+> Freshness Failure alone does not necessarily block checkpoint advancement.

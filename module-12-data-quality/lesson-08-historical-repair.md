@@ -1603,3 +1603,124 @@ UPDATE / UPSERT / REPLACE
 > Realtime Checkpoint and Historical Repair State should be maintained independently.
 
 > Fact Unique Key and Repair Job Processing State solve different problems.
+
+## 用户回答（问题二）
+
+问题二：
+1.ON CONFLICT DO NOTHING 的处理逻辑是如果key已在表里面，那么就忽略这条insert，所以表里面的数据没有被更新。
+2.ON CONFLICT update 方式。
+3.Idempotent（幂等）并不是强制数据不能改变，而是在处理逻辑不变的情况下，多次重复处理所得到的结果与原来保持一致。它还是可以更新数据的。
+
+## 老师判断 / 校准（问题二）
+
+通过。
+
+1. **为什么 `ON CONFLICT DO NOTHING` 不能完成 Repair**：正确。因为旧记录已经存在，`DO NOTHING` 会直接忽略新的修复结果，错误值会继续保留。
+2. **更适合的写入语义**：正确。可以使用：
+
+```text
+ON CONFLICT DO UPDATE
+UPSERT
+REPLACE
+DELETE + INSERT
+partition overwrite
+```
+
+具体选择取决于 Sink 和数据模型。
+3. **为什么仍然可以做到 Idempotent**：正确。Idempotency 并不要求“数据永远不能变化”，而是要求：
+
+```text
+same input
++
+same logic
++
+same key
+↓
+repeated execution
+↓
+same final correct state
+```
+
+所以 Repair 完全可以通过 UPDATE / REPLACE 修改旧错误值，只要重复执行后最终状态稳定一致即可。
+
+核心结论：
+
+> Idempotency means convergence to the same final state, not immutability.
+
+> Historical Repair often requires overwrite semantics rather than DO NOTHING.
+
+## 用户回答（问题三）
+
+问题三：
+1.不能
+2.Repair job 它有一个修复范围。在这个范围里面，不仅涉及到 Postgres spec，还有其他的 ClickHouse fact、Parquet、History、DWS 和 ADS 等。
+
+那么，在只修复其中一项、其他并没有完成的时候，不能把这个job标记为 Completed
+3.需要在所有修复范围里面的数据都修复完成之后，才标记为 completed
+
+## 老师判断 / 校准（问题三）
+
+通过。
+
+1. **能不能标记 Completed**：不能，正确。
+2. **为什么**：正确。Repair Job 的 Scope 不只是 Postgres，还包括所有被 Bug 影响且被定义为本次 Repair Required Scope 的 Sink / Derived Layer，例如 ClickHouse、Parquet、DWS、ADS。
+3. **更完整的 Completion 条件**：正确，但需要再补一个关键条件：不仅要“修复完成”，还要“验证完成”。
+
+更完整的 Completion 条件应该是：
+
+```text
+All required upstream data repaired
++
+All required sinks repaired
++
+All downstream derived data rebuilt
++
+Validation passed
++
+Reconciliation passed
++
+Required sink states = VERIFIED
+```
+
+然后才能：
+
+```text
+Repair Job = COMPLETED / CLOSED
+```
+
+例如：
+
+```text
+Postgres  = VERIFIED
+ClickHouse = VERIFIED
+Parquet   = VERIFIED
+DWS       = VERIFIED
+ADS       = VERIFIED
+```
+
+此时 Repair 才算真正收敛。
+
+核心结论：
+
+> Repair Completion is a multi-sink, multi-layer convergence condition.
+
+> Processing finished is not enough; verification must also pass.
+
+## 结课判定
+
+Module 12 第 8 课理解检查全部通过，正式完成。
+
+已经能够：
+- 区分 Retry、Replay、Backfill 与 Recompute。
+- 理解 Historical Error 不等于 Realtime Failure。
+- 理解 Historical Repair 不应随意回退 Realtime Checkpoint。
+- 为 Historical Repair 设计独立的 Scope、Cursor、Status 与 Validation State。
+- 区分 Fact Stable Unique Key 与 Repair Job Processing State。
+- 理解 Raw / Bronze / Parquet / RPC / Archive Node 作为 Repair Source 的不同作用。
+- 理解 Historical Replay 应复用同一套 deterministic business logic，并记录 logic / decoder version。
+- 理解 Idempotency 不等于 DO NOTHING。
+- 理解错误历史数据需要 DO UPDATE / Replace / overwrite 等修复语义。
+- 理解 Fact 修复后还需要 Recompute DWS / ADS 与其他 Derived Data。
+- 理解 Multi-sink Repair 必须独立追踪各 Sink 的 Repair / Verification State。
+- 理解只有所有 Required Scope 修复并通过 Validation / Reconciliation 后，Repair Job 才能标记为 Completed。
+- 理解 Repairability 是生产级 Blockchain Data Platform 的架构能力，而不是临时运维操作。

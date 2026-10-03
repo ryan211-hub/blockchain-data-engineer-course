@@ -1502,3 +1502,139 @@ block_hash 不同
 1. 为什么 `block_number` 不能作为稳定区块身份？
 2. Serving Canonical View 中，同一个 `chain_id + block_number` 应该允许几个 `is_canonical = true`？
 3. 为什么 Fact Table 里保留 `block_hash` 对 Reorg Audit 很重要？
+
+## 用户回答（问题一）
+
+问题1：
+
+1.Common Ancestor 的block是100
+
+2.101A、102A block 属于 Old Branch，应该被 invalidated / rolled back
+
+3.101B 、 102B 、 103B  block 属于 New Canonical Branch，需要 replay
+
+## 老师判断 / 校准（问题一）
+
+通过。
+
+1. **Common Ancestor = 100**：正确。
+2. **Old Branch = 101A、102A**：正确，这些 block 在 Reorg 后不再属于 Canonical Chain，应被 invalidated / rolled back。
+3. **New Canonical Branch = 101B、102B、103B**：正确，需要从 Common Ancestor 之后重新 Replay。
+
+核心边界是：
+
+```text
+common ancestor = 100
+
+old branch:
+101A → 102A
+
+new canonical branch:
+101B → 102B → 103B
+```
+
+因此 Repair Boundary 从：
+
+```text
+common_ancestor + 1
+```
+
+也就是 block 101 开始。
+
+## 用户回答（问题二）
+
+问题2：
+
+1.只修改 Checkpoint 并不能修复全部的问题数据。像中表中已经存在的orphans数据，无法通过只修改 Checkpoint 来修复。
+
+2. fact 、dws、 ads等 Data State&#x20;
+3. 因为当前表中已经存在Old Branch，如果不处理，会影响downstream 的数据。
+
+## 老师判断 / 校准（问题二）
+
+通过。
+
+1. **只回退 Checkpoint 不够**：正确。Checkpoint 只代表 Processing State；数据库中已经写入的 Old Branch / Orphan Data 仍然存在，必须单独修复 Data State。
+2. **需要修复的 Data State**：正确。包括 Fact、DWS、ADS，以及其他受 Old Branch 影响的下游状态。
+3. **为什么要先处理 Old Branch**：正确。需要再明确一步：不仅是“Old Branch 还存在”，更关键的是它的业务影响已经传播到 Downstream。
+
+正确顺序应是：
+
+```text
+Invalidate / Rollback Old Branch
+↓
+Remove / Reverse Old Branch Effects
+↓
+Replay New Canonical Branch
+↓
+Rebuild / Reconcile Downstream
+```
+
+如果直接 Replay New Branch 而不撤销 Old Branch：
+
+```text
+old orphan effect
++
+new canonical effect
+```
+
+就会同时存在，造成错误聚合。
+
+核心结论：
+
+> Checkpoint Rollback ≠ Data Rollback.
+
+> Reorg correction must invalidate old-branch effects before applying the new canonical branch.
+
+## 用户回答（问题三）
+
+问题3：
+
+1.`block_number`   是block pos的identity，block_hash 才是block 的identity。
+
+2.is_canonical = true 只能有一个。
+
+3.block_hash 是block 的identity，在fact table中保留这个字段，便于定位transfer数据是属于哪个block
+
+## 老师判断 / 校准（问题三）
+
+通过，但第 1 小问术语需要精确一点。
+
+1. **为什么 block_number 不能作为稳定区块身份**：核心理解正确。更准确地说：
+
+```text
+block_number
+→ block height / position
+
+block_hash
+→ block identity
+```
+
+不应把 block_number 称为 position identity，因为同一个 block height 在 Reorg 前后可以对应不同 block。
+2. **Serving Canonical View 中 is_canonical = true 的数量**：正确。同一个 `chain_id + block_number` 当前只能有一个 canonical block。
+3. **Fact Table 为什么保留 block_hash**：正确。它可以明确指出该 Fact 来自哪一个具体 Block Branch，提高 Reorg Audit / Debug / Repair 的可追溯性。
+
+核心结论：
+
+> Block Number identifies position; Block Hash identifies block identity.
+
+> One block height should have only one current canonical block.
+
+## 结课判定
+
+Module 12 第 7 课理解检查全部通过，正式完成。
+
+已经能够：
+- 区分 Canonical Block 与 Orphan / Non-canonical Block。
+- 理解 Reorg 会让“曾经正确”的历史事实后来变为 non-canonical。
+- 理解 Block Number 表示 height / position，而 Block Hash 表示 block identity。
+- 使用 Parent Hash Mismatch 识别可能的 Reorg。
+- 使用 Common Ancestor 定义 Reorg Repair Boundary。
+- 区分 Checkpoint Rollback 与 Data Rollback。
+- 理解 Reorg Repair 必须先撤销 / 失效 Old Branch，再 Replay New Canonical Branch。
+- 理解 Raw Layer、Fact、DWS、ADS 在 Reorg 中承担不同修复职责。
+- 理解 Reorg Blast Radius 可以扩散到多个 Derived Layer 和多个 Sink。
+- 理解 Reorg Replay 应复用 deterministic `process_block`。
+- 理解 Reorg Correction 也必须满足 Idempotency / Replay-safe。
+- 理解 Fact 保留 `block_hash` 与 `canonical_status` 的 Reorg Audit 价值。
+- 理解修复后仍需执行 Reconciliation / Invariant Check，验证 Canonical Correctness。

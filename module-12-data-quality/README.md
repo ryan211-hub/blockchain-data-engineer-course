@@ -70,10 +70,10 @@
 
 - 当前阶段：第三阶段 Data Engineering
 - 当前 Module：Module 12 — 数据质量
-- 已完成 Lesson：第 1 课｜数据质量到底是什么：为什么 Pipeline 成功不代表数据正确；第 2 课｜Completeness：Missing Block、Missing Log 与 Provider Gap；第 3 课｜Uniqueness & Idempotency：Duplicate Delivery 与重复事实；第 4 课｜Accuracy & Decoder Quality：解析正确不等于业务语义正确；第 5 课｜Reconciliation：Row Count、Aggregate Check 与 Invariant；第 6 课｜Freshness & Lag：数据正确但太晚也可能不可用
-- 当前 Lesson：第 7 课｜Reorg Quality：Canonical / Orphan、Rollback 与 Replay
-- 当前状态：第 7 课进行中；等待理解检查回答
-- 下一步准确入口：继续 Module 12 第 7 课理解检查。
+- 已完成 Lesson：第 1 课｜数据质量到底是什么：为什么 Pipeline 成功不代表数据正确；第 2 课｜Completeness：Missing Block、Missing Log 与 Provider Gap；第 3 课｜Uniqueness & Idempotency：Duplicate Delivery 与重复事实；第 4 课｜Accuracy & Decoder Quality：解析正确不等于业务语义正确；第 5 课｜Reconciliation：Row Count、Aggregate Check 与 Invariant；第 6 课｜Freshness & Lag：数据正确但太晚也可能不可用；第 7 课｜Reorg Quality：Canonical / Orphan、Rollback 与 Replay
+- 当前 Lesson：第 8 课｜Historical Repair：Backfill、Replay 与多 Sink 修复
+- 当前状态：第 7 课已完成；下一步进入第 8 课
+- 下一步准确入口：开始 Module 12 第 8 课｜Historical Repair：Backfill、Replay 与多 Sink 修复。
 
 ## 课程路径
 

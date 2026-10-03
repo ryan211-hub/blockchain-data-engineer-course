@@ -1518,3 +1518,88 @@ ADS
 1. 能不能把 Repair Job 标记为 Completed？
 2. 为什么？
 3. 更完整的 Repair Completion 条件应该是什么？
+
+## 用户回答（问题一）
+
+问题一：
+1.直接修改Realtime Checkpoint 的话，会影响 realtime block的 process，另外 一个Checkpoint 同时用与realtime和repair的处理，导致语义模糊
+2.repair设计单独的一个job，但是 process logic 可以使用相同的。
+3.unique key（chain_id ， tx_hash ， log_index ） ，start_block , end_block ， cursor 等
+
+## 老师判断 / 校准（问题一）
+
+基本通过，第 3 小问需要校准。
+
+1. **为什么不应该直接修改 Realtime Checkpoint**：正确。直接回退 Realtime Checkpoint 会让 Realtime Pipeline 从历史位置重新开始，影响最新 Block 的处理；同时让同一个 Checkpoint 同时承担 Realtime Processing State 和 Historical Repair State，语义会混乱。
+
+2. **更合理的 Repair 设计**：正确。应创建独立的 Historical Repair Job / Backfill Job，维护自己的 Processing State；核心处理逻辑可以继续复用同一套 `process_block` / transform logic，从而避免 Realtime 与 Repair 产生业务逻辑漂移。
+
+3. **Historical Repair Job 的关键 Processing State 字段**：你提到的 `start_block`、`end_block`、`cursor` 是正确的；但：
+
+```text
+chain_id + tx_hash + log_index
+```
+
+属于 Fact Table 的 Stable Unique Key，不属于 Repair Job 自身的 Processing State。
+
+Repair Job 更典型的状态字段是：
+
+```text
+repair_job_id
+chain_id
+start_block
+end_block
+cursor
+status
+repair_type
+logic_version
+validation_status
+```
+
+必要时还可以包含：
+
+```text
+reason
+created_at
+started_at
+finished_at
+postgres_status
+clickhouse_status
+parquet_status
+```
+
+其中：
+
+```text
+start_block / end_block
+→ Repair Scope
+
+cursor
+→ 当前修复到哪里
+
+status
+→ Job 当前生命周期状态
+
+validation_status
+→ 修复结果是否已经通过验证
+```
+
+而：
+
+```text
+chain_id + tx_hash + log_index
+```
+
+更适合用于：
+
+```text
+Fact Identity
+Idempotent Write
+UPDATE / UPSERT / REPLACE
+```
+
+核心结论：
+
+> Realtime Checkpoint and Historical Repair State should be maintained independently.
+
+> Fact Unique Key and Repair Job Processing State solve different problems.

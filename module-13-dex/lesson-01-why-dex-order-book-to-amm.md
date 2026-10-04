@@ -1125,3 +1125,203 @@ Pool → Alice
 ### [Data Engineer 视角]
 
 你需要从链上数据中还原哪些核心 Business Semantics？
+
+## 用户回答（问题一）
+
+问题一： 1.传统的 order book exchange 需要有明确的交易对手。AMMDEX 的话则不需要，它可以用 pool，根据乘积公式，直接就可以作为交易对手&#x20;
+
+2.因为如果这样的话，手续费的消耗会非常大，导致成本很高
+
+3.AMM 解决了交易对手的问题，用户可以直接与流动性池（liquidity pool）直接进行交易
+
+## 老师判断 / 校准（问题一）
+
+通过。
+
+1. **Market Structure 差异**：理解正确。传统 Order Book Exchange 依赖买卖双方 / Market Maker 的订单，并由 Matching Engine 完成撮合；AMM（Automated Market Maker，自动做市商）让 Trader 直接与 Liquidity Pool 交互，由 Protocol Formula 决定 Execution。
+2. **为什么早期 Ethereum 上完整搬运高频 Order Book 成本高**：正确。Place / Cancel / Update Order 如果频繁变成 On-chain Transaction，会持续产生 Gas Cost，并受 Block Throughput / Confirmation Latency 限制。
+3. **AMM 解决的问题**：正确。它提供了一种不需要等待具体对手方订单即时匹配的 Liquidity Mechanism。
+
+一个更精确的表述是：
+
+```text
+Order Book
+→ match orders from market participants
+
+AMM
+→ trade against pooled liquidity according to protocol rules
+```
+
+另外，你提到“乘积公式”方向正确，但本课还没有正式进入 Constant Product Formula；第 2 课会专门讲 `x * y = k`。
+
+## 用户回答（问题二）
+
+问题二：
+
+1.2.不能，可能还有其他情况
+
+3.one row one swap
+
+## 老师判断 / 校准（问题二）
+
+通过，但需要把第 1、2 小问展开得更精确。
+
+1. **不能简单认为两个 Transfer = 一个 Swap**：正确。
+2. 原因是 Transfer 只表达 Token Movement，并不自动表达 Protocol-level Business Semantics。两个 Transfer 可能来自 Swap，也可能来自：
+
+```text
+liquidity add / remove
+fee payment
+router intermediate movement
+refund
+other contract logic
+```
+
+所以：
+
+> Transfer evidence alone is not sufficient to prove Swap semantics.
+
+通常还需要结合：
+
+```text
+Swap Event
+pool_address
+protocol contract
+transaction context
+log ordering
+token direction
+```
+
+进行判断。
+
+3. **dex_swaps Grain**：正确。
+
+> One row = one protocol-level swap event.
+
+后续到了 Multi-hop Swap 时，你会看到：
+
+```text
+one transaction
+→ multiple swap events
+→ multiple dex_swaps rows
+```
+
+这也是为什么：
+
+> Transaction Grain ≠ Swap Grain.
+
+## 用户回答（问题三）
+
+问题三：
+
+1. A state transition of a liquidity pool.
+2. 核心 Business Semantics：
+
+Pool \
+Swap \
+Liquidity \
+Token Pair \
+LP Position \
+Fee \
+Price \
+Volume
+
+## 老师判断 / 校准（问题三）
+
+通过，但 Data Engineer 视角需要再收窄到“单次 Swap 的还原目标”。
+
+### [Protocol 视角]
+
+你的回答：
+
+> A state transition of a liquidity pool.
+
+正确。
+
+一次 Swap 会改变 Pool State，例如：
+
+```text
+reserve / liquidity state before
+↓
+swap execution
+↓
+reserve / liquidity state after
+```
+
+### [Data Engineer 视角]
+
+你列出的：
+
+```text
+Pool
+Swap
+Liquidity
+Token Pair
+LP Position
+Fee
+Price
+Volume
+```
+
+更像整个 DEX Domain 的 Business Objects。
+
+如果问题限定为“还原一笔 Swap”，核心 Business Semantics 更应该是：
+
+```text
+protocol
+pool_address
+trader / sender
+recipient
+token_in
+token_out
+amount_in
+amount_out
+fee
+execution price
+tx_hash
+log_index
+block_time
+```
+
+必要时再补：
+
+```text
+router
+swap path
+pool state before / after
+```
+
+其中：
+
+```text
+Volume
+```
+
+通常是从多个 Swap Fact 聚合得到的 Derived Metric；
+
+```text
+LP Position
+```
+
+则是 Liquidity Provider 相关对象，不是每一笔 Swap 本身都必须包含的语义。
+
+核心区分：
+
+> DEX Domain Objects describe the whole protocol business model.
+
+> Swap Business Semantics describe what happened in one specific swap event.
+
+## 结课判定
+
+Module 13 第 1 课理解检查全部通过，正式完成。
+
+已经能够：
+- 区分 CEX（Centralized Exchange，中心化交易所）Order Book 与 AMM Market Structure。
+- 理解 On-chain 高频 Order Book 在早期 Ethereum 上的 Gas / Throughput 成本问题。
+- 理解 AMM 通过 Liquidity Pool 提供持续交易对手能力。
+- 理解 Trader 实际是在与 Pool State / Protocol Rules 交互，而不是等待具体对手订单。
+- 理解 Swap 是 Liquidity Pool 的一次 State Transition。
+- 区分 Transfer Grain、Swap Grain 与 Transaction Grain。
+- 理解两个 Token Transfer 不能单独证明存在一个 Swap。
+- 能将 DEX Domain Objects 与单笔 Swap Business Semantics 区分开。
+- 理解一个 `dex_swaps` Fact 的合理 Grain 是 one row per protocol-level swap event。

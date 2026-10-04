@@ -79,3 +79,7 @@ Module 13 聚焦 DEX（Decentralized Exchange，去中心化交易所），目�
 - 当前 Lesson：第 1 课｜为什么会有 DEX：从 Order Book 到 AMM
 - 当前状态：第 1 课进行中；等待理解检查回答
 - 下一步准确入口：继续 Module 13 第 1 课理解检查。
+
+## 课程路径
+
+- [第 1 课｜为什么会有 DEX：从 Order Book 到 AMM](lesson-01-why-dex-order-book-to-amm.md)

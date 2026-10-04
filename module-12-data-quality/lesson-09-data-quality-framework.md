@@ -1410,3 +1410,27 @@ alerted
 1. 为什么这还不能算完整的 Data Quality Framework？
 2. 接下来至少还需要哪些阶段？
 3. Repair Job 完成后，为什么还不能直接 Close Incident？
+
+## 理解检查处理决定
+
+用户明确要求：
+
+> 跳过这课的回答，开始下一课
+
+因此本课的理解检查不再继续作答。
+
+## 结课判定
+
+Module 12 第 9 课课程正文已完成；理解检查由用户主动跳过。
+
+本课核心内容已覆盖：
+- DQ（Data Quality，数据质量）Framework 的 Rule / Metric / Check / Decision / Incident / Repair / Verification / Audit 全链路。
+- Severity 与 Blocking Policy 的区别。
+- Blocking / Non-blocking DQ Failure 的判断逻辑。
+- Quarantine 与 DLQ（Dead Letter Queue，死信队列）的用途边界。
+- Alert 与 Incident 的区别及 Incident Lifecycle。
+- Containment、Repair、Verification、Audit Trail 的职责。
+- Blockchain-specific DQ：Reorg、Canonicality、Replayability 与 Multi-sink convergence。
+- 最小可用 Data Quality Framework 的组成。
+
+理解检查未执行，不等同于理解检查通过；但根据用户明确选择，本课结束并进入下一课。

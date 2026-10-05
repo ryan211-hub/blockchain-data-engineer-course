@@ -1584,3 +1584,83 @@ Liquidity Depth
 ```
 
 在相同 Token Pair、相同单位和相同比例的比较中，更大的 Reserve 往往同时产生更大的 `k`，所以两者会相关，但概念上不是同一个东西。
+
+
+## 用户回答（校准确认）
+
+1. 3000 usdc
+2. k 是 Constant Product Invariant（恒定乘积不变量）；`Liquidity Depth`  表示 Trade Size Relative to Liquidity
+
+## 老师判断 / 最终校准
+
+第 1 点正确：
+
+```text
+1 ETH ≈ 3,000 USDC
+```
+
+第 2 点核心方向已经修正，但还需要做一个术语层面的最终区分：
+
+`Liquidity Depth` 本身不是 “Trade Size Relative to Liquidity”。
+
+更准确地说：
+
+```text
+Liquidity Depth
+→ describes how much usable liquidity / reserve depth the pool has
+
+Trade Size Relative to Liquidity
+→ describes how large a particular trade is compared with that liquidity
+```
+
+在解释“为什么同一笔交易对深池子的价格影响更小”时，真正直接有用的是：
+
+```text
+Trade Size Relative to Liquidity
+```
+
+例如：
+
+```text
+Pool A:
+1 ETH / 100 ETH = 1%
+
+Pool B:
+1 ETH / 1,000 ETH = 0.1%
+```
+
+所以可以把最终关系记成：
+
+```text
+k
+= Constant Product Invariant
+
+Liquidity Depth
+= pool reserve / usable liquidity depth
+
+Trade Size Relative to Liquidity
+= how large this trade is relative to that depth
+```
+
+三者相关，但不是同一个概念。
+
+## 结课判定
+
+Module 13 第 2 课理解检查与必要校准已完成，正式通过。
+
+已经能够：
+
+- 正确解释 `x`、`y` 与 `k` 的含义。
+- 使用 Reserve Ratio 计算 Pool Price，并明确 Price Direction。
+- 理解 `k` 是 Constant Product Invariant，而不是 Token Price，也不直接等同于 Liquidity Depth。
+- 从 Protocol 视角理解 Swap 是 Pool 从 `(x, y)` 到 `(x', y')` 的 State Transition。
+- 理解 Swap 会改变 Reserve Ratio，因此会改变 Pool Price。
+- 理解同样 Trade Size 下，更深的 Liquidity 会产生更小的 State Movement。
+- 使用 Trade Size Relative to Liquidity 解释不同 Pool 的价格稳定性差异。
+
+下一课进入：
+
+```text
+Module 13 第 3 课
+Execution Price、Price Impact 与 Slippage
+```

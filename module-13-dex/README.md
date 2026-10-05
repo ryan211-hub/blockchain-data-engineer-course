@@ -75,11 +75,12 @@ Module 13 聚焦 DEX（Decentralized Exchange，去中心化交易所），目�
 
 - 当前阶段：第四阶段 Protocol
 - 当前 Module：Module 13 — DEX
-- 已完成 Lesson：第 1 课｜为什么会有 DEX：从 Order Book 到 AMM
-- 当前 Lesson：第 2 课｜AMM 的定价逻辑：从 `x * y = k` 理解 Pool Price
-- 当前状态：第 1 课已完成；下一步进入第 2 课
-- 下一步准确入口：开始 Module 13 第 2 课｜AMM 的定价逻辑：从 `x * y = k` 理解 Pool Price。
+- 已完成 Lesson：第 1 课｜为什么会有 DEX：从 Order Book 到 AMM；第 2 课｜AMM 的定价逻辑：从 `x * y = k` 理解 Pool Price
+- 当前 Lesson：第 3 课｜Execution Price、Price Impact 与 Slippage
+- 当前状态：第 2 课已完成；下一步进入第 3 课
+- 下一步准确入口：开始 Module 13 第 3 课｜Execution Price、Price Impact 与 Slippage。
 
 ## 课程路径
 
 - [第 1 课｜为什么会有 DEX：从 Order Book 到 AMM](lesson-01-why-dex-order-book-to-amm.md)
+- [第 2 课｜AMM 的定价逻辑：从 `x * y = k` 理解 Pool Price](lesson-02-amm-pricing-constant-product-pool-price.md)

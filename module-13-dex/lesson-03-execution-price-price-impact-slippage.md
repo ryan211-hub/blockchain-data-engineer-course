@@ -1394,3 +1394,35 @@ pool state
 2. 能不能计算 Pool Price？
 3. 能不能严格计算用户的 Actual Slippage？
 4. 如果不能，还缺什么关键数据？
+
+## 用户回答（理解检查｜问题一）
+
+1. Pool Price
+2. Execution Price
+3. Pool Price 和 Execution Price 的不同，是称为 Price Impact 。 而 Slippage 是 Expected Execution 和 Actual Execution的不同
+
+## 老师判断 / 校准（问题一）
+
+问题一通过，而且第 3 点区分得很准确。
+
+1. `3,000 USDC / ETH` 是 `Pool Price`。它来自交易前的 Pool State / Reserve Ratio，属于 state-level price。
+
+2. `2,970 USDC / ETH` 是 `Execution Price`。它来自这笔 Swap 的 `amount_out / amount_in`，属于 trade-level average price。
+
+3. 核心区分正确：
+
+```text
+Initial Pool Price
+vs
+Execution Price
+→ Price Impact
+
+Expected Execution
+vs
+Actual Execution
+→ Slippage
+```
+
+再补一个小精度点：`Pool Price` 与 `Execution Price` 的差异可以用于描述 Price Impact，但真实分析时还要明确 reference price、fee treatment 和 token direction，不能只看两个数字就默认所有协议的 `price_impact_pct` 口径完全一致。
+
+本题判定：通过。

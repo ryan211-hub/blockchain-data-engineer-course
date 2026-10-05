@@ -1379,3 +1379,208 @@ Pool B
 1. 哪个 Pool 的价格变化会更小？
 2. 为什么？
 3. 这说明 Liquidity 和交易价格稳定性之间是什么关系？
+
+## 用户回答（理解检查）
+
+问题一：
+
+1. X和 Y 代表两种 token，K 代表它们的积数
+2. 1 eth = 300,000 USDC
+3. K 不是 ETH 的价格，它是 ETH 和 USDC 两种 token 的积数，它代表了当前这个 pool 的深度
+
+问题二：
+
+1. 因为 USDC 确实是被兑换出了，所以它减少了
+2. 根据恒定乘积公式计算，得到的交易价格是少于 3000 的，所以 Alice 得到的 USDC 少于 3000
+3. 从这笔 swap 从 protocol 视角，改变了 AMM 曲线的状态
+
+问题三：
+
+1. pool B的变化更小
+2. 因为根据恒定乘积公式，Pool 的 K 值会更大，说明 Liquidity 的深度更大，所以交易对它的影响会更小。
+3. Liquidity 深度越深，交易价格越稳定。
+
+## 老师判断 / 校准（本轮）
+
+本轮暂不判定整课通过。问题二、问题三的核心方向正确；问题一有一个数值错误，同时需要校准 `k` 与 Liquidity Depth 的关系。
+
+### 问题一
+
+1. **`x`、`y`、`k` 的含义：基本正确。**
+
+更精确地说：
+
+```text
+x = token X reserve
+y = token Y reserve
+k = x * y
+```
+
+在本题中：
+
+```text
+x = 100 ETH
+y = 300,000 USDC
+k = 30,000,000
+```
+
+2. **Pool Price：此处有数量级错误。**
+
+你写的是：
+
+```text
+1 ETH = 300,000 USDC
+```
+
+正确计算是：
+
+```text
+USDC per ETH
+= y / x
+= 300,000 / 100
+= 3,000
+```
+
+所以：
+
+```text
+1 ETH ≈ 3,000 USDC
+```
+
+这里要注意 Price 是一个 ratio，而不是直接取某一个 Reserve。
+
+3. **`k` 不是 ETH 的价格：正确；但“`k` 代表 Pool 深度”需要校准。**
+
+`k` 的直接含义是：
+
+> Constant Product Invariant，也就是两个 Reserve 乘积形成的不变量。
+
+在本题这两个 Pool 具有相同 Token Pair、相同价格比例，而且 Pool B 的两个 Reserve 都按 10 倍放大，所以：
+
+```text
+Pool A:
+k = 100 * 300,000
+
+Pool B:
+k = 1,000 * 3,000,000
+```
+
+此时更大的 `k` 确实伴随更深的 Liquidity。
+
+但不能一般化成：
+
+> `k` 就是 Liquidity Depth。
+
+原因是 `k` 受 Token 数量单位、Decimals 和 Reserve Scale 影响。更稳妥的工程表述是：
+
+> Liquidity Depth 应从 Reserve Size、资产价值以及交易规模相对于 Reserve 的比例来理解；在同一 Token Pair、相同单位和相同比例下，更大的 Reserve 通常也会对应更大的 `k`。
+
+### 问题二
+
+整体通过。
+
+1. **为什么 USDC Reserve 下降：正确。**
+
+Alice 向 Pool 输入 ETH，并从 Pool 取走 USDC，因此：
+
+```text
+ETH reserve ↑
+USDC reserve ↓
+```
+
+更进一步，从 Protocol 约束看，新的 Reserve 还必须满足：
+
+```text
+x' * y' = k
+```
+
+2. **为什么得到少于 3,000 USDC：正确。**
+
+你的核心理解是对的：Swap 本身改变了 Reserve State，所以不能按交易前的 `3,000 USDC / ETH` 固定兑换整笔交易。
+
+这里暂时不要把它进一步定名为 Price Impact / Execution Price；下一课会专门拆开这些概念。
+
+3. **Protocol 视角：基本正确。**
+
+你说“改变了 AMM 曲线的状态”，更精确地可以说：
+
+> Swap moves the pool from one state point `(x, y)` to another state point `(x', y')` along the constant-product curve.
+
+也就是：
+
+```text
+Pool State Before
+→ Swap
+→ Pool State After
+```
+
+### 问题三
+
+结论通过，理由需要轻微校准。
+
+1. **Pool B 价格变化更小：正确。**
+
+2. 你用更大的 `k` 来解释，方向在这个具体例子里成立，但更关键的原因是：
+
+```text
+same trade = 1 ETH
+
+Pool A:
+1 / 100 = 1%
+
+Pool B:
+1 / 1,000 = 0.1%
+```
+
+也就是同样 1 ETH 的交易，在 Pool B 中只占 ETH Reserve 的 0.1%，因此对 Reserve Ratio 的改变更小。
+
+更推荐记住：
+
+> Trade Size Relative to Liquidity，比单独看 `k` 更能直接解释价格为什么移动。
+
+3. **Liquidity 越深，交易价格越稳定：正确。**
+
+更完整地说：
+
+> For the same trade size, deeper liquidity usually causes a smaller reserve-ratio change and therefore a smaller price movement.
+
+## 本轮校准结论
+
+你已经掌握了本课最核心的三条逻辑：
+
+```text
+Reserve State
+→ determines Pool Price
+
+Swap
+→ changes Reserve State
+
+Deeper Liquidity
+→ same trade causes smaller state movement
+```
+
+还需要修正两个点后即可判定本课通过：
+
+1. 本题 Pool Price 是：
+
+```text
+1 ETH ≈ 3,000 USDC
+```
+
+不是 300,000 USDC。
+
+2. 不要直接把：
+
+```text
+k = Liquidity Depth
+```
+
+作为一般规则。更准确的是：
+
+```text
+Liquidity Depth
+→ 看 Reserve Size / Reserve Value
+→ 看 Trade Size relative to Reserve
+```
+
+在相同 Token Pair、相同单位和相同比例的比较中，更大的 Reserve 往往同时产生更大的 `k`，所以两者会相关，但概念上不是同一个东西。

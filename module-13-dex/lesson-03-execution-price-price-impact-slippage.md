@@ -1426,3 +1426,136 @@ Actual Execution
 再补一个小精度点：`Pool Price` 与 `Execution Price` 的差异可以用于描述 Price Impact，但真实分析时还要明确 reference price、fee treatment 和 token direction，不能只看两个数字就默认所有协议的 `price_impact_pct` 口径完全一致。
 
 本题判定：通过。
+
+
+## 用户回答（理解检查｜问题二、问题三）
+
+问题二：
+
+1. Price Impact
+2. Slippage
+3. Price Impact = caused by your own trade size
+
+   Slippage = deviation between expected and actual execution
+
+问题三：
+
+1. 可以
+2. 可以
+3. 不能
+4. 缺少提交swap瞬间，pool state的数据，因为pool state有可能发生变化
+
+## 老师判断 / 校准（问题二、问题三）
+
+### 问题二
+
+整体通过。
+
+1. `3,000 → 约 2,727 USDC / ETH` 主要对应 `Price Impact`：正确。
+
+2. `Expected 27,272 → Actual 27,000` 主要对应 `Slippage`：正确。
+
+3. 原因区分正确：
+
+```text
+Price Impact
+= caused by your own trade size
+
+Slippage
+= deviation between expected and actual execution
+```
+
+更完整地说：
+
+```text
+Price Impact
+→ the trade itself moves the pool along the AMM curve
+
+Slippage
+→ actual execution differs from the quote / expectation formed before execution
+```
+
+### 问题三
+
+1. 能计算 Execution Price：正确。
+
+只需要：
+
+```text
+amount_in
+amount_out
+```
+
+即可得到 trade-level average execution price。
+
+2. 能计算 Pool Price：正确。
+
+前提是 `pool state` 中包含足够的 Reserve / Price State，并且明确 token direction。
+
+3. 不能严格计算用户的 Actual Slippage：正确。
+
+4. 这里需要校准。
+
+你说缺少：
+
+```text
+提交 Swap 瞬间的 Pool State
+```
+
+这个信息确实可能有帮助，但它不是严格计算 Slippage 最核心、最直接缺少的数据。
+
+严格定义 Slippage 时真正需要的是：
+
+```text
+Expected Execution
+vs
+Actual Execution
+```
+
+所以关键缺口是：
+
+```text
+Expected Quote
+或
+Expected Amount Out at submission time
+```
+
+例如：
+
+```text
+Expected Amount Out
+= 27,272 USDC
+
+Actual Amount Out
+= 27,000 USDC
+```
+
+这样才能计算：
+
+```text
+Actual Slippage
+≈ (Expected - Actual) / Expected
+```
+
+提交时的 Pool State 只能在你同时知道：
+
+```text
+routing
+pricing formula
+fee treatment
+quote logic
+```
+
+等条件时，用来重建 Expected Quote。
+
+因此从 Data Lineage 视角，最稳妥的说法是：
+
+> To calculate actual slippage strictly, the missing reference is the expected quote at submission time, not merely the pool state.
+
+本轮判定：
+
+- 问题二：通过。
+- 问题三第 1～3 点：通过。
+- 问题三第 4 点：需要把“提交时 Pool State”修正为“Expected Quote / Expected Amount Out at submission time”。
+
+完成这一点后，本课即可结课。

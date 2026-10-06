@@ -1559,3 +1559,28 @@ quote logic
 - 问题三第 4 点：需要把“提交时 Pool State”修正为“Expected Quote / Expected Amount Out at submission time”。
 
 完成这一点后，本课即可结课。
+
+
+## 用户确认（最终校准）
+
+好的，我知道了。
+
+## 结课判定
+
+Module 13 第 3 课理解检查与必要校准已完成，正式通过。
+
+本课已经能够：
+
+- 区分 `Pool Price` 与 `Execution Price`。
+- 理解 `Price Impact` 主要来自交易自身相对于 Liquidity 的规模。
+- 理解 `Slippage` 是 Expected Execution 与 Actual Execution 的偏差。
+- 区分 `Slippage Tolerance` 与 `Actual Slippage`。
+- 理解 `Expected Quote / Expected Amount Out at submission time` 是严格计算 Actual Slippage 的关键 reference。
+- 从 Data Engineer 视角区分 on-chain fact、derived metric 与 off-chain quote data。
+
+下一课进入：
+
+```text
+Module 13 第 4 课
+Liquidity Provider：Liquidity、Fee 与 Impermanent Loss
+```

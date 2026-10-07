@@ -1252,3 +1252,27 @@ fact_dex_swap_v2
 4. `Pool Reserve State` 应不应该直接与 Swap Fact 混为同一条业务事实？为什么？
 
 本课进入理解检查阶段。你可以分题回答，也可以一次性回答三题。
+
+## 用户回答（理解检查｜问题一）
+
+1. Trader 输入 Token 是 USDC ， 输出 Token 是 WETH
+2. 不会变化
+3. 因为它们 token 0 和 token 1 有固定的顺序规则，和 input、output 没有关系，他们是按 token contract address 的排序规则来确定的
+
+## 老师判断 / 校准（问题一）
+
+问题一通过，三点都正确。
+
+1. 输入 Token = USDC，输出 Token = WETH：正确。
+2. 下一笔即使交易方向变成 WETH → USDC，`token0` 与 `token1` 的身份也不会变化：正确。
+3. 核心原因表述准确：`token0 / token1` 是 Pair-level fixed ordering，由 Token Contract Address 的排序规则决定；`token_in / token_out` 则是 Swap-level trade direction。
+
+```text
+token0 / token1
+= pool identity / fixed ordering
+
+token_in / token_out
+= swap direction / per-trade semantics
+```
+
+本题判定：通过。

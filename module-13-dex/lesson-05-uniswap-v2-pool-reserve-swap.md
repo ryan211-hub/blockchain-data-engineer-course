@@ -1318,3 +1318,97 @@ Block End Reserve
 因此每笔 Swap 的 `pool_price_before` 必须绑定它自己的执行前 Reserve State，而不能统一使用 Block End Reserve。这是典型的 Historical State Attribution 问题。
 
 本题判定：通过。
+
+
+## 用户回答（理解检查｜问题三）
+
+1. grain ： chain_id + tx_hash + log_index
+2. chain_id + tx_hash 的粒度还不够，一个tx中可能会有多个transfer
+3. 不一定，也可能有这种情况：Swap.sender = Router address
+4. Pool Reserve State 是表示pool 某个时点的状态数据， 而Swap Fact是pool 实际发生的事件。它们不能混为一谈。
+
+## 老师判断 / 校准（问题三）
+
+问题三整体通过，第 2 点做一个术语校准。
+
+1. 你给出的唯一键方向正确：
+
+```text
+chain_id
++
+tx_hash
++
+log_index
+```
+
+对于本课定义的 Grain：
+
+```text
+One successful Pair Swap Event
+= One Pair-level Swap Fact
+```
+
+这组字段可以唯一定位一条 Swap Event。
+
+2. 这里需要把“一个 tx 中可能会有多个 Transfer”修正为：
+
+```text
+一个 Transaction 中可能会有多个 Pair-level Swap Event
+```
+
+因此：
+
+```text
+chain_id + tx_hash
+```
+
+不足以唯一定位 Swap Fact，而不同 Swap Event 会通过不同的 `log_index` 区分。
+
+3. `Swap.sender` 不一定是最终 Trader Wallet：正确。通过 Router 交易时，可能出现：
+
+```text
+Swap.sender = Router address
+```
+
+因此应区分：
+
+```text
+swap_sender
+transaction_from
+trader_wallet
+```
+
+4. 对 Pool Reserve State 与 Swap Fact 的区分正确：
+
+```text
+Pool Reserve State
+= state / snapshot
+
+Swap Fact
+= event / business fact
+```
+
+它们属于不同数据 Grain 和不同业务语义，不应混为同一条事实记录。
+
+本题判定：通过。
+
+## 结课判定
+
+Module 13 第 5 课三道理解检查及必要校准已完成，正式通过。
+
+本课已经能够：
+
+- 区分 Factory、Pair、Router 的 Protocol 角色。
+- 区分 `token0 / token1` 与 `token_in / token_out`。
+- 理解 `Swap`、`Sync`、`Mint`、`Burn` 的不同 Event Semantics。
+- 理解 Pair-level Swap Fact 的 Grain 与 Unique Key。
+- 理解 `Swap.sender` 不一定等于最终 Trader Wallet。
+- 区分 Swap Business Fact 与 Pool Reserve State History。
+- 理解同一 Block 内必须按执行顺序绑定每笔 Swap 对应的 pre-state / post-state。
+
+下一课进入：
+
+```text
+Module 13 第 6 课
+Uniswap v3：Concentrated Liquidity、Tick 与 Position
+```

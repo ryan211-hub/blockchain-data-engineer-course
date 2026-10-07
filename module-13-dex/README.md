@@ -86,3 +86,4 @@ Module 13 聚焦 DEX（Decentralized Exchange，去中心化交易所），目�
 - [第 2 课｜AMM 的定价逻辑：从 `x * y = k` 理解 Pool Price](lesson-02-amm-pricing-constant-product-pool-price.md)
 - [第 3 课｜Execution Price、Price Impact 与 Slippage](lesson-03-execution-price-price-impact-slippage.md)
 - [第 4 课｜Liquidity Provider：Liquidity、Fee 与 Impermanent Loss](lesson-04-liquidity-provider-fee-impermanent-loss.md)
+- [第 5 课｜Uniswap v2：Pool / Reserve / Swap 的完整数据语义](lesson-05-uniswap-v2-pool-reserve-swap.md)

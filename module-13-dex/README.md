@@ -75,10 +75,10 @@ Module 13 聚焦 DEX（Decentralized Exchange，去中心化交易所），目�
 
 - 当前阶段：第四阶段 Protocol
 - 当前 Module：Module 13 — DEX
-- 已完成 Lesson：第 1 课｜为什么会有 DEX：从 Order Book 到 AMM；第 2 课｜AMM 的定价逻辑：从 `x * y = k` 理解 Pool Price；第 3 课｜Execution Price、Price Impact 与 Slippage；第 4 课｜Liquidity Provider：Liquidity、Fee 与 Impermanent Loss
-- 当前 Lesson：第 5 课｜Uniswap v2：Pool / Reserve / Swap 的完整数据语义
-- 当前状态：第 4 课已完成；下一步进入第 5 课
-- 下一步准确入口：开始 Module 13 第 5 课｜Uniswap v2：Pool / Reserve / Swap 的完整数据语义。
+- 已完成 Lesson：第 1 课｜为什么会有 DEX：从 Order Book 到 AMM；第 2 课｜AMM 的定价逻辑：从 `x * y = k` 理解 Pool Price；第 3 课｜Execution Price、Price Impact 与 Slippage；第 4 课｜Liquidity Provider：Liquidity、Fee 与 Impermanent Loss；第 5 课｜Uniswap v2：Pool / Reserve / Swap 的完整数据语义
+- 当前 Lesson：第 6 课｜Uniswap v3：Concentrated Liquidity、Tick 与 Position
+- 当前状态：第 5 课已完成；下一步进入第 6 课
+- 下一步准确入口：开始 Module 13 第 6 课｜Uniswap v3：Concentrated Liquidity、Tick 与 Position。
 
 ## 课程路径
 

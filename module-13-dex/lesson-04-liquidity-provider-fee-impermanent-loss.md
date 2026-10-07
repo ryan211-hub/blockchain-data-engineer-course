@@ -1632,3 +1632,91 @@ Alice → Pool : 30,000 USDC
 1. 只看这两条 Transfer，能不能确认 Alice 在 Add Liquidity？
 2. 还需要什么类型的证据？
 3. 为什么 `Pool` 与 `LP Position` 应该设计成不同 Grain 的数据对象？
+
+## 用户回答（理解检查｜问题一、二、三）
+
+问题一：
+
+1. Ownership Share
+2. 因为经过 swap 之后，pool 中的 ETH 和 USDC 的数量已经发生了变化，所以相对应的 Alice position，它实际对应的数量也会有变化
+3. LP 的核心收益是 trader swap 的手续费，和银行存款利息是不一样的
+
+问题二：
+
+1. 因为 ETH 在上涨的过程中，会不断地被套利者买入，所以，Pool 中的 ETH 数量会减少
+2. 比较的是 Holder 的收益和作为 LP 的收益
+3. 因为从 6000 上涨到 8000 多和从 3000 涨到 6000 的情况，逻辑是一样的，所以也可能会存在 impairment loss
+
+问题三：
+
+1. 不能
+2. Protocol Event / Transaction Context / Pool Contract / LP Token Mint/Burn
+3. 因为它们两个是不同的业务语义，而且它们的 grain 完全不同，所以更应该给它们区分开来
+
+## 老师判断 / 校准（本轮）
+
+### 问题一
+
+通过。Alice 获得的是 Pool 的 Ownership Share，而不是固定数量的 ETH 和 USDC。后续 Swap 改变 Pool Reserves，因此即使 Alice 的份额比例不变，她对应的两种 Token 数量也会变化。LP 赚取交易手续费，同时承担价格波动和资产再平衡风险；这与银行存款的利息机制不同。
+
+数值细节：如果原有 Pool 是 `100 ETH + 300,000 USDC`，Alice 新增 `10 ETH + 30,000 USDC`，且没有其他特殊因素，那么她的新增份额约为 `10 / 110 = 9.09%`，而不是 10%。
+
+### 问题二
+
+第 1、2 点通过，第 3 点需要校准。
+
+ETH 上涨后，套利者从 Pool 买入 ETH，导致 Pool 的 ETH Reserve 下降。Impermanent Loss 比较 HODL 与 LP 两种策略。
+
+第 3 点混淆了 ETH 市场价格变化与 LP Position 资产价值变化：
+
+```text
+ETH 市场价格：
+3,000 → 6,000 USDC / ETH
+
+LP Position 价值：
+6,000 → 8,485 USDC
+
+HODL Portfolio 价值：
+6,000 → 9,000 USDC
+```
+
+ETH 价格翻倍后，LP Position 从 6,000 增长到 8,485，说明 LP 的绝对收益为正，但不意味着不存在 Impermanent Loss。
+
+因为 IL 的参照物不是最初的 6,000 USDC，而是同期 HODL 策略的 9,000 USDC：
+
+```text
+LP Value      ≈ 8,485 USDC
+HODL Value    = 9,000 USDC
+
+Relative Difference
+≈ -515 USDC
+
+Impermanent Loss
+≈ -5.72%
+```
+
+这里忽略 Trading Fees。IL 是相对收益落后，不是 LP 投资的绝对亏损。
+
+术语为 `Impermanent Loss`，不是 `Impairment Loss`；后者通常指会计意义上的资产减值损失。
+
+### 问题三
+
+通过。Transfer 不能单独证明 Add Liquidity；Protocol Event、Transaction Context、Pool Contract 和 LP Token Mint/Burn 都是合理的识别证据。
+
+```text
+Pool-level Snapshot
+Grain = one pool at one state / time
+
+LP Position Snapshot
+Grain = one wallet's position in one pool at one state / time
+```
+
+这是不同层级的业务对象，混在同一张事实表可能产生重复计算。
+
+### 本轮判定
+
+- 问题一：通过。
+- 问题二：第 1、2 点通过；第 3 点需要确认 IL 的 HODL 参照物。
+- 问题三：通过。
+
+校准确认题：如果 ETH 价格翻倍后，LP 资产价值为 `8,485 USDC`，而 HODL 资产价值为 `9,000 USDC`，为什么 LP 明明赚钱了，仍然存在 Impermanent Loss？

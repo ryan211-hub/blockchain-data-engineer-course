@@ -1720,3 +1720,26 @@ Grain = one wallet's position in one pool at one state / time
 - 问题三：通过。
 
 校准确认题：如果 ETH 价格翻倍后，LP 资产价值为 `8,485 USDC`，而 HODL 资产价值为 `9,000 USDC`，为什么 LP 明明赚钱了，仍然存在 Impermanent Loss？
+
+
+## 用户确认（最终校准）
+
+确认了。
+
+## 最终校准与结课判定
+
+用户已确认 Impermanent Loss 的核心比较基准：
+
+```text
+Initial portfolio value = 6,000 USDC
+LP position value       ≈ 8,485 USDC
+HODL benchmark value    = 9,000 USDC
+```
+
+LP 相对于初始投入取得正的绝对收益，但相对于相同初始资产的 HODL 策略少约 515 USDC（约 -5.72%，忽略交易费用），因此存在 Impermanent Loss。它是相对 HODL 的收益落后，并不等于 LP Position 的绝对亏损。
+
+本课三道理解检查及必要校准已完成，判定：**通过，正式结课**。
+
+已掌握 Liquidity Provider 的 Pool Ownership Share、Swap 改变 Position 对应资产构成、Fee 激励与 Inventory Risk、Impermanent Loss 的 HODL 比较基准，以及 Pool-level / LP Position-level 不同数据 Grain。
+
+下一课教学入口由课程总目录维护：Module 13 第 5 课《Uniswap v2：Pool / Reserve / Swap 的完整数据语义》。

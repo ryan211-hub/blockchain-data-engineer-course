@@ -1276,3 +1276,45 @@ token_in / token_out
 ```
 
 本题判定：通过。
+
+
+## 用户回答（理解检查｜问题二）
+
+1. Sync 是同步 pool reserve 和 erc20 balance 的数据；Swap 是在 Pool 中进行兑换
+2. Sync 和 Swap 的功能是不一样的，所以不能把 Sync Event 认作 Swap。但是 Swap 交换之后，它会通过 Sync 来同步数据
+3. 不能直接使用 Block End Reserve，因为同一个 Block 内每笔 Swap 都会改变 Pool State。第二笔 Swap 的 `pool_price_before` 应基于第一笔 Swap 执行后的 Reserve，而第一笔 Swap 的 `pool_price_before` 应基于它执行前的 Reserve。Block End Reserve 只是该 Block 所有交易执行完成后的最终状态，不能代表 Block 内每笔 Swap 各自的执行前状态。
+
+## 老师判断 / 校准（问题二）
+
+问题二整体通过。
+
+1. `Swap` 表示 Pair-level 兑换业务；`Sync` 表示 Pair 更新内部记录的 `reserve0 / reserve1` 后发出的 Reserve State Update Event。
+
+在标准执行路径中，reserve 会被更新为 Pair 当时对应的 Token Balance，因此“同步 Pool Reserve 和 ERC-20 Balance”这个理解方向正确。但不要把所有 `Sync` Event 理解成独立的“同步任务”。
+
+2. `Sync` 与 `Swap` 的 Protocol Semantics 不同。普通 Swap 执行过程中通常会更新 Reserves 并发出 `Sync`，然后发出 `Swap`；但 `Sync` 也可能出现在 Mint、Burn 或显式 `sync()` 等非 Swap 场景，因此：
+
+```text
+Sync happened
+≠
+A swap definitely happened
+```
+
+3. 对 Block End Reserve 的解释正确。一个 Block 内同一个 Pool 可以经历多个中间 State：
+
+```text
+Reserve before Swap A
+↓
+Swap A
+↓
+Reserve after Swap A
+= Reserve before Swap B
+↓
+Swap B
+↓
+Block End Reserve
+```
+
+因此每笔 Swap 的 `pool_price_before` 必须绑定它自己的执行前 Reserve State，而不能统一使用 Block End Reserve。这是典型的 Historical State Attribution 问题。
+
+本题判定：通过。

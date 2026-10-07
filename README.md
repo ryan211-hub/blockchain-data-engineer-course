@@ -25,12 +25,12 @@
 - Module 7 完成结论：第 1～10 课与结课综合实践均已完成；Mini Indexer 五项验收 Normal Sync / Idempotent Replay / Crash Recovery / Backfill / Reorg Recovery 全部通过，已达到 Module Contract 结束标准。五项实践由用户在 Codex 中实际完成并明确确认通过。
 - Module 8 完成结论：第 1～8 课与结束标准综合检查均已完成，已达到 Module Contract 结束标准。已能从 Query Semantics 推导 Business Object、Grain、Source Identity、Unique Key、Fact / Dimension、Relation 与 Layer，并区分 Source Identity 与 Business Identity。
 - Module 9 完成结论：第 1～7 课与结束标准综合检查均已完成，达到 Module Contract 结束标准。已能独立设计基础 Blockchain Batch ETL Pipeline，并解释 Source / Target、Processing Range、Grain、Unique Key、Watermark / Cursor / Checkpoint、Idempotency、Validation、Late-arriving / Reorg、Lookback / Backfill / Historical Repair、DAG Dependency 与 Scheduler / Orchestrator。
-- 当前 Lesson：Module 13 第 5 课｜Uniswap v2：Pool / Reserve / Swap 的完整数据语义
-- 当前状态：Module 13 第 4 课理解检查及必要校准已完成，正式结课；下一步进入第 5 课
-- 最近完成：Module 13 第 4 课《Liquidity Provider：Liquidity、Fee 与 Impermanent Loss》理解检查与必要校准通过，正式完成。
-- 最近掌握重点：已理解 LP Ownership Share、Fee 激励与 Inventory Risk；可区分 Pool-level 与 LP Position-level Grain；确认 Impermanent Loss 是相对同期 HODL Benchmark 的收益落后，而非 LP 资产的绝对亏损。
+- 当前 Lesson：Module 13 第 6 课｜Uniswap v3：Concentrated Liquidity、Tick 与 Position
+- 当前状态：Module 13 第 5 课理解检查及必要校准已完成，正式结课；下一步进入第 6 课
+- 最近完成：Module 13 第 5 课《Uniswap v2：Pool / Reserve / Swap 的完整数据语义》理解检查与必要校准通过，正式完成。
+- 最近掌握重点：已掌握 Uniswap v2 Factory / Pair / Router 角色、token0/token1 固定排序、Swap/Sync/Mint/Burn Event Semantics、Pair-level Swap Grain 与 Unique Key，以及 Swap Fact 与 Reserve State History 的区分。
 - 历史同步债务处理决定：用户已明确要求忽略 Module 8 第 4～6 课的既有 Notion / GitHub 同步债务与第 5 课 Canonical Drift；这些历史问题不再修复，也不再阻塞课程推进。
-- 下一步准确入口：开始 Module 13 第 5 课《Uniswap v2：Pool / Reserve / Swap 的完整数据语义》。
+- 下一步准确入口：开始 Module 13 第 6 课《Uniswap v3：Concentrated Liquidity、Tick 与 Position》。
 
 ## 目录
 

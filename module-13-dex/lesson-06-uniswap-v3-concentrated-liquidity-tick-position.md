@@ -2095,3 +2095,28 @@ human-readable token price
 校准确认题：
 
 `sqrtPriceX96` 和 `3,000 USDC / ETH`，哪一个属于 Protocol State，哪一个属于 Derived / Human-readable Price？
+
+
+## 用户确认（最终校准）
+
+好的。
+
+## 最终校准与结课判定
+
+用户已确认：
+
+```text
+sqrtPriceX96
+= Protocol State / encoded price representation
+
+3,000 USDC / ETH
+= Derived / Human-readable Price
+```
+
+Data Engineer 应保留协议原始状态字段 `sqrtPriceX96`，并结合 token0 / token1 decimals 推导供 Analytics 使用的人类可读价格。
+
+Module 13 第 6 课三道理解检查及必要校准已完成，判定：**通过，正式结课**。
+
+本课已掌握：Concentrated Liquidity、Tick、Initialized Tick、Active Liquidity、Range Risk、Out-of-Range 状态、v3 Position 的非同质化特征、Fee Tier 的 Pool 语义，以及 Pool / Tick / Position / Swap 不同 Grain 的建模边界。
+
+下一课教学入口由课程总目录维护：Module 13 第 7 课《Router、Multi-hop Swap 与 Aggregator：一笔交易为什么有多个 Swap》。

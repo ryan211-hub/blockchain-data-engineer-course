@@ -88,3 +88,4 @@ Module 13 聚焦 DEX（Decentralized Exchange，去中心化交易所），目�
 - [第 4 课｜Liquidity Provider：Liquidity、Fee 与 Impermanent Loss](lesson-04-liquidity-provider-fee-impermanent-loss.md)
 - [第 5 课｜Uniswap v2：Pool / Reserve / Swap 的完整数据语义](lesson-05-uniswap-v2-pool-reserve-swap.md)
 - [第 6 课｜Uniswap v3：Concentrated Liquidity、Tick 与 Position](lesson-06-uniswap-v3-concentrated-liquidity-tick-position.md)
+- [第 7 课｜Router、Multi-hop Swap 与 Aggregator：一笔交易为什么有多个 Swap](lesson-07-router-multi-hop-swap-aggregator.md)

@@ -1911,3 +1911,99 @@ Current Tick = 175
 3. Position 应该至少保存哪些能够表达 Range 的核心字段？
 4. 为什么 `Pool`、`Tick`、`Position`、`Swap` 应设计成不同 Grain？
 5. `sqrtPriceX96` 属于 Protocol State 还是 Human-readable Price？最终给 Analytics 使用的 Price 属于原始字段还是 Derived Field？
+
+## 用户回答（理解检查｜问题一、问题二）
+
+问题一：
+
+1. Alice 的 capital efficiency 会更高，因为 Alice 的 liquidity range 更集中。
+2. Alice 她能接受的 ETH 涨跌的波动更小。如果 ETH 的涨跌超出了这个 range，那么 Alice 的 liquidity 就不会有任何的收益
+3. Alice's position 并不会消失，但是它会变成 inactive 状态
+
+问题二：
+
+1. 当前 position A 和 B 都是处于 active 状态
+2. Position A 会变成 inactive 状态，Position B 的状态不会变，还是处于 active 状态
+3. 因为 position A 和 B 的 tick range 并不完全相同，所以它们不能当做同样的 liquidity来处理
+
+## 老师判断 / 校准（问题一、问题二）
+
+### 问题一
+
+整体通过，第 2 点做一个精度校准。
+
+1. Alice 的 Capital Efficiency 更高：正确。因为在相同资本下，她把 Liquidity 集中在更窄、且更接近当前市场价格的区间，因此当前价格附近能够提供更大的 Effective Liquidity。
+
+2. 你指出 Narrow Range 带来更高 Out-of-Range Risk：方向正确。
+
+但“超出 Range 后就不会有任何收益”需要改得更准确：
+
+```text
+Out of Range
+→ no current active liquidity
+→ usually no new swap fee from trades at current price
+```
+
+Position 本身仍存在，而且仍然可能包含：
+
+```text
+underlying token value
+previously accrued fees
+position ownership
+```
+
+所以更准确的说法是：
+
+> Out of Range 后，Position 通常停止参与当前价格下的 Swap，因此不再赚取新的 Swap Fee，而不是“完全没有任何收益”。
+
+3. Position 不会消失，只是变成 Inactive / Out of Range：正确。
+
+可以固定记成：
+
+```text
+Position Exists
+≠
+Position Is Active
+```
+
+### 问题二
+
+三点都正确。
+
+1. Current Tick = 175 时：
+
+```text
+Position A [100, 200]
+Position B [150, 300]
+```
+
+175 同时位于两个 Range 内，所以 A、B 都是 Active。
+
+2. 当 Current Tick 向上跨过 200：
+
+```text
+Position A
+→ becomes inactive
+
+Position B
+→ remains active
+```
+
+判断正确。
+
+3. 你的核心判断正确：不同 Position 的 Tick Range 不同，因此它们对 Current Active Liquidity 的贡献取决于 Current Tick 是否落在各自 Range 内。
+
+更精确地说：
+
+```text
+Total Position Liquidity
+≠
+Current Active Liquidity
+```
+
+Current Active Liquidity 只统计当前 Tick 所在价格区间内处于 Active 状态的 Liquidity。
+
+本轮判定：
+
+- 问题一：通过，完成 1 个精度校准。
+- 问题二：通过。

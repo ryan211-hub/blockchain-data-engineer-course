@@ -2007,3 +2007,91 @@ Current Active Liquidity 只统计当前 Tick 所在价格区间内处于 Active
 
 - 问题一：通过，完成 1 个精度校准。
 - 问题二：通过。
+
+
+## 用户回答（理解检查｜问题三）
+
+1. V3 的 LP position 它并不像 V2 的 share percent 一样，LP position 每个都是不一样的，它需要通过 position range 来显示地标识具体 position 的范围。
+2. 可以
+3. token0 / token1 / fee tier / tick_lower / tick_upper / liquidity / fee accounting state
+4. 因为他们四个都有不同的业务含义，所以应该设计成不同的 group，而不应该混用
+5. `sqrtPriceX96` 是 Human-readable Price，Price 属于 Derived Field
+
+## 老师判断 / 校准（问题三）
+
+问题三前 4 点整体正确，第 5 点需要校准。
+
+1. 正确。v3 Position 不再是 v2 那种“整个 Pool 的统一 share_pct”。不同 Position 可以有不同的 Range、Liquidity 和 Fee Exposure，因此必须使用 Position-specific 字段表达。
+
+2. 正确。同一个 Wallet 可以在同一个 Pool 中拥有多个 Position，因此 `wallet + pool` 不足以唯一标识一个 v3 Position。
+
+3. 你列出的字段是合理的。对于表达 Range 和 Position Identity，本课最关键的是：
+
+```text
+position_id
+owner
+pool_address
+fee_tier
+tick_lower
+tick_upper
+liquidity
+```
+
+`token0 / token1` 可以通过 Pool 维度关联获得，也可以在宽表或 Analytics 模型中冗余保存；`fee accounting state` 则属于更完整的 Position Analytics 所需字段。
+
+4. 核心判断正确，但术语应更精确为不同的 **Grain / Protocol Object**，而不是简单说不同 group：
+
+```text
+Pool
+→ one trading market / pool state
+
+Tick
+→ one discrete price & liquidity boundary
+
+Position
+→ one LP range-specific liquidity object
+
+Swap
+→ one executed trade event
+```
+
+自然 Grain 不同，所以应该分开建模。
+
+5. 这里需要校准：
+
+```text
+sqrtPriceX96
+= Protocol State / encoded price representation
+
+Human-readable Price
+= Derived Field
+```
+
+`sqrtPriceX96` 是协议内部保存的 square-root price fixed-point encoding，不是最终面向用户或 Analytics 的价格。
+
+Data Engineer 需要：
+
+```text
+sqrtPriceX96
++
+token0 decimals
++
+token1 decimals
+↓
+derive
+↓
+human-readable token price
+```
+
+因此你后半句“Price 属于 Derived Field”是正确的，但前半句应改为：
+
+> `sqrtPriceX96` belongs to Protocol State; human-readable Price is derived from it.
+
+本题当前判定：
+
+- 第 1～4 点：通过。
+- 第 5 点：需要完成上述概念校准。
+
+校准确认题：
+
+`sqrtPriceX96` 和 `3,000 USDC / ETH`，哪一个属于 Protocol State，哪一个属于 Derived / Human-readable Price？

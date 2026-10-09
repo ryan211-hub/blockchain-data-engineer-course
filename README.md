@@ -25,12 +25,12 @@
 - Module 7 完成结论：第 1～10 课与结课综合实践均已完成；Mini Indexer 五项验收 Normal Sync / Idempotent Replay / Crash Recovery / Backfill / Reorg Recovery 全部通过，已达到 Module Contract 结束标准。五项实践由用户在 Codex 中实际完成并明确确认通过。
 - Module 8 完成结论：第 1～8 课与结束标准综合检查均已完成，已达到 Module Contract 结束标准。已能从 Query Semantics 推导 Business Object、Grain、Source Identity、Unique Key、Fact / Dimension、Relation 与 Layer，并区分 Source Identity 与 Business Identity。
 - Module 9 完成结论：第 1～7 课与结束标准综合检查均已完成，达到 Module Contract 结束标准。已能独立设计基础 Blockchain Batch ETL Pipeline，并解释 Source / Target、Processing Range、Grain、Unique Key、Watermark / Cursor / Checkpoint、Idempotency、Validation、Late-arriving / Reorg、Lookback / Backfill / Historical Repair、DAG Dependency 与 Scheduler / Orchestrator。
-- 当前 Lesson：Module 13 第 7 课｜Router、Multi-hop Swap 与 Aggregator：一笔交易为什么有多个 Swap
-- 当前状态：Module 13 第 6 课理解检查及必要校准已完成，正式结课；下一步进入第 7 课
-- 最近完成：Module 13 第 6 课《Uniswap v3：Concentrated Liquidity、Tick 与 Position》理解检查与必要校准通过，正式完成。
-- 最近掌握重点：已理解 Concentrated Liquidity、Tick / Initialized Tick、Active Liquidity、Range Risk、Out-of-Range、v3 Position 的非同质化特征、Fee Tier Pool 语义，以及 Pool / Tick / Position / Swap 不同 Grain；确认 sqrtPriceX96 属于 Protocol State，Human-readable Price 属于 Derived Field。
+- 当前 Lesson：Module 13 第 8 课｜DEX Data Modeling：Swap Fact、Pool Dimension 与核心指标
+- 当前状态：Module 13 第 7 课理解检查及必要校准已完成，正式结课；下一步进入第 8 课
+- 最近完成：Module 13 第 7 课《Router、Multi-hop Swap 与 Aggregator：一笔交易为什么有多个 Swap》理解检查与必要校准通过，正式完成。
+- 最近掌握重点：能够区分 Router / Pool / Aggregator、Multi-hop / Split Routing、Pool-level Swap Fact / User-level Routed Swap Fact；理解不同 Volume Grain、Route Reconstruction 证据和 Reorg 对派生 Routed Swap Fact 的修正。
 - 历史同步债务处理决定：用户已明确要求忽略 Module 8 第 4～6 课的既有 Notion / GitHub 同步债务与第 5 课 Canonical Drift；这些历史问题不再修复，也不再阻塞课程推进。
-- 下一步准确入口：开始 Module 13 第 7 课《Router、Multi-hop Swap 与 Aggregator：一笔交易为什么有多个 Swap》。
+- 下一步准确入口：开始 Module 13 第 8 课《DEX Data Modeling：Swap Fact、Pool Dimension 与核心指标》。
 
 ## 目录
 

@@ -1250,3 +1250,101 @@ chain_id + tx_hash + log_index
 因此，决定事实表记录数量的是 **Swap Event 的数量**，而不是 Pool 的数量，也不是 Transaction 的数量。
 
 这也是后续区分 `Pool-level Volume` 与 `User-level Routed Volume` 的基础。
+
+
+## 用户回答（理解检查｜问题二）
+
+1. Pool level gross volume 合计约是 2000 美元
+2. 用户级 routed volume 这个不好估计。因为从这两段 multi-hop swap，根据目前的信息推断不出用户的意图金额是多少？
+3. 这可能是：
+   - 部分 WETH 被用于其他业务步骤；
+   - 部分输出未进入第二个 Pool；
+   - 路由涉及手续费或复杂资金流；
+   - 两个 Swap 根本不属于同一条线性 Route；
+   - 或者确实存在解析、关联错误。
+4. Multi-hop = Sequential / chained execution
+
+   Split Routing = Parallel logical routes / order allocation
+
+## 老师判断 / 校准（问题二）
+
+本题 **第 1、4 点通过，第 2 点有合理的条件判断，第 3 点需要修正统计口径**。
+
+### 第 1 点：通过
+
+Pool-level Gross Volume 合计约为：
+
+```text
+Hop 1 Volume ≈ $1,000
+Hop 2 Volume ≈ $1,000
+
+Pool-level Gross Volume ≈ $2,000
+```
+
+你的回答正确。
+
+### 第 2 点：判断很有价值，但需要区分题目假设
+
+你指出：“仅凭两段 Swap 数据，不一定能推断用户的意图金额。”
+
+这是正确的 Data Lineage 判断。
+
+不过，本题已假设它们是**同一次用户兑换的两段 Multi-hop**，且每段成交金额约为 $1,000。在这个前提下：
+
+```text
+Pool-level Gross Volume ≈ $2,000
+User-level Routed Volume ≈ $1,000
+```
+
+要明确区分：
+
+- **已确认属于同一个用户兑换请求：**可以按一次用户级兑换计算，约 $1,000。
+- **只观察到同一 Transaction 内的两条 Swap Event：**不能直接认定它们属于一次用户兑换，因此也不能可靠确定 User-level Routed Volume。
+
+你强调的是第二种情况，这个警惕是正确的。
+
+### 第 3 点：需要修正
+
+你列举的原因，适用于上一节课程中的 **Token Flow / Route Reconstruction 异常排查**，但不是本题两个 Volume 不相同的主要原因。
+
+本题真正的原因是 **Grain（事实粒度）和 Metric Definition（指标定义）不同**。
+
+```text
+User Intent:
+USDC → UNI
+    │
+    ├── Pool Swap 1: $1,000
+    └── Pool Swap 2: $1,000
+
+Pool-level Volume:
+$1,000 + $1,000 = $2,000
+
+User-level Routed Volume:
+$1,000
+```
+
+Pool-level Volume 统计各 Pool 实际执行的成交活动；User-level Routed Volume 统计用户级兑换的经济金额。
+
+**两个指标都正确，但不能混用。** 如果把 Pool-level Volume 的总和直接当成用户成交金额，就可能造成 Double Counting（重复计算）。
+
+### 第 4 点：通过
+
+你对两个概念的区分正确：
+
+```text
+Multi-hop
+= Sequential / chained execution
+
+Split Routing
+= Multiple logical paths / order allocation
+```
+
+Multi-hop 是串行路径，Split Routing 是一个交易请求被拆分到多条逻辑执行路径。
+
+---
+
+本题只剩一个需要确认的点：
+
+**在已经确认两段各 $1,000 的 Swap 属于同一个用户 Multi-hop 请求时，为什么 Pool-level Volume 是 $2,000，而 User-level Routed Volume 只有约 $1,000？**
+
+用一两句话说明不同的统计口径即可。

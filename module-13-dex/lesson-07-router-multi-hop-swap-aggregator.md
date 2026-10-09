@@ -1211,3 +1211,42 @@ Swap B: WETH → UNI
 5. 如果一次 Reorg 删除了原来的 Pool Swap Events，对上层 Routed Swap 应该做什么？
 
 本课先停在理解检查。你可以逐题回答，我会按课程规则逐轮校准并同步。
+
+## 用户回答（理解检查｜问题一）
+
+1. 从 Alice 的业务视角，这是一次兑换请求
+2. 从 Pool Level 视角，应该记录两条 Swap Fact
+3. 这里的 WETH 称为 Intermediate Token（中间代币）。
+4. 不能，因为从 Pool 的角度来看，这是有两个 Pool 发生的事件，一条 Swap Fact 体现不了这个情况。
+
+## 老师判断 / 校准（问题一）
+
+**判定：通过，4 个小题全部正确。**
+
+1. **User-level Swap Intent：1 次。** Alice 只发起了一次 `USDC → UNI` 的兑换请求。
+2. **Pool-level Swap Fact：2 条。** Pool A 执行 `USDC → WETH`，Pool B 执行 `WETH → UNI`。
+3. **WETH 是 Intermediate Token（中间代币）。** 它连接两段兑换路径，并非 Alice 最终希望获得的资产。
+4. **不能合并成一条 Pool Swap Fact。** 两个 Pool 分别执行了兑换，应当保留两条独立的 Swap Event 记录。
+
+### 补充一个工程细节
+
+你在第 4 点强调“两个 Pool 发生了事件”，这个判断正确。但还要进一步理解：
+
+**即使同一个 Pool 在一笔 Transaction 中连续执行两次 Swap，也必须记录两条 Pool-level Swap Fact。**
+
+因为本课的 Grain 是：
+
+```text
+One Pool Swap Event
+= One Pool-level Swap Fact
+```
+
+对应 Unique Key：
+
+```text
+chain_id + tx_hash + log_index
+```
+
+因此，决定事实表记录数量的是 **Swap Event 的数量**，而不是 Pool 的数量，也不是 Transaction 的数量。
+
+这也是后续区分 `Pool-level Volume` 与 `User-level Routed Volume` 的基础。

@@ -1348,3 +1348,35 @@ Multi-hop 是串行路径，Split Routing 是一个交易请求被拆分到多�
 **在已经确认两段各 $1,000 的 Swap 属于同一个用户 Multi-hop 请求时，为什么 Pool-level Volume 是 $2,000，而 User-level Routed Volume 只有约 $1,000？**
 
 用一两句话说明不同的统计口径即可。
+
+
+## 用户回答（理解检查｜问题二校准确认）
+
+Pool-level Volume 统计各 Pool 实际执行的成交活动；User-level Routed Volume 统计用户级兑换的经济金额
+
+## 老师判断 / 校准（问题二最终确认）
+
+**判定：问题二全部通过。**
+
+你的理解准确：
+
+- **Pool-level Volume**：统计各个 Pool 实际执行的成交量。
+- **User-level Routed Volume**：统计用户级兑换请求对应的经济金额。
+
+在本题已经确认两段 Swap 属于同一次 Multi-hop 的前提下：
+
+```text
+Pool A Volume = $1,000
+Pool B Volume = $1,000
+
+Pool-level Gross Volume = $2,000
+User-level Routed Volume ≈ $1,000
+```
+
+两个数字都正确，因为它们属于不同的 **Grain 和 Metric Definition**。
+
+这里最重要的工程原则是：
+
+**Different business grains require different metric definitions.**
+
+问题二的全部理解检查现已通过。

@@ -1380,3 +1380,60 @@ User-level Routed Volume ≈ $1,000
 **Different business grains require different metric definitions.**
 
 问题二的全部理解检查现已通过。
+
+
+## 用户回答（理解检查｜问题三）
+
+1. 不能
+2. 还需要检查：
+   ```text
+   Token address
+   Amount consistency
+   Execution order
+   Contract identity
+   Transaction context
+   ```
+3. Swap.sender 表示直接调用 Pair `swap()` 的地址。tx.from 表示tx的发起人。
+4. `fact_dex_pool_swap`   Grain: one successful Pool Swap Event
+
+   `fact_dex_routed_swap`   Grain:one reliably reconstructed logical swap intent
+
+5. Routed Swap 应该做 noncanonical 处理
+
+## 老师判断 / 校准（问题三）
+
+**判定：通过。五个问题的核心理解均正确。**
+
+1. **不能仅凭相同的 `tx_hash` 确认一次 Multi-hop。** 因为一个 Transaction 可以包含多次独立的 Swap Intent。
+2. **Route Reconstruction 需要更多证据。** 你列出的 Token Address、Amount Consistency、Execution Order、Contract Identity 和 Transaction Context 都是重要的验证条件。还可以结合 Router Calldata、Execution Trace 和 Token Transfer 记录来确认执行路径。
+3. **`Swap.sender` 与 `tx.from` 是不同角色。** 你的解释正确。补充一点：`tx.from` 是链上 Transaction 的发送方，但并不一定是最终经济意义上的 Trader。
+4. **两张 Fact 表的 Grain 正确。**
+   - `fact_dex_pool_swap`：One successful Pool Swap Event。
+   - `fact_dex_routed_swap`：One reliably reconstructed logical swap intent。
+5. **Reorg 处理方向正确。** 原 Pool Swap Events 所属的区块分支被移除后，依赖这些事件形成的 Routed Swap 也必须撤销其 Canonical 有效性。
+
+第 5 点再补充一条完整的工程处理链：
+
+```text
+Reorg detected
+    ↓
+Invalidate orphaned Pool Swap Facts
+    ↓
+Invalidate affected Routed Swap Facts
+    ↓
+Replay canonical chain
+    ↓
+Reconstruct affected routes
+    ↓
+Refresh downstream analytics
+```
+
+这里要区分 `Non-canonical` 与 `Deleted`：如果数据平台保留历史分叉记录，可以将旧事实标记为 Non-canonical；如果 Canonical Fact 表只保存有效主链记录，则需要撤销或替换旧事实。无论采用哪种物理存储策略，下游统计都不能继续使用被废弃分支的数据。
+
+**第 7 课三道理解检查全部通过，达到正式结课标准。**
+
+## 结课判定
+
+Module 13 第 7 课《Router、Multi-hop Swap 与 Aggregator：一笔交易为什么有多个 Swap》正式通过。
+
+已能区分 Router / Pool / Aggregator，Single-hop / Multi-hop / Split Routing，Pool-level Swap Fact 与 User-level Routed Swap Fact，正确解释不同 Volume Grain、Route Reconstruction 所需链上证据，以及 Reorg 对派生 Routed Swap Fact 的影响。

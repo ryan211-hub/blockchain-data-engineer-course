@@ -26,11 +26,11 @@
 - Module 8 完成结论：第 1～8 课与结束标准综合检查均已完成，已达到 Module Contract 结束标准。已能从 Query Semantics 推导 Business Object、Grain、Source Identity、Unique Key、Fact / Dimension、Relation 与 Layer，并区分 Source Identity 与 Business Identity。
 - Module 9 完成结论：第 1～7 课与结束标准综合检查均已完成，达到 Module Contract 结束标准。已能独立设计基础 Blockchain Batch ETL Pipeline，并解释 Source / Target、Processing Range、Grain、Unique Key、Watermark / Cursor / Checkpoint、Idempotency、Validation、Late-arriving / Reorg、Lookback / Backfill / Historical Repair、DAG Dependency 与 Scheduler / Orchestrator。
 - 当前 Lesson：Module 13 第 9 课｜DEX Analytics：Volume、Liquidity、Price、Fee 与 Wallet Behavior
-- 当前状态：Module 13 第 8 课问题驱动重学版已全部通过，正式结课；第 9 课尚未开始。
+- 当前状态：Module 13 第 9 课《DEX Analytics：Volume、Liquidity、Price、Fee 与 Wallet Behavior》Canonical Base 已正式讲授并同步到 Notion/GitHub，进入理解检查阶段，尚未结课；第 8 课已完成。
 - 最近完成：Module 13 第 8 课《DEX Data Modeling》问题驱动重学版正式完成。
 - 最近掌握重点：从业务查询推导 Pool Dimension、Swap Fact、State Change History 和 Daily Snapshot，区分 Reserve Net Change、Pool Gross Volume 和 User-level Routed Volume。
 - 历史同步债务处理决定：用户已明确要求忽略 Module 8 第 4～6 课的既有 Notion / GitHub 同步债务与第 5 课 Canonical Drift；这些历史问题不再修复，也不再阻塞课程推进。
-- 下一步准确入口：用户请求后开始 Module 13 第 9 课《DEX Analytics：Volume、Liquidity、Price、Fee 与 Wallet Behavior》。
+- 下一步准确入口：继续 Module 13 第 9 课《DEX Analytics：Volume、Liquidity、Price、Fee 与 Wallet Behavior》理解检查（从问题一开始）；按问题驱动教学规则逐轮校准并同步。
 
 ## 目录
 

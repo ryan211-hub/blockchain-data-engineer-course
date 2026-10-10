@@ -1075,3 +1075,142 @@ USDC → WETH → UNI
 3. 如果发生 Reorg，`fact_dex_pool_swap` 和每日 DWS 分别需要怎样处理？
 
 本课先进入理解检查阶段。可以逐题回答，校准通过后再正式结课。
+
+
+---
+
+## 课堂补充备注｜Pool State 历史保存、Block-end Snapshot 与 Daily Snapshot
+
+> 本节记录第 8 课围绕“为什么不能用覆盖更新的 Pool Current State 还原历史 Reserve”展开的追问与校准。属于课后补充，不改动上方 Canonical Base，不表示第 8 课已结课。
+
+### 1. 最初困惑：保存 Reserve 是保存到哪里？
+
+**学员的问题：**
+
+- 如果将 Block-end Snapshot 更新到 \`current_dex_pool_state\`，这个表每个 Pool 只留一条最新状态；保存多次也不会保留历史。
+- 如果把 Block-end Snapshot 写入历史表，区块内部多次 Swap 的中间状态仍然没有保存，无法满足逐笔历史查询。
+- 因此，需要先解释保存目标和粒度，而不能笼统说“保存 Block-end Pool State”。
+
+**校准结论：上述两点均正确。** “Block-end”描述状态取样的时间边界；“Current/History”描述持久化结果的用途和保留方式。这是两个不同维度的设计选择。
+
+### 2. 银行账户余额类比：Current State 不等于 History
+
+银行账户余额的变化：
+
+\`\`\`text
+10:00  balance = 10,000
+11:00  balance = 15,000
+12:00  balance = 12,000
+\`\`\`
+
+如果 \`bank_account.balance\` 每次只用 \`UPDATE\` 覆盖，最终仅剩 12,000。要回答“11:30 的余额是多少”，不能只靠当前余额表；必须依赖完整流水、余额变化历史或过去的状态快照。
+
+对应 DEX：
+
+\`\`\`text
+dim_dex_pool              = Pool 身份、token0/token1、fee tier 等相对稳定的属性
+current_dex_pool_state    = 最新有效 Pool State（一池一条的物化当前状态）
+pool_state_change_history = 每次相关状态变化后的历史版本
+pool_block_snapshot       = 指定 Block 执行完毕后的 Pool State
+daily_pool_snapshot       = 按业务日期截止边界定义的日末 Pool State
+\`\`\`
+
+以上均为**建议的逻辑表名**，不是 Uniswap 官方固定表结构。教材中较笼统的 \`fact_dex_pool_state\` 应在工程设计时明确所指 Grain，不能自动视为“每小时一次”或“每个 Block 一次”。
+
+### 3. Block、Transaction、Swap 的包含关系与顺序
+
+一个 Ethereum Block 可包含多笔 Transaction；一笔 Transaction 可执行一次或多次 Pool Swap。因此“一块内三次 Swap”不等于“三笔 Transaction”，也不要求来自同一个 Pool；以下例子特意约定三笔 Transaction 都修改 **Pool A**：
+
+\`\`\`text
+Block #1000（教学示例，非真实高度）
+  Transaction 10  → Pool A Swap 1 后：103,000 USDC Reserve
+  Transaction 35  → Pool A Swap 2 后：105,000 USDC Reserve
+  Transaction 120 → Pool A Swap 3 后：102,000 USDC Reserve
+\`\`\`
+
+假设 Block 开始前 Reserve 为 100,000 USDC。若 Indexer 仅保存 Block #1000 完成后的快照，将记录：
+
+\`\`\`text
+(pool=A, block=1000, reserve=102,000)
+\`\`\`
+
+它并不保留中间的 103,000 和 105,000。要查询第二次 Swap **执行之前**的 Reserve，正确值是 103,000；仅凭该 Block-end Snapshot 不能直接回答。
+
+Indexer 可以在处理一个 Block 时，按正确执行顺序解析有关事件并更新内存中的 Pool State；对 Uniswap v2，可利用代表 Reserve 更新结果的 \`Sync\` Event。是否把每次中间状态落库，取决于选定的保存策略。若同一 Pool 一块内有多次相关更新，Change History 可以保存多条，而 Block-end Snapshot 对该 Pool/Block 通常最多保存一条。
+
+### 4. 三种历史策略：定时快照、变化历史、拉链表
+
+| 策略 | Grain / 写入时机 | 优点 | 限制 |
+|---|---|---|---|
+| Periodic Snapshot | 一池 × 一个采样时点；如每小时/每天 | 行数相对少，适合趋势报表 | 不能独立还原采样间隔内每次变化 |
+| Block-end Snapshot | 一池 × 一个区块结束边界（可只记发生变化的池） | 能还原区块末状态；适合按区块历史查询 | 丢失同一 Block 内的中间状态 |
+| State Change History | 一池 × 一次相关状态变化 | 可按事件/执行顺序还原细粒度历史 | 数据量与维护成本较高 |
+| SCD Type 2 拉链表 | 一池 × 一个状态有效区间 \`[valid_from, valid_to)\` | 便于按有效区间查询 | 高频更新需关闭旧区间，Reorg 修复更复杂 |
+
+**关系：** Change History 与 SCD2 表达的是相近的状态变化事实；前者通常保存“变更点及变更后状态”，后者增加“有效起止区间”。也可从 Change History 派生 SCD2、Current State、Block-end 或 Daily Snapshot；并不要求物理上必须建齐所有表。
+
+如果需要某次 Swap 前的精确状态，应保留足够细的变化历史或具有等价精度的可重放执行数据，并按区块高度、Transaction 顺序及事件/调用语义确定状态边界，而不是仅按时间戳或 Block 号查最近一行。
+
+### 5. 为什么“每天结束时的 Reserve”与 Block-end State 有关系？
+
+**学员的追问：** 业务说“过去 90 天每天结束时 Pool A 的 Reserve”，但链上只有 Block，怎么对应到每天？
+
+先定义业务日的时区，例如 **UTC**。对于 \`2026-10-09\` 的日末状态，找到满足以下条件的 **最后一个 Canonical Block**：
+
+\`\`\`text
+block_timestamp < 2026-10-10 00:00:00 UTC
+\`\`\`
+
+然后取该 Block 执行完毕之后 Pool A 的 Reserve，作为 2026-10-09 的 End-of-Day Reserve（需满足数据完整性与确认/Finality 要求）。
+
+教学例子：
+
+\`\`\`text
+2026-10-09 23:59:35 UTC → Block #1000
+2026-10-09 23:59:47 UTC → Block #1001
+2026-10-09 23:59:59 UTC → Block #1002  ← 当日最后有效 Block
+2026-10-10 00:00:11 UTC → Block #1003
+\`\`\`
+
+注意：**Block #1002 不一定包含 Pool A 的任何 Swap。** 如果 Pool A 上次 Reserve 变化发生在 Block #980，且之后没有变化，则 Block #1002 结束时它仍沿用 #980 变化后的状态。Daily Snapshot 不要求在当天最后一个 Block 中发生 Pool 交易。
+
+构建 \`daily_pool_snapshot\` 的逻辑：
+
+\`\`\`text
+按 UTC 日确定截止边界
+  → 查找到截止前最后一个 Canonical Block
+  → 找到该 Block 结束时 Pool 的有效状态
+  → 保存 (trade_date_utc, chain_id, pool_address, reserve0, reserve1, state_block)
+\`\`\`
+
+可以由 State Change History 推导：选择截止边界之前最后一次有效更新后的状态；也可以由完整且可正确回溯的 Block-end Snapshot / 状态服务获得。对没有变更的 Pool 需要沿用先前状态（carry forward）。
+
+### 6. 推荐的数据工程实现与 Reorg 处理
+
+\`\`\`text
+Raw canonical blocks / receipts / logs
+                  │
+                  ▼
+     Protocol-specific state decode
+                  │
+                  ▼
+       Pool State Change History
+           │          │
+           ▼          ▼
+     Current State   Periodic / Block-end / Daily Snapshot
+        (latest)             (historical analytics)
+\`\`\`
+
+- \`current_dex_pool_state\`：保留每个 Pool 最新 Canonical State；可以由完整历史计算，也可以维护为提高实时查询效率的物化视图。
+- \`pool_state_change_history\`：关注准确的状态变化顺序。对于 v2 可从 \`Sync\` 获得 Reserve 更新后数值；v3 的 Price、Tick、Liquidity 及 Position 状态需要协议特定模型，不能直接照搬 v2 Reserve。
+- \`pool_block_snapshot\`：可以记录每块每池，也可以仅记录有变化的 Pool；后者查询任意区块状态时需向前找到最后一次有效快照。
+- \`daily_pool_snapshot\`：是**业务日期粒度的派生结果**，不是 Ethereum 协议内建对象；要明确 UTC/其他时区边界、数据完成条件。
+- **Reorg / Finality**：分叉使旧 Block 不再 Canonical 时，应撤销/失效受影响的历史状态，沿新 Canonical 分支重放并修正 Current、Block-end、Daily 等下游数据；最终报表可等待约定的 Finality 后产出。
+
+### 7. 课堂理解要点与当前进度
+
+学员已经正确指出：只覆盖 Current State 丢失历史；只保存 Block-end State 则无法覆盖 Block 内中间状态。也已理解“日末状态”是业务定义的日期边界所对应的最后一个有效 Block 执行后的状态，**不等于当天最后一次 Swap 恰好发生在最后一个 Block**。
+
+**本课关键原则：Storage granularity should be determined by query and correctness requirements.**
+
+备注仅记录上述讨论与纠错；**Module 13 第 8 课仍处于理解检查中，尚未正式结课。**

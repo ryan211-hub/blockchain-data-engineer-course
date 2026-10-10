@@ -936,3 +936,29 @@ A. 100,000 USDC，因为当天没有 Swap。
 B. 120,000 USDC，因为日末 Pool State 已经改变。
 
 你回答 A 或 B 即可。通过后，问题二就正式完成。
+
+
+## 用户回答（问题驱动重学版｜问题二补充确认）
+
+b
+
+## 老师判断 / 校准（问题二最终确认）
+
+**正确，选择 B。第 8 课（重学版）问题二正式通过。**
+
+即使当天没有 Swap，Liquidity Provider 添加流动性仍然会改变 Pool Reserve。
+
+因此，当天的 Daily Snapshot 应记录：
+
+```text
+Swap Count = 0
+End-of-Day USDC Reserve = 120,000
+```
+
+关键原则是：
+
+**Daily Snapshot 反映指定日期结束时的实际 Pool State，而不是当天是否发生过 Swap。**
+
+只有确认当天没有相关 State Change，才能沿用前一天的 Reserve。
+
+目前问题一、问题二均已通过，接下来是问题三：验证业务指标。

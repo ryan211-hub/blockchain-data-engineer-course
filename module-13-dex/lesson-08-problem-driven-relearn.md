@@ -962,3 +962,76 @@ End-of-Day USDC Reserve = 120,000
 只有确认当天没有相关 State Change，才能沿用前一天的 Reserve。
 
 目前问题一、问题二均已通过，接下来是问题三：验证业务指标。
+
+
+## 用户回答（问题驱动重学版｜理解检查问题三）
+
+问题三：
+
+1. 净变化 2,000 USDC&#x20;
+2. Pool Gross Volume 是 8000 USDC
+3. 这两个业务对象是不一样的， 它们的值不一样是正常的。
+4. 不一定，从 Pool Swap Fact 反推不出 user-level 的情况，还需要其他一些信息
+
+## 老师判断 / 校准（问题三）
+
+**判定：通过。四个回答的核心判断全部正确。**
+
+### 1. Reserve 净变化：正确
+
+```text
++3,000 USDC
++2,000 USDC
+-3,000 USDC
+--------------
++2,000 USDC
+```
+
+Pool A 的 USDC Reserve 净增加 2,000 USDC。
+
+### 2. Pool Gross Volume：正确，注意计价单位
+
+三次成交的 USDC 一侧金额合计为：
+
+```text
+3,000 + 2,000 + 3,000 = 8,000 USDC
+```
+
+本题假设每次交易均按 `1 USDC = 1 USD` 估值，因此：
+
+```text
+pool_gross_volume_usd = $8,000
+```
+
+你的数值正确。只是要区分 **8,000 USDC 的 Token Amount** 与 **8,000 USD 的估值金额**。
+
+### 3. 为什么两个数字不同？
+
+你的判断方向正确，但术语可以更准确。
+
+这里不是两个完全不同的业务对象，而是对同一组 Pool 交易事实使用了两种不同的指标定义：
+
+- **Reserve Net Change**：统计储备余额的净增减，考虑正负方向。
+- **Pool Gross Volume**：统计执行过的成交活动规模，不用买卖方向相互抵消。
+
+因此，同一天完全可能出现较大的 Trading Volume，但很小的 Reserve Net Change。
+
+### 4. 能否直接得到 User-level Routed Volume？
+
+正确，不能保证。
+
+Pool Swap Fact 记录每个 Pool 的执行事件，不一定能完整说明用户级 Swap Intent。
+
+需要进一步结合 Router Calldata、Execution Trace、Token Transfer 和协议特定的路由证据，才能可靠重建用户级兑换。
+
+你已经掌握本课核心逻辑：
+
+**先确定 Business Question，再确定 Grain、数据来源和计算口径。**
+
+至此，**第 8 课重学版三组理解检查全部通过，达到正式结课标准。**
+
+## 结课判定
+
+Module 13 第 8 课《DEX Data Modeling：从一个真实查询需求推导数据模型》（问题驱动重学版）正式通过并结课。
+
+已能从 Pool A 的真实查询需求逐步推导 Pool Dimension、Pool Swap Fact、State Change History、Daily Snapshot、Token Metadata 与 USD Valuation 的职责及 Grain；能够区分 Reserve Net Change 与 Pool Gross Volume，解释池内执行与用户级路由之间的口径边界。原第 8 课 Canonical Base 及课堂补充备注保留，不覆盖。

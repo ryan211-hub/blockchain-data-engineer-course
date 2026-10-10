@@ -784,3 +784,60 @@ Pool A 在当天发生三次 Swap：
 ---
 
 这次先停在这里。你可以继续采用逐题回答的方式；我们会围绕同一个场景逐步检查，而不是切换到另一套无关的问题。
+
+
+## 用户回答（问题驱动重学版｜理解检查问题一）
+
+问题一：
+
+1. 不能，因为 `dim_dex_pool`   是定义了 各种pool 业务对象，表里并没有swap数据。
+2. `fact_dex_pool_swap`   保存的是每一次的swap event。
+3. one day one pool Swap Count
+
+## 老师判断 / 校准（问题一）
+
+**判定：通过。三个回答都抓住了核心，第 3 点补充一个工程细节。**
+
+**1. 为什么不能只用 `dim_dex_pool`？**
+
+正确。`dim_dex_pool` 主要描述 Pool 的身份和业务属性，例如 Token Pair、Protocol Version、Fee Tier。它不记录每次 Swap，因此无法独立回答交易明细和交易次数。
+
+**2. 为什么 `fact_dex_pool_swap` 的 Grain 是一条 Swap Event？**
+
+正确。每条 Swap Event 代表一次实际的 Pool-level Swap Execution。
+
+即使同一 Transaction 包含多次 Swap，也应分别记录。对应 Unique Key：
+
+```text
+chain_id + tx_hash + log_index
+```
+
+**3. Daily Swap Count 的汇总 Grain 是什么？**
+
+你回答的 `one day one pool Swap Count` 是正确方向。
+
+需要补充：在多链数据仓库中，还必须包含 `chain_id`，并明确日期使用 UTC。
+
+```text
+Grain:
+One UTC Date
++
+One Chain
++
+One Pool
+```
+
+例如：
+
+| trade_date_utc | chain_id | pool_address | pool_swap_count |
+|---|---|---|---:|
+| 2026-10-09 | 1 | Pool A | 3 |
+
+这里要注意：
+
+- `trade_date_utc + chain_id + pool_address` 是汇总表的 Grain / Unique Key。
+- `pool_swap_count = 3` 是该 Grain 下计算出来的 Metric（指标）。
+
+这两者不能混淆。
+
+你已经建立了本题最重要的认识：**Pool Dimension 描述对象，Swap Fact 记录事件，Daily Summary 汇总事件。**

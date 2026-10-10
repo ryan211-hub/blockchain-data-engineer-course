@@ -75,10 +75,10 @@ Module 13 聚焦 DEX（Decentralized Exchange，去中心化交易所），目�
 
 - 当前阶段：第四阶段 Protocol
 - 当前 Module：Module 13 — DEX
-- 已完成 Lesson：第 1 课｜为什么会有 DEX：从 Order Book 到 AMM；第 2 课｜AMM 的定价逻辑：从 `x * y = k` 理解 Pool Price；第 3 课｜Execution Price、Price Impact 与 Slippage；第 4 课｜Liquidity Provider：Liquidity、Fee 与 Impermanent Loss；第 5 课｜Uniswap v2：Pool / Reserve / Swap 的完整数据语义；第 6 课｜Uniswap v3：Concentrated Liquidity、Tick 与 Position；第 7 课｜Router、Multi-hop Swap 与 Aggregator：一笔交易为什么有多个 Swap
-- 当前 Lesson：第 8 课｜DEX Data Modeling：Swap Fact、Pool Dimension 与核心指标
-- 当前状态：第 8 课问题驱动重学版已讲授并同步；正在进行新版理解检查，原版和课堂补充备注保留，尚未结课。
-- 下一步准确入口：继续 Module 13 第 8 课问题驱动重学版理解检查（问题一）；通过后再结课。
+- 已完成 Lesson：第 1 课｜为什么会有 DEX：从 Order Book 到 AMM；第 2 课｜AMM 的定价逻辑：从 `x * y = k` 理解 Pool Price；第 3 课｜Execution Price、Price Impact 与 Slippage；第 4 课｜Liquidity Provider：Liquidity、Fee 与 Impermanent Loss；第 5 课｜Uniswap v2：Pool / Reserve / Swap 的完整数据语义；第 6 课｜Uniswap v3：Concentrated Liquidity、Tick 与 Position；第 7 课｜Router、Multi-hop Swap 与 Aggregator：一笔交易为什么有多个 Swap；第 8 课｜DEX Data Modeling：从一个真实查询需求推导数据模型（问题驱动重学版）
+- 当前 Lesson：第 9 课｜DEX Analytics：Volume、Liquidity、Price、Fee 与 Wallet Behavior
+- 当前状态：第 8 课问题驱动重学版三组理解检查全部通过，正式结课；原版教材与补充备注保留。第 9 课尚未开始。
+- 下一步准确入口：用户请求后开始 Module 13 第 9 课｜DEX Analytics：Volume、Liquidity、Price、Fee 与 Wallet Behavior。
 
 ## 课程路径
 

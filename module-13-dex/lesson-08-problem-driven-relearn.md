@@ -841,3 +841,98 @@ One Pool
 这两者不能混淆。
 
 你已经建立了本题最重要的认识：**Pool Dimension 描述对象，Swap Fact 记录事件，Daily Summary 汇总事件。**
+
+
+## 用户回答（问题驱动重学版｜理解检查问题二）
+
+问题二：
+
+1. 不能， Current State 查询的是当前最新的 pool state.
+2. 只保存 Block-end Snapshot 可以查询到昨天日末的 Reserve ，但查不到 另一个问题
+3. State Change History 已经保存了 State Change 的所有数据。
+4. Daily Snapshot 按正常的逻辑处理， 只是state 没有变化， Reserve与前一天一样。
+
+## 老师判断 / 校准（问题二）
+
+**判定：第 1、2、3 题正确；第 4 题需要补充一个重要的边界条件。**
+
+### 1. Current State 能否满足历史查询？
+
+**正确。**
+
+`current_dex_pool_state` 保存最新有效的 Pool State，不能单独回答昨天日末或者某次历史 Swap 之前的 Reserve。
+
+### 2. Block-end Snapshot 能否满足两个需求？
+
+**正确。**
+
+- 查询昨天日末 Reserve：可以，前提是快照或其历史记录足以还原日末对应区块的状态。
+- 查询 Block #1000 中第二次 Swap 之前的 Reserve：仅凭 Block-end Snapshot 不行，因为它没有记录区块内的中间状态。
+
+你已经明确区分了 **Block-level History 与 Event-level History**。
+
+### 3. State Change History 为什么支持细粒度查询？
+
+**正确，但有一个前提。**
+
+你说它保存了所有 State Change，这是核心原因。
+
+更精确地讲，需要保存相关状态变化后的值及其执行顺序，才能确定任意一次 Swap 之前的状态。
+
+例如：
+
+```text
+Before Swap 1: 100,000
+After  Swap 1: 103,000
+
+Before Swap 2: 103,000
+After  Swap 2: 105,000
+```
+
+所以第二次 Swap 前的 Reserve 是 103,000 USDC。
+
+### 4. 没发生 Swap，Daily Snapshot 是否直接沿用前一天？
+
+**有条件地正确。**
+
+如果 Pool 当天确实没有发生任何改变 Reserve 的操作，那么你说得对：Daily Snapshot 仍需要生成，Reserve 沿用前一天的状态。
+
+但要特别注意：
+
+**没有 Swap，不代表 Pool Reserve 一定没有变化。**
+
+例如 Uniswap v2 中，Liquidity Provider（流动性提供者）可以增加或移除流动性，触发 Reserve 更新，即使当天没有发生 Swap。
+
+因此应采用：
+
+```text
+当天没有 Swap
+       ↓
+检查是否还有其他 Reserve State Change
+       │
+       ├── 有变化 → 使用当天日末有效的新 Reserve
+       │
+       └── 无变化 → Carry Forward 前一天 Reserve
+```
+
+决定 Daily Snapshot 数值的依据是 **State 是否变化**，不是 **Swap Count 是否为零**。
+
+### 一个小确认
+
+假设 Pool A 在某一天：
+
+```text
+Swap Count = 0
+
+Liquidity Provider 添加流动性
+导致 USDC Reserve:
+100,000 → 120,000
+```
+
+那么当天的 Daily Snapshot 应保存：
+
+A. 100,000 USDC，因为当天没有 Swap。
+
+B. 120,000 USDC，因为日末 Pool State 已经改变。
+
+你回答 A 或 B 即可。通过后，问题二就正式完成。

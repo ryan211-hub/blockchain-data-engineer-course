@@ -965,3 +965,134 @@ unique_tx_senders = 2
 2. 为什么 Alice、Bob 两个不同的交易发送地址，不一定对应两个不同的真实用户？
 
 回答后就可以完成问题二的校准。
+
+
+## 学员决定（问题二校准及问题三）
+
+这里跳过吧， 然后第三题你来回答一下
+
+## 教师回应：问题二跳过与问题三示范解答
+
+好的。**问题二剩余的补充校准按你的要求跳过**，不再追问。记录为“学员主动跳过”，不视为考核通过。
+
+下面由我示范回答第 9 课的第三题。
+
+## 问题三：Analytics Aggregation
+
+### 1. 为什么不能 SUM 最近七天的 TVL 和 Unique Traders？
+
+这两个指标的问题不同。
+
+**第一，TVL 是 Point-in-time Metric（时点指标）。**
+
+假设 Pool A 连续七天的日末 TVL 都是 $240,000。
+
+```text
+Day 1: $240,000
+Day 2: $240,000
+...
+Day 7: $240,000
+```
+
+直接 `SUM(TVL)` 得到 $1,680,000，并不能说明这个 Pool 拥有 $1,680,000 的流动性。
+
+如果业务要求的是“七个日末 TVL 的平均值”，可以使用：
+
+```sql
+SELECT AVG(end_of_day_tvl_usd)
+FROM dws_dex_pool_daily
+WHERE pool_address = :pool_address
+  AND trade_date_utc BETWEEN :start_date AND :end_date;
+```
+
+如果要求真正的七天 Time-weighted Average TVL（时间加权平均 TVL），则可能需要更细粒度的状态及估值历史。
+
+**第二，Unique Traders 是去重指标，不能跨日期简单相加。**
+
+假设：
+
+```text
+Monday:    Alice, Bob       → 2
+Tuesday:   Alice, Charlie   → 2
+Wednesday: Alice, Bob       → 2
+```
+
+每日人数之和是 6，但三天实际只有三个不同地址：
+
+```text
+Alice
+Bob
+Charlie
+```
+
+因此，周级 Unique Traders 应在整个七天范围内重新去重，并且保持相同的 Trader Attribution 规则。
+
+### 2. 最近七天的 Total Trading Volume 能否 SUM 每日 Volume？
+
+**可以，但有前提。**
+
+因为 Trading Volume 是 Period Metric（期间指标），其金额通常可以跨不重叠的时间段累加。
+
+```sql
+SELECT
+    chain_id,
+    pool_address,
+    SUM(pool_gross_volume_usd) AS volume_7d_usd
+FROM dws_dex_pool_daily
+WHERE trade_date_utc BETWEEN :start_date AND :end_date
+GROUP BY chain_id, pool_address;
+```
+
+必须保证数据符合相同的统计口径，包括：
+
+- 同一个 Chain、Pool 及 Pool Gross Volume 定义。
+- 每天的 UTC 日期区间没有重复或遗漏。
+- USD Valuation Method 一致，金额没有重复计算。
+- 使用有效的 Canonical 数据，且所有日期的数据已达到规定的完整性要求。
+
+这里求出的是 **7-day Pool Gross Volume**，不能直接当作 7-day User Routed Volume。
+
+### 3. 如果发生 Reorg，Daily Pool Analytics 应怎样处理？
+
+需要执行：
+
+```text
+Detect Reorg
+      ↓
+Find Common Ancestor
+      ↓
+Invalidate Old Branch Facts
+      ↓
+Replay New Canonical Branch
+      ↓
+Recompute Affected Daily Metrics
+      ↓
+Reconcile and Publish Corrections
+```
+
+例如旧分支包含一笔 $3,000 的 Swap，而新 Canonical Branch 中没有这笔交易。
+
+那么受到影响的指标可能包括：
+
+| 指标 | 修正方式 |
+|---|---|
+| Pool Swap Count | 移除旧事件，统计新分支事件 |
+| Pool Gross Volume | 重新汇总有效 Swap |
+| Gross Swap Fee | 根据新交易集合重新估算 |
+| Unique Transaction Senders | 对受影响日期重新去重 |
+| End-of-Day TVL | 根据修正后的 Pool State 和估值重算 |
+| End-of-Day Price | 根据修正后的日末有效 State 重算 |
+
+尤其要注意：Unique Traders 不能简单通过 `count - 1` 修正，因为被撤销的地址可能仍有其他有效交易。
+
+另外，如果 Reorg 改变了某个 Pool 的日末状态，依赖该状态的后续 Daily Snapshot 也可能需要修正，直到状态重新收敛或完成必要的历史重建。
+
+**本题核心结论：**
+
+> Aggregation rules depend on metric semantics, not merely on database column types.
+
+即：一个指标能否 `SUM`、`AVG` 或 `COUNT(DISTINCT)`，取决于它的业务定义、Grain 和时间语义，而不是因为它恰好是数据库里的数值字段。
+
+---
+
+第 9 课理解检查目前的记录是：**问题一通过；问题二剩余校准主动跳过；问题三由教师示范解答。** 不将第三题记录为学员独立答题通过。

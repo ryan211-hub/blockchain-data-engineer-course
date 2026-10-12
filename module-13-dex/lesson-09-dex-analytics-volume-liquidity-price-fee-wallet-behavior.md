@@ -759,3 +759,104 @@ Swap 3: $3,000, tx.from = Alice
 ---
 
 本课正式内容到这里，进入理解检查阶段。可以从问题一开始逐题提交，我们继续按照课程规则逐轮校准，不提前结课。
+
+
+## 用户回答（理解检查｜问题一：Volume、Liquidity 与 Price）
+
+问题一：
+
+1. End-of-Day TVL 计算： 120000 usdc + 40\*3000  usdc &#x20;
+2. 1 WETH = $3,000USDC&#x20;
+3. **Volume** 主要来自交易执行事实，是期间指标。**Liquidity / TVL** 主要来自 Pool State 和估值，是时点指标。
+4. 对于 Uniswap v2 , 有了 TVL 可以分析Price Impact ， 但是Uniswap v3 ，需要在明确的 Pool State 下，对指定交易规模计算或模拟报价
+
+## 老师判断 / 校准（问题一）
+
+**判定：第 1、2、3 题通过；第 4 题方向正确，但需要修正一个关键概念。**
+
+### 1. End-of-Day TVL：正确
+
+你的计算方法正确：
+
+\[
+120{,}000\times1+40\times3{,}000=\$240{,}000
+\]
+
+计算 TVL 需要两个方面的数据：
+
+- **Pool State**：USDC 和 WETH 的日末 Reserve。
+- **Reference Prices**：这两种 Token 在对应估值时间的美元参考价格。
+
+因此，Pool A 的 End-of-Day TVL 为 **$240,000**。
+
+### 2. Pool Spot Price：正确
+
+\[
+\frac{120{,}000\ \text{USDC}}{40\ \text{WETH}}
+=3{,}000\ \text{USDC/WETH}
+\]
+
+也就是 1 WETH = 3,000 USDC。
+
+注意：这里是由 Pool Reserve 推导的 **Pool Spot Price**。它恰好与题目给定的参考美元价格数值一致，但两者并不是同一个数据概念。
+
+### 3. Volume 与 Liquidity 的区别：正确
+
+你对 Period Metric 和 Point-in-time Metric 的区分准确。
+
+- **Daily Trading Volume**：一天中累计发生多少交易，是期间指标。
+- **End-of-Day TVL**：某个时点 Pool 中资产的美元估值，是时点指标。
+
+即使当天 Volume 很高，Pool 在日末持有的资产价值也可能较低，反之亦然。
+
+### 4. TVL 是否足以计算 Price Impact：需要修正
+
+你认为 Uniswap v2 有了 TVL 就可以分析 Price Impact，而 v3 需要更详细的 Pool State。
+
+**这里的问题是：Uniswap v2 仅凭 TVL，同样无法可靠计算 Price Impact。**
+
+例如：
+
+```text
+Pool A TVL = $240,000
+Pool B TVL = $240,000
+```
+
+即使两者 TVL 相同，它们的 Token 组成、Reserve 比例及对应资产价格也可能不同。
+
+对于 v2，计算指定方向和金额的 Swap，需要知道：
+
+```text
+reserve_in
+reserve_out
+amount_in
+swap_fee
+```
+
+v2 的 Constant Product AMM（恒定乘积自动做市商）根据这些数据决定输出金额与 Price Impact。
+
+对于 v3，则还需要考虑当前价格、Active Liquidity，以及订单执行过程中可能跨越的 Tick / Liquidity Range。
+
+所以正确区别是：
+
+**v2 与 v3 都不能只靠 TVL 计算 Price Impact；只是 v3 的流动性分布模型更加复杂。**
+
+### 补充确认
+
+假设两个 Uniswap v2 Pool：
+
+```text
+Pool A:
+100,000 USDC + 50 WETH
+
+Pool B:
+200,000 USDC + 25 WETH
+```
+
+两者的 TVL 都按相同的独立美元参考价格估值，并且都为 $300,000。
+
+现在用户想用 **10,000 USDC 买入 WETH**。
+
+请判断：**两个 Pool 的 Price Impact 一定相同吗？为什么？**
+
+你只需要回答这个问题即可。通过后，问题一就正式完成。

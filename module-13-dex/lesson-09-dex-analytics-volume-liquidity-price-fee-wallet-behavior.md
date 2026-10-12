@@ -896,3 +896,72 @@ Pool B:
 对于 Uniswap v2，要结合具体 Reserve、交易方向、输入金额和 Fee 计算 Price Impact；对于 v3，还需要考虑 Active Liquidity 和 Tick 分布。
 
 **结论：理解检查问题一通过；问题二、三待回答，课程尚未结课。**
+
+
+## 用户回答（理解检查｜问题二：Fee 与 Wallet Behavior）
+
+问题二：
+
+1. 8000$ \* 0.3%
+2. &#x20;Gross Swap Fee != lp_profit_usd
+3. 2
+4. **Unique Wallet Addresses 不等于 Unique Human Users。**
+
+## 老师判断 / 校准（问题二）
+
+**判定：四个回答的方向都正确。第 1、3 题通过；第 2、4 题还需要补充原因。**
+
+### 1. Estimated Gross Swap Fee：正确
+
+你的计算式正确：
+
+\[
+\$8,000 \times 0.3\% = \$24
+\]
+
+在本题的简化估值假设下，当天的 **Estimated Gross Swap Fee 约为 $24**。
+
+### 2. Gross Swap Fee 是否等于 LP Profit？
+
+你回答：
+
+`Gross Swap Fee != lp_profit_usd`
+
+**判断正确，但还需要解释为什么。**
+
+Gross Swap Fee 是交易活动产生的总手续费估值。
+
+而某个 LP 的收益需要考虑其流动性份额、可能适用的 Protocol Fee、手续费归属及实现情况。如果进一步计算净利润，还需要考虑价格变化造成的损益和其他成本。
+
+因此，不能把整个 Pool 的 $24 直接当作某个 LP 的利润。
+
+### 3. Unique Transaction Senders：正确
+
+三次 Swap 的发送方分别是 Alice、Bob、Alice。
+
+因此：
+
+```text
+unique_tx_senders = 2
+```
+
+### 4. 为什么不等于 Unique Human Traders？
+
+你回答：
+
+> Unique Wallet Addresses 不等于 Unique Human Users。
+
+**结论正确，但还缺少背后的原因。**
+
+例如，一个人可以控制多个钱包地址；某个交易地址也可能是 Relayer 或其他服务的入口，而不直接代表最终经济交易者。
+
+我们只能确定本例有两个不同的 Transaction Sender 地址，不能仅凭这一点确定有两个真实的人类用户。
+
+### 补充确认
+
+请简单补充两个原因即可：
+
+1. 为什么整个 Pool 产生了 $24 的 Gross Fee，不代表某个 LP 就赚了 $24？
+2. 为什么 Alice、Bob 两个不同的交易发送地址，不一定对应两个不同的真实用户？
+
+回答后就可以完成问题二的校准。

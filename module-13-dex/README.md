@@ -2,6 +2,8 @@
 
 ## Module Contract
 
+**第四阶段现行标准（2026-10-13）**：Module 13 以 DEX 业务理解、协议机制、参与者利益与风险、链上数据语义为主要目标；下方原偏工程的考核条目只作为历史参考。第 10 课是 3～5 道不重复既有 Lesson 题目的轻量 Business Understanding Review；Pipeline / Indexer 工程设计推迟到第五阶段。详见 Notion「AI提示词」第 14 条。
+
 ### Module 目标
 
 进入第四阶段 Protocol，从“区块链数据如何被采集、处理、存储”进一步进入：
@@ -69,16 +71,16 @@ Module 13 聚焦 DEX（Decentralized Exchange，去中心化交易所），目�
 7. 第 7 课｜Router、Multi-hop Swap 与 Aggregator：一笔交易为什么有多个 Swap
 8. 第 8 课｜DEX Data Modeling：Swap Fact、Pool Dimension 与核心指标
 9. 第 9 课｜DEX Analytics：Volume、Liquidity、Price、Fee 与 Wallet Behavior
-10. 结束标准综合检查｜从 Raw Logs 设计 DEX Analytics Pipeline
+10. 结束标准综合检查｜DEX Business Understanding Review：业务场景与核心机制
 
 ## 当前学习进度
 
 - 当前阶段：第四阶段 Protocol
 - 当前 Module：Module 13 — DEX
-- 已完成 Lesson：第 1 课｜为什么会有 DEX：从 Order Book 到 AMM；第 2 课｜AMM 的定价逻辑：从 `x * y = k` 理解 Pool Price；第 3 课｜Execution Price、Price Impact 与 Slippage；第 4 课｜Liquidity Provider：Liquidity、Fee 与 Impermanent Loss；第 5 课｜Uniswap v2：Pool / Reserve / Swap 的完整数据语义；第 6 课｜Uniswap v3：Concentrated Liquidity、Tick 与 Position；第 7 课｜Router、Multi-hop Swap 与 Aggregator：一笔交易为什么有多个 Swap；第 8 课｜DEX Data Modeling：从一个真实查询需求推导数据模型（问题驱动重学版）
-- 当前 Lesson：第 9 课｜DEX Analytics：Volume、Liquidity、Price、Fee 与 Wallet Behavior
-- 当前状态：第 9 课正式教材已讲授并同步至 Notion/GitHub，处于理解检查阶段、尚未结课；第 8 课问题驱动重学版已完成，原版与课堂补充备注保留。
-- 下一步准确入口：继续 Module 13 第 9 课｜DEX Analytics：Volume、Liquidity、Price、Fee 与 Wallet Behavior 的问题一理解检查。
+- 已完成 Lesson：第 1 课｜为什么会有 DEX：从 Order Book 到 AMM；第 2 课｜AMM 的定价逻辑：从 `x * y = k` 理解 Pool Price；第 3 课｜Execution Price、Price Impact 与 Slippage；第 4 课｜Liquidity Provider：Liquidity、Fee 与 Impermanent Loss；第 5 课｜Uniswap v2：Pool / Reserve / Swap 的完整数据语义；第 6 课｜Uniswap v3：Concentrated Liquidity、Tick 与 Position；第 7 课｜Router、Multi-hop Swap 与 Aggregator：一笔交易为什么有多个 Swap；第 8 课｜DEX Data Modeling：从一个真实查询需求推导数据模型（问题驱动重学版）；第 9 课｜DEX Analytics：Volume、Liquidity、Price、Fee 与 Wallet Behavior（业务理解新标准结课；剩余校准跳过、教师示范如实记录）
+- 当前 Lesson：第 10 课｜结束标准综合检查：DEX Business Understanding Review（待开始）
+- 当前状态：第 9 课正式结课：问题一通过，问题二剩余校准主动跳过，问题三教师示范（未记独立通过）；业务理解完成、工程细节后置。第 10 课轻量业务综合检查尚未授课。
+- 下一步准确入口：学员请求后开始 Module 13 第 10 课《DEX Business Understanding Review：业务场景与核心机制》，3～5 道不重复题，不要求工程 Pipeline。
 
 ## 课程路径
 

@@ -29,12 +29,12 @@
 - Module 7 完成结论：第 1～10 课与结课综合实践均已完成；Mini Indexer 五项验收 Normal Sync / Idempotent Replay / Crash Recovery / Backfill / Reorg Recovery 全部通过，已达到 Module Contract 结束标准。五项实践由用户在 Codex 中实际完成并明确确认通过。
 - Module 8 完成结论：第 1～8 课与结束标准综合检查均已完成，已达到 Module Contract 结束标准。已能从 Query Semantics 推导 Business Object、Grain、Source Identity、Unique Key、Fact / Dimension、Relation 与 Layer，并区分 Source Identity 与 Business Identity。
 - Module 9 完成结论：第 1～7 课与结束标准综合检查均已完成，达到 Module Contract 结束标准。已能独立设计基础 Blockchain Batch ETL Pipeline，并解释 Source / Target、Processing Range、Grain、Unique Key、Watermark / Cursor / Checkpoint、Idempotency、Validation、Late-arriving / Reorg、Lookback / Backfill / Historical Repair、DAG Dependency 与 Scheduler / Orchestrator。
-- 当前 Lesson：Module 13 第 10 课｜结束标准综合检查：DEX Business Understanding Review（待开始）
-- 当前状态：Module 13 第 9 课按第四阶段新标准正式结课（问题一通过，问题二剩余校准主动跳过，问题三为教师示范、未记独立通过）；业务理解课程完成，工程细节后置。第 10 课为轻量业务综合检查，尚未授课。
+- 当前 Lesson：Module 13 第 10 课｜结束标准综合检查：DEX Business Understanding Review（综合检查中）
+- 当前状态：Module 13 第 10 课《DEX Business Understanding Review：业务场景与核心机制》正式教材已讲授并同步至 Notion/GitHub；4 道新的业务场景题已发布，处于综合理解检查中，尚未结课。第 9 课按新标准完成，跳过与教师示范记录保留。
 - 最近完成：Module 13 第 9 课《DEX Analytics：Volume、Liquidity、Price、Fee 与 Wallet Behavior》按真实答题记录结束（业务理解已完成，工程细节后置）；第 8 课问题驱动重学版亦已通过。
 - 最近掌握重点：理解 DEX Volume（期间指标）、TVL（时点指标）、Pool Price、Gross Swap Fee、LP 收益边界，以及链上地址数与真实用户数的区别；理解指标聚合和 Reorg 修正。
 - 历史同步债务处理决定：用户已明确要求忽略 Module 8 第 4～6 课的既有 Notion / GitHub 同步债务与第 5 课 Canonical Drift；这些历史问题不再修复，也不再阻塞课程推进。
-- 下一步准确入口：学员请求后开始 Module 13 第 10 课《DEX Business Understanding Review：业务场景与核心机制》，3～5 道不重复单课题目的业务与知识综合检查，不涉及完整工程 Pipeline 设计。
+- 下一步准确入口：继续 Module 13 第 10 课《DEX Business Understanding Review：业务场景与核心机制》综合理解检查，从问题一（ABC Token Launch 与项目方收入归属）开始逐题回答；全部处理后再评定 Module 13 是否完成。
 
 ## 目录
 

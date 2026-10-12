@@ -860,3 +860,39 @@ Pool B:
 请判断：**两个 Pool 的 Price Impact 一定相同吗？为什么？**
 
 你只需要回答这个问题即可。通过后，问题一就正式完成。
+
+
+## 用户回答（理解检查｜问题一补充确认）
+
+不相同， 甚至两个pool的当前weth的兑换价格都不同
+
+## 老师判断 / 校准（问题一最终确认）
+
+**回答正确。第 9 课问题一的补充确认通过，问题一正式完成。**
+
+你注意到了一个重要现象：两个 Pool 即使 TVL 相同，Pool Spot Price 也可能不同。
+
+根据题目中的 Reserve：
+
+| | Pool A | Pool B |
+|---|---:|---:|
+| USDC Reserve | 100,000 | 200,000 |
+| WETH Reserve | 50 | 25 |
+| Spot Price | 2,000 USDC/WETH | 8,000 USDC/WETH |
+| 10,000 USDC / USDC Reserve | 10% | 5% |
+
+但这里还需要区分两个判断：
+
+**第一，Spot Price 不同。** 这是因为两个 Pool 的资产储备比例不同。
+
+**第二，Price Impact 不同。** 更关键的原因是，同样输入 10,000 USDC，相对于 Pool A 的 USDC Reserve 占 10%，相对于 Pool B 只占 5%。在相同手续费规则下，Pool A 的相对 Price Impact 更大。
+
+因此，需要补充一点：**Spot Price 不同本身并不是证明相对 Price Impact 不同的充分理由；还要检查交易规模与 Reserve 的关系。**
+
+这正是本题要建立的工程认识：
+
+> TVL describes the value of assets in a pool, but it does not fully describe execution liquidity.
+
+对于 Uniswap v2，要结合具体 Reserve、交易方向、输入金额和 Fee 计算 Price Impact；对于 v3，还需要考虑 Active Liquidity 和 Tick 分布。
+
+**结论：理解检查问题一通过；问题二、三待回答，课程尚未结课。**

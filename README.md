@@ -16,6 +16,10 @@
 
 > 若 Notion「课程总目录」、Module 页面与 GitHub README 的进度发生冲突，以 Notion「课程总目录」为准并同步修正其他镜像。
 
+## 第四阶段学习策略（2026-10-13）
+
+第四阶段 Module 13～17 以 **Business Understanding → Protocol Mechanism → On-chain Data Semantics** 为主，业务广度优先，先熟悉协议场景。各 Module 保留 3～5 道新业务题的 **Business Understanding Review**，不重复既有理解检查；完整 Pipeline、Indexer、ETL、代码实现和项目验收留到第五阶段。详情见 Notion「AI提示词」第 14 条；既有课程教材与答题记录不重写。
+
 ## 当前学习进度
 
 - 当前阶段：第四阶段 Protocol
@@ -25,12 +29,12 @@
 - Module 7 完成结论：第 1～10 课与结课综合实践均已完成；Mini Indexer 五项验收 Normal Sync / Idempotent Replay / Crash Recovery / Backfill / Reorg Recovery 全部通过，已达到 Module Contract 结束标准。五项实践由用户在 Codex 中实际完成并明确确认通过。
 - Module 8 完成结论：第 1～8 课与结束标准综合检查均已完成，已达到 Module Contract 结束标准。已能从 Query Semantics 推导 Business Object、Grain、Source Identity、Unique Key、Fact / Dimension、Relation 与 Layer，并区分 Source Identity 与 Business Identity。
 - Module 9 完成结论：第 1～7 课与结束标准综合检查均已完成，达到 Module Contract 结束标准。已能独立设计基础 Blockchain Batch ETL Pipeline，并解释 Source / Target、Processing Range、Grain、Unique Key、Watermark / Cursor / Checkpoint、Idempotency、Validation、Late-arriving / Reorg、Lookback / Backfill / Historical Repair、DAG Dependency 与 Scheduler / Orchestrator。
-- 当前 Lesson：Module 13 第 9 课｜DEX Analytics：Volume、Liquidity、Price、Fee 与 Wallet Behavior
-- 当前状态：Module 13 第 9 课《DEX Analytics：Volume、Liquidity、Price、Fee 与 Wallet Behavior》Canonical Base 已正式讲授并同步到 Notion/GitHub，进入理解检查阶段，尚未结课；第 8 课已完成。
-- 最近完成：Module 13 第 8 课《DEX Data Modeling》问题驱动重学版正式完成。
-- 最近掌握重点：从业务查询推导 Pool Dimension、Swap Fact、State Change History 和 Daily Snapshot，区分 Reserve Net Change、Pool Gross Volume 和 User-level Routed Volume。
+- 当前 Lesson：Module 13 第 10 课｜结束标准综合检查：DEX Business Understanding Review（待开始）
+- 当前状态：Module 13 第 9 课按第四阶段新标准正式结课（问题一通过，问题二剩余校准主动跳过，问题三为教师示范、未记独立通过）；业务理解课程完成，工程细节后置。第 10 课为轻量业务综合检查，尚未授课。
+- 最近完成：Module 13 第 9 课《DEX Analytics：Volume、Liquidity、Price、Fee 与 Wallet Behavior》按真实答题记录结束（业务理解已完成，工程细节后置）；第 8 课问题驱动重学版亦已通过。
+- 最近掌握重点：理解 DEX Volume（期间指标）、TVL（时点指标）、Pool Price、Gross Swap Fee、LP 收益边界，以及链上地址数与真实用户数的区别；理解指标聚合和 Reorg 修正。
 - 历史同步债务处理决定：用户已明确要求忽略 Module 8 第 4～6 课的既有 Notion / GitHub 同步债务与第 5 课 Canonical Drift；这些历史问题不再修复，也不再阻塞课程推进。
-- 下一步准确入口：继续 Module 13 第 9 课《DEX Analytics：Volume、Liquidity、Price、Fee 与 Wallet Behavior》理解检查（从问题一开始）；按问题驱动教学规则逐轮校准并同步。
+- 下一步准确入口：学员请求后开始 Module 13 第 10 课《DEX Business Understanding Review：业务场景与核心机制》，3～5 道不重复单课题目的业务与知识综合检查，不涉及完整工程 Pipeline 设计。
 
 ## 目录
 

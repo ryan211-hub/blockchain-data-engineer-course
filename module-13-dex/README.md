@@ -78,9 +78,9 @@ Module 13 聚焦 DEX（Decentralized Exchange，去中心化交易所），目�
 - 当前阶段：第四阶段 Protocol
 - 当前 Module：Module 13 — DEX
 - 已完成 Lesson：第 1 课｜为什么会有 DEX：从 Order Book 到 AMM；第 2 课｜AMM 的定价逻辑：从 `x * y = k` 理解 Pool Price；第 3 课｜Execution Price、Price Impact 与 Slippage；第 4 课｜Liquidity Provider：Liquidity、Fee 与 Impermanent Loss；第 5 课｜Uniswap v2：Pool / Reserve / Swap 的完整数据语义；第 6 课｜Uniswap v3：Concentrated Liquidity、Tick 与 Position；第 7 课｜Router、Multi-hop Swap 与 Aggregator：一笔交易为什么有多个 Swap；第 8 课｜DEX Data Modeling：从一个真实查询需求推导数据模型（问题驱动重学版）；第 9 课｜DEX Analytics：Volume、Liquidity、Price、Fee 与 Wallet Behavior（业务理解新标准结课；剩余校准跳过、教师示范如实记录）
-- 当前 Lesson：第 10 课｜结束标准综合检查：DEX Business Understanding Review（待开始）
-- 当前状态：第 9 课正式结课：问题一通过，问题二剩余校准主动跳过，问题三教师示范（未记独立通过）；业务理解完成、工程细节后置。第 10 课轻量业务综合检查尚未授课。
-- 下一步准确入口：学员请求后开始 Module 13 第 10 课《DEX Business Understanding Review：业务场景与核心机制》，3～5 道不重复题，不要求工程 Pipeline。
+- 当前 Lesson：第 10 课｜结束标准综合检查：DEX Business Understanding Review（综合检查中）
+- 当前状态：Module 13 第 10 课《DEX Business Understanding Review：业务场景与核心机制》正式教材已讲授并同步至 Notion/GitHub；4 道新的业务场景题已发布，处于综合理解检查中，尚未结课。第 9 课按新标准完成，跳过与教师示范记录保留。
+- 下一步准确入口：继续 Module 13 第 10 课《DEX Business Understanding Review：业务场景与核心机制》综合理解检查，从问题一（ABC Token Launch 与项目方收入归属）开始逐题回答；全部处理后再评定 Module 13 是否完成。
 
 ## 课程路径
 
@@ -94,3 +94,4 @@ Module 13 聚焦 DEX（Decentralized Exchange，去中心化交易所），目�
 - [第 8 课｜DEX Data Modeling：Swap Fact、Pool Dimension 与核心指标](lesson-08-dex-data-modeling-swap-fact-pool-dimension.md)
 - [第 8 课（问题驱动重学版）｜DEX Data Modeling：从一个真实查询需求推导数据模型](lesson-08-problem-driven-relearn.md)
 - [第 9 课｜DEX Analytics：Volume、Liquidity、Price、Fee 与 Wallet Behavior](lesson-09-dex-analytics-volume-liquidity-price-fee-wallet-behavior.md)
+- [第 10 课｜DEX Business Understanding Review：业务场景与核心机制](lesson-10-dex-business-understanding-review.md)

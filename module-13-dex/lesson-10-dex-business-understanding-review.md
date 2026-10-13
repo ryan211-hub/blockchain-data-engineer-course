@@ -311,3 +311,72 @@ Blockchain Data Engineer 不仅要保证统计技术上正确，也要了解该�
 ### 本题考核记录
 
 **问题三由教师示范解答，学员已接触 Trading Incentives 与 Organic Demand 的基础知识；不计为学员独立考核通过，也不计为考核失败。**
+
+
+## 学员回答（综合检查｜问题四：Slippage 与 Sandwich Attack）
+
+问题四：
+
+1. 因为 96ABC 在 95 和 100 范围之间，所以这个 1-to-1 mapping 是可以成功进行的
+2. Price impact 类型的交易风险
+3. Sandwich attack，这个没有接触过，这个你来回答
+
+## 教师校准与新知识讲解（问题四）
+
+**判定：第 1 问基本正确，但表述应改为 Minimum Output / Slippage Tolerance，而不是 1-to-1 Mapping；第 2 问部分正确，需区别 Price Impact 与 Slippage；第 3 问此前未教授，由教师示范解答，不记为学员独立通过或失败。**
+
+### 1. 为什么交易仍然成功？
+
+- Expected Output = 100 ABC 是提交交易时的预期报价，不是强制成交数量或上限。
+- Minimum Output = 95 ABC 是通常 Swap 路由执行时的最小可接受输出。
+- Actual Output = 96 ABC 满足 96 ≥ 95，因此在这个简化案例里未触发最小输出保护，Swap 可以成功；如果输出 94 ABC，按相同条件则会 Revert。
+- 相对预期输出少获得 4%，表现为 4% 的 Price Slippage。**Transaction Status = Success 并不等于 Best Execution。**
+
+### 2. Price Impact 与 Slippage 的区别
+
+- **Price Impact**：Alice 自己的交易规模对 Pool 报价产生的影响。
+- **Slippage**：实际成交相对于交易前所预期报价的偏差；可由报价变化、其他交易的执行顺序等因素引起。
+- 100 ABC 变成 96 ABC 直接体现 Slippage；交易前后出现可疑交易还提示可能存在 MEV（Maximal Extractable Value，最大可提取价值）交易排序风险，尤其是 Sandwich Attack，但尚未构成定论。
+
+### 3. Sandwich Attack（夹子攻击）的业务过程
+
+以 Alice 用 USDC 买 ABC 为例：
+
+```text
+① 攻击者先买 ABC（Front-running）
+   → ABC Pool Price 上升
+        ↓
+② Alice 的买单成交
+   → 以更高价格买 ABC，可能从预期 100 ABC 变为 96 ABC
+        ↓
+③ 攻击者再卖出 ABC（Back-running）
+   → 试图从交易排序引发的价差中获利
+```
+
+攻击者试图通过把用户 Swap 夹在自己的两笔交易之间，利用用户的 Slippage Tolerance 提取价值。攻击可能令用户的执行价格变差；攻击者自身也需要承担手续费、Gas、失败或价格变化等成本。
+
+但 **仅凭 Alice 交易前后出现两笔可疑交易，不能认定攻击一定发生**。进一步需要检查相关 Swap 是否涉及同一 Pool、交易方向、先后顺序、地址关联、价格影响与净收益，并区分疑似与经充分证实的判断。相邻交易也可能属于独立套利或正常交易。
+
+参考资料（外部官方说明）：
+- Uniswap Labs｜What is a sandwich attack? https://support.uniswap.org/hc/en-us/articles/19387081481741-What-is-a-sandwich-attack
+- Uniswap Labs｜Price Impact vs Price Slippage https://support.uniswap.org/hc/en-us/articles/8643794102669-Price-Impact-vs-Price-Slippage
+- ethereum.org｜Maximal extractable value (MEV) https://ethereum.org/developers/docs/mev
+
+### 问题四的真实考核记录
+
+- 子问 1：主要判断正确，已校准 Minimum Output / Slippage Tolerance 概念。
+- 子问 2：部分正确，已校准 Slippage 与 Price Impact 的区别。
+- 子问 3：此前未系统教授，由教师讲解 Sandwich Attack 的业务原理及证据边界；**不记为学员独立考核通过，也不记为失败**。
+
+## Module 13 第10课 / Module 13 结课决定
+
+四道综合检查题已全部处理：
+
+| 综合题目 | 考核记录 |
+|---|---|
+| 问题一 Token Launch | 学员独立回答并通过 |
+| 问题二 Arbitrage | 学员独立回答并通过 |
+| 问题三 Trading Incentives | 学员要求教师示范；不记独立通过或失败 |
+| 问题四 Slippage / Sandwich Attack | 前两问经校准，Sandwich Attack 由教师讲解；不记整题独立通过 |
+
+**Module 13 状态：业务理解已完成，工程细节后置。** 根据第四阶段新规则，该 Module 可正式结课并转入 Module 14 — Lending。不可把问题三、问题四中的教师代答标为学员独立考核通过。下一步按需进入 Lending，不在此处开展工程实践。

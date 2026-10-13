@@ -24,17 +24,17 @@
 
 - 当前阶段：第四阶段 Protocol
 - 已完成 Module：Module 1、Module 2、Module 3、Module 4、Module 5、Module 6、Module 7、Module 8、Module 9、Module 10、Module 11、Module 12, Module 13（业务理解完成；第10课问题一、二通过，问题三教师示范，问题四部分校准和教师讲解，未记全部独立通过）
-- 当前 Module：Module 14 — Lending（待开始）
+- 当前 Module：Module 14 — Lending
 - Module 6 完成结论：第 1～4 课均已完成，已达到 Module Contract 结束标准。已能区分 History / Historical State，解释 Pruning、Archive 成本，并根据 Query Semantics、Derived State、规模与 TCO 判断 Archive RPC / Self-hosted / Hybrid。
 - Module 7 完成结论：第 1～10 课与结课综合实践均已完成；Mini Indexer 五项验收 Normal Sync / Idempotent Replay / Crash Recovery / Backfill / Reorg Recovery 全部通过，已达到 Module Contract 结束标准。五项实践由用户在 Codex 中实际完成并明确确认通过。
 - Module 8 完成结论：第 1～8 课与结束标准综合检查均已完成，已达到 Module Contract 结束标准。已能从 Query Semantics 推导 Business Object、Grain、Source Identity、Unique Key、Fact / Dimension、Relation 与 Layer，并区分 Source Identity 与 Business Identity。
 - Module 9 完成结论：第 1～7 课与结束标准综合检查均已完成，达到 Module Contract 结束标准。已能独立设计基础 Blockchain Batch ETL Pipeline，并解释 Source / Target、Processing Range、Grain、Unique Key、Watermark / Cursor / Checkpoint、Idempotency、Validation、Late-arriving / Reorg、Lookback / Backfill / Historical Repair、DAG Dependency 与 Scheduler / Orchestrator。
-- 当前 Lesson：尚未开始；下一步为 Module 14 — Lending 的首课
-- 当前状态：Module 13 — DEX 已按第四阶段新标准结课：第10课问题一、二独立通过，问题三教师示范，问题四已校准部分内容且 Sandwich Attack 由教师讲解。工程细节后置第五阶段。Module 14 未开始。
+- 当前 Lesson：Module 14 第 1 课｜为什么需要 DeFi Lending：不卖 ETH，也能借到 USDC？
+- 当前状态：Module 13 — DEX 已结课。Module 14 — Lending 第1课已在 ChatGPT 正式授课，教材同步至 Notion 和 GitHub 并回读验证；正在进行三个问题的理解检查，尚未结课。
 - 最近完成：Module 13 第 10 课《DEX Business Understanding Review：业务场景与核心机制》综合检查已处理完毕，Module 13 正式结课（业务理解已完成，工程细节后置）。
 - 最近掌握重点：DEX 新 Token 上线与 LP 的经济关系、跨池套利及价格收敛、激励驱动交易量与自然需求的区分、Slippage/Price Impact 与 Sandwich Attack 风险及证据边界。
 - 历史同步债务处理决定：用户已明确要求忽略 Module 8 第 4～6 课的既有 Notion / GitHub 同步债务与第 5 课 Canonical Drift；这些历史问题不再修复，也不再阻塞课程推进。
-- 下一步准确入口：学员要求开始新课后，进入 Module 14 — Lending 首课；按 Notion「AI提示词」第14条执行第四阶段业务理解优先、轻量且不重复的综合检查。
+- 下一步准确入口：Module 14 第1课《为什么需要 DeFi Lending：不卖 ETH，也能借到 USDC？》理解检查，从问题一 Bob Supply 与 Alice Borrow 的资金关系开始，逐题追加同步 Notion / GitHub。
 
 ## 目录
 
@@ -48,6 +48,7 @@
 - [Module 11 — 分析数据库](module-11-analytics-database/README.md)
 - [Module 12 — 数据质量](module-12-data-quality/README.md)
 - [Module 13 — DEX](module-13-dex/README.md)
+- [Module 14 — Lending](module-14-lending/README.md)
 
 ## 同步规则
 

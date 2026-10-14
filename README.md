@@ -29,12 +29,12 @@
 - Module 7 完成结论：第 1～10 课与结课综合实践均已完成；Mini Indexer 五项验收 Normal Sync / Idempotent Replay / Crash Recovery / Backfill / Reorg Recovery 全部通过，已达到 Module Contract 结束标准。五项实践由用户在 Codex 中实际完成并明确确认通过。
 - Module 8 完成结论：第 1～8 课与结束标准综合检查均已完成，已达到 Module Contract 结束标准。已能从 Query Semantics 推导 Business Object、Grain、Source Identity、Unique Key、Fact / Dimension、Relation 与 Layer，并区分 Source Identity 与 Business Identity。
 - Module 9 完成结论：第 1～7 课与结束标准综合检查均已完成，达到 Module Contract 结束标准。已能独立设计基础 Blockchain Batch ETL Pipeline，并解释 Source / Target、Processing Range、Grain、Unique Key、Watermark / Cursor / Checkpoint、Idempotency、Validation、Late-arriving / Reorg、Lookback / Backfill / Historical Repair、DAG Dependency 与 Scheduler / Orchestrator。
-- 当前 Lesson：Module 14 第 3 课｜Supplier、Borrower 与 Interest：谁支付利息，谁得到收益？（待开始）
-- 当前状态：Module 14 第2课《Collateral、LTV 与 Health Factor：借多少才安全？》理解检查三题全部通过并结课，已同步 Notion 和 GitHub；第3课未开始。
-- 最近完成：Module 14 第2课《Collateral、LTV 与 Health Factor：借多少才安全？》三道理解检查通过并结课。
-- 最近掌握重点：LTV 约束初始借款额度；Liquidation Threshold 定义可清算边界；Health Factor 反映仓位风险；需要区分 HF 向 1 下降与 Debt/Collateral Value 向清算阈值上升。
+- 当前 Lesson：Module 14 第 4 课｜Liquidation：抵押品价格下跌后，谁承担风险？（待开始）
+- 当前状态：Module 14 第3课《Supplier、Borrower 与 Interest：谁支付利息，谁得到收益？》三道理解检查全部通过并结课；第4课尚未开始。
+- 最近完成：Module 14 第3课《Supplier、Borrower 与 Interest：谁支付利息，谁得到收益？》三题均通过，正式结课。
+- 最近掌握重点：Borrow APR 与 Supply APR 的差异来自资金利用率和 Reserve Factor；利用率上升通常提高借款成本、影响存款收益与可用流动性；利息累积使 Current Debt 与 Borrow Event 不同。
 - 历史同步债务处理决定：用户已明确要求忽略 Module 8 第 4～6 课的既有 Notion / GitHub 同步债务与第 5 课 Canonical Drift；这些历史问题不再修复，也不再阻塞课程推进。
-- 下一步准确入口：用户请求下一课时进入 Module 14 第3课《Supplier、Borrower 与 Interest：谁支付利息，谁得到收益？》。
+- 下一步准确入口：用户请求下一课时进入 Module 14 第4课《Liquidation：抵押品价格下跌后，谁承担风险？》。
 
 ## 目录
 

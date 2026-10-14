@@ -153,3 +153,34 @@ Alice 30 天前借入了 5,000 USDC，之后没有新的 Borrow Event，也没�
 - [Aave Borrow Tokens](https://aave.com/help/borrowing/borrow-tokens)
 - [Aave V3 Interest Rate Strategy](https://www.aave.com/docs/aave-v3/smart-contracts/interest-rate-strategy)
 课程中的利率和资金规模均为教学假设。
+
+## 学员回答（第3课理解检查｜问题一至三）
+问题一： 因为这里还涉及到资金利用率的问题，以及资金的储备金。
+问题二：资金的利用率升高，对新的Borrower，资金利率升高，资金的使用成本增加。对Supplier来说，利息收益提高，但是不能提现的风险增大。资金池可用流动性降低，因为可使用的资金减少了。
+问题三：不一定，因为他当前的 debt 还涉及到借款利息的累加
+## 教师判断与校准（第3课）
+**判定：三道题全部通过。** 已掌握 Lending 中利息分配、资金利用率和债务累积的基本业务逻辑。
+### 问题一：为什么 Supply APR 低于 Borrow APR？
+**正确。** 学员指出资金利用率和储备金比例两个关键因素。
+在本课教学假设下：
+```text
+Borrow APR × Utilization Rate × (1 − Reserve Factor)
+= 8% × 60% × 90%
+= 4.32% Supply APR
+```
+Borrow Rate 为 8%，但只有约 60% 的资金被借出、产生借款利息；协议再将其中 10% 的借款利息划入储备。因此 Borrow APR 与 Supply APR 的差值并不全是协议收入。
+### 问题二：资金利用率从 40% 上升到 95%
+**正确，分别覆盖了 Borrower、Supplier 和 Lending Pool。**
+| 观察对象 | 学员判断 | 教师校准 |
+| --- | --- | --- |
+| 新 Borrower | 借款利率升高、使用成本增加 | 正确，通常如此 |
+| Supplier | 利息收益提高 | 正确，但不是保证收益 |
+| Lending Pool | 可用流动性减少 | 正确 |
+学员提出的提款风险成立，但应更精确表述为：**可能无法立即全额提款，不等于永久无法提款。** 借款人还款或新的资金进入后，流动性可能恢复。
+### 问题三：没有新借款或还款 Event，债务是否固定？
+**正确。** 即使 Alice 没有新的 Borrow Event 或 Repay Event，借款利息仍可能累积，使 Current Debt 高于最初的 5,000 USDC。
+**Borrow Event 是历史借款动作；Current Debt 是包括应计利息的当前债务。**
+## 第3课结课判定
+**三道理解检查全部通过，Module 14 第3课正式结课，不需要补考。**
+学员已能够解释资金池中 Borrow APR 与 Supply APR 的差异、利用率升高对参与者和流动性的影响，以及历史借款动作与当前债务之间的时间语义。符合第四阶段业务理解标准，工程实践后置。
+**下一课（待开始）：Module 14 第4课｜Liquidation：抵押品价格下跌后，谁承担风险？**

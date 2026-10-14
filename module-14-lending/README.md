@@ -39,10 +39,10 @@
 ## 当前学习进度
 - 当前阶段：第四阶段 Protocol / Web3 业务理解
 - 当前 Module：Module 14 — Lending
-- 已完成 Lesson：第1课｜为什么需要 DeFi Lending：不卖 ETH，也能借到 USDC？（理解检查三题全部通过）；第2课｜Collateral、LTV 与 Health Factor：借多少才安全？（三题通过）
-- 当前 Lesson：第3课｜Supplier、Borrower 与 Interest：谁支付利息，谁得到收益？（待开始）
-- 当前状态：第2课三道理解检查全部通过并结课，用户回答、教师校准及结课判定已同步 Notion/GitHub。第3课未开始。
-- 下一步准确入口：学员请求下一课时开始第3课《Supplier、Borrower 与 Interest：谁支付利息，谁得到收益？》。
+- 已完成 Lesson：第1课｜为什么需要 DeFi Lending：不卖 ETH，也能借到 USDC？（理解检查三题全部通过）；第2课｜Collateral、LTV 与 Health Factor：借多少才安全？（三题通过）；第3课｜Supplier、Borrower 与 Interest：谁支付利息，谁得到收益？（三题独立通过）
+- 当前 Lesson：第4课｜Liquidation：抵押品价格下跌后，谁承担风险？（待开始）
+- 当前状态：第3课《Supplier、Borrower 与 Interest》理解检查三题全部通过并结课；原始回答、教师校准已记录。第4课尚未开始。
+- 下一步准确入口：学员请求下一课时开始第4课《Liquidation：抵押品价格下跌后，谁承担风险？》。
  
 ## 课程路径
 - [第1课｜为什么需要 DeFi Lending：不卖 ETH，也能借到 USDC？](lesson-01-why-defi-lending-borrow-usdc-without-selling-eth.md)

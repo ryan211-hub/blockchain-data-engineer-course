@@ -29,12 +29,12 @@
 - Module 7 完成结论：第 1～10 课与结课综合实践均已完成；Mini Indexer 五项验收 Normal Sync / Idempotent Replay / Crash Recovery / Backfill / Reorg Recovery 全部通过，已达到 Module Contract 结束标准。五项实践由用户在 Codex 中实际完成并明确确认通过。
 - Module 8 完成结论：第 1～8 课与结束标准综合检查均已完成，已达到 Module Contract 结束标准。已能从 Query Semantics 推导 Business Object、Grain、Source Identity、Unique Key、Fact / Dimension、Relation 与 Layer，并区分 Source Identity 与 Business Identity。
 - Module 9 完成结论：第 1～7 课与结束标准综合检查均已完成，达到 Module Contract 结束标准。已能独立设计基础 Blockchain Batch ETL Pipeline，并解释 Source / Target、Processing Range、Grain、Unique Key、Watermark / Cursor / Checkpoint、Idempotency、Validation、Late-arriving / Reorg、Lookback / Backfill / Historical Repair、DAG Dependency 与 Scheduler / Orchestrator。
-- 当前 Lesson：Module 14 第 2 课｜Collateral、LTV 与 Health Factor：借多少才安全？（待开始）
-- 当前状态：Module 14 第 1 课《为什么需要 DeFi Lending：不卖 ETH，也能借到 USDC？》三道理解检查均通过，正式结课；已校准 Lending Protocol 的资金池管理职责。第 2 课尚未开始。
+- 当前 Lesson：Module 14 第 2 课｜Collateral、LTV 与 Health Factor：借多少才安全？（理解检查中）
+- 当前状态：Module 14 第 1 课已完成。第 2 课《Collateral、LTV 与 Health Factor》Canonical Base 已正式讲授并同步 Notion/GitHub、回读验证，理解检查中，尚未结课。
 - 最近完成：Module 14 第 1 课《为什么需要 DeFi Lending：不卖 ETH，也能借到 USDC？》三道理解检查全部通过并结课。Module 13 — DEX 此前已结课。
 - 最近掌握重点：Pool-based Lending 中 Supplier 与 Borrower 不是一对一直接放款；抵押借款保留 WETH 价格敞口但承担利息与清算风险；Borrow Event 是历史动作，不等于包含还款与利息变化的当前债务。
 - 历史同步债务处理决定：用户已明确要求忽略 Module 8 第 4～6 课的既有 Notion / GitHub 同步债务与第 5 课 Canonical Drift；这些历史问题不再修复，也不再阻塞课程推进。
-- 下一步准确入口：用户请求下一课时开始 Module 14 第 2 课《Collateral、LTV 与 Health Factor：借多少才安全？》，沿用 Alice 抵押 WETH 借 USDC 的场景，执行第四阶段业务理解优先规则。
+- 下一步准确入口：继续 Module 14 第 2 课《Collateral、LTV 与 Health Factor：借多少才安全？》理解检查问题一至三，分别考察借款额度、清算阈值、Health Factor；回答后追加问答并结课。
 
 ## 目录
 

@@ -39,10 +39,10 @@
 ## 当前学习进度
 - 当前阶段：第四阶段 Protocol / Web3 业务理解
 - 当前 Module：Module 14 — Lending
-- 已完成 Lesson：暂无
-- 当前 Lesson：第1课｜为什么需要 DeFi Lending：不卖 ETH，也能借到 USDC？
-- 当前状态：第1课《为什么需要 DeFi Lending：不卖 ETH，也能借到 USDC？》Canonical Base 已在 ChatGPT 讲授，并同步至 Notion / GitHub 且回读核验，正在理解检查中，尚未结课。
-- 下一步准确入口：第1课理解检查问题一：为什么 Bob Supply 20,000 USDC 并不等于直接向 Alice 发放贷款？可逐题回答。
+- 已完成 Lesson：第1课｜为什么需要 DeFi Lending：不卖 ETH，也能借到 USDC？（理解检查三题全部通过）
+- 当前 Lesson：第2课｜Collateral、LTV 与 Health Factor：借多少才安全？（待开始）
+- 当前状态：第1课已正式结束，理解检查问题一、二、三全部通过；校准已保存至 Lesson 页面。第2课尚未开始。
+- 下一步准确入口：用户请求下一课时开始第2课《Collateral、LTV 与 Health Factor：借多少才安全？》。
  
 ## 课程路径
 - [第1课｜为什么需要 DeFi Lending：不卖 ETH，也能借到 USDC？](lesson-01-why-defi-lending-borrow-usdc-without-selling-eth.md)

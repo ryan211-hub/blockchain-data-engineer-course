@@ -99,4 +99,45 @@ Liquidation Threshold = 80%
 
 Alice Debt Value = $5,000
 ```
-因为抵押品的阈
+因为抵押品的阈值价值不足以支持债务，HF 跌至 0.96，仓位进入可清算状态。
+这说明 **清算并不一定发生在抵押品总价值小于债务的时候**。
+即使 Alice 的 WETH 仍值 $6,000，高于债务 $5,000，她仍可能被清算。
+原因在于协议需要预留安全空间，而不是等到抵押品已经完全不够偿还债务时才采取措施。
+## 七、借贷仓位的风险不只有价格下跌
+Alice 的 Health Factor 还会受到其他因素影响。
+例如借款利息持续累积，会增加 Debt Value；如果 Alice 再次借款，也会进一步增加债务。
+相反，如果 Alice 偿还部分 USDC，或者补充更多符合协议要求的抵押品，Health Factor 通常就会改善。
+所以：
+**Health Factor 是随仓位、市场价格和协议参数变化的动态指标，而不是 Borrow Event 中永久固定的一个数字。**
+对于 Blockchain Data Engineer，这里有一个重要的业务语义：
+- `Borrow Event` 表示一次借款动作。
+- `Debt State` 表示某一时点的债务。
+- `Collateral State` 表示某一时点的有效抵押品。
+- `Health Factor` 是由相关仓位状态、价格及风险参数计算出的风险指标。
+不应只根据第一次 Borrow Event 来判断当前清算风险。
+## 八、本课总结
+我们从 Alice 不卖 WETH 而借 USDC 的需求出发，依次引入了三个概念：
+| 概念 | 解决的问题 |
+| --- | --- |
+| LTV | 最多允许借多少？ |
+| Liquidation Threshold | 已有债务何时接近或触发清算条件？ |
+| Health Factor | 当前借贷仓位距离清算边界还有多少风险缓冲？ |
+本课需要记住的核心区分是：
+**LTV 约束借款能力；Liquidation Threshold 定义清算风险边界；Health Factor 衡量仓位相对该边界的状态。**
+## 九、理解检查
+仍然使用 Alice 的案例，假设不计利息、价格来源和风险参数不变。
+**问题一：LTV 的作用**
+Alice 提供价值 $30,000 的 WETH，Maximum LTV 为 70%，但她只借了 $5,000。
+请回答：她的理论最高初始借款额度是多少？为什么“能借这么多”不等于“应该借这么多”？
+**问题二：Liquidation Threshold 的作用**
+如果 Alice 的抵押品价值降到 $6,000，而债务仍是 $5,000，Liquidation Threshold 为 80%。
+请解释：为什么抵押品价值仍然高于债务，Alice 却可能被清算？
+**问题三：Health Factor 的业务含义**
+假设 Alice 的抵押品价格不变，但她又借出更多 USDC。
+她的 Health Factor 会向哪个方向变化？这意味着什么风险变化？
+**请从问题一开始回答，可以三题一次性提交，也可以逐题回答。**
+## 参考依据
+- [Aave｜Borrow Tokens](https://aave.com/help/borrowing/borrow-tokens)
+- [Aave｜Health Factor & Liquidations](https://aave.com/help/borrowing/liquidations)
+- [Aave｜Toggle Collateral Status](https://aave.com/help/supplying/toggle-collateral-status)
+以上 70% LTV 和 80% Liquidation Threshold 均为教学假设，不是实时协议配置。

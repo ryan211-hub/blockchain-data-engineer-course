@@ -141,3 +141,25 @@ Alice 提供价值 $30,000 的 WETH，Maximum LTV 为 70%，但她只借了 $5,0
 - [Aave｜Health Factor & Liquidations](https://aave.com/help/borrowing/liquidations)
 - [Aave｜Toggle Collateral Status](https://aave.com/help/supplying/toggle-collateral-status)
 以上 70% LTV 和 80% Liquidation Threshold 均为教学假设，不是实时协议配置。
+
+## 用户回答（第2课理解检查）
+问题一：
+她的理论最高初始借款额度是$21000, 应该借多少是看她的需求而定。
+问题二：原因在于协议需要预留安全空间，而不是等到抵押品已经完全不够偿还债务时才采取措施。
+问题三：Health Factor 会变低，离Liquidation Threshold更接近， 被清算的风险便变大。
+## 教师判断与校准（第2课）
+**判定：三道题全部通过。**
+### 问题一：LTV 与借款额度
+**正确。** 最高初始借款额度是 $30,000 × 70% = $21,000。“应该借多少由实际需求决定”是合理的判断，但还应考虑抵押品价格波动、利息和清算风险。
+**Maximum Borrowing Capacity ≠ Recommended Borrowing Amount。**
+### 问题二：抵押价值高于债务仍可被清算
+**正确。** 协议设置安全缓冲，不必等抵押品已完全不足偿还债务才触发风险处置条件。
+在本课的假设下，Health Factor = ($6,000 × 80%) / $5,000 = 0.96，低于 1，因此仓位符合可清算条件。
+### 问题三：借款增加对 Health Factor 的影响
+**正确，需做一点术语校准。** 抵押品价值不变，债务增加，HF 下降、清算风险上升。
+- **Health Factor 视角：** HF 向 1 下降。
+- **债务比例视角：** Debt / Collateral Value 向 80% 的 Liquidation Threshold 上升。
+不可把 HF 数值与 80% 直接比较。
+## 第2课结课判定
+**三道理解检查全部通过，Module 14 第2课正式结课。**
+已理

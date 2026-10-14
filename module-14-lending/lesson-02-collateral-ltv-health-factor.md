@@ -162,4 +162,5 @@ Alice 提供价值 $30,000 的 WETH，Maximum LTV 为 70%，但她只借了 $5,0
 不可把 HF 数值与 80% 直接比较。
 ## 第2课结课判定
 **三道理解检查全部通过，Module 14 第2课正式结课。**
-已理
+已理解 LTV 约束借款能力、Liquidation Threshold 定义可清算风险边界、Health Factor 反映当前仓位相对于清算边界的风险。符合第四阶段业务理解标准，不要求补考或工程实现。
+**下一课（待开始）：Module 14 第3课｜Supplier、Borrower 与 Interest：谁支付利息，谁得到收益？**

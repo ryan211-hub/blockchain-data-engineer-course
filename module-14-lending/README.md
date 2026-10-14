@@ -40,9 +40,11 @@
 - 当前阶段：第四阶段 Protocol / Web3 业务理解
 - 当前 Module：Module 14 — Lending
 - 已完成 Lesson：第1课｜为什么需要 DeFi Lending：不卖 ETH，也能借到 USDC？（理解检查三题全部通过）
-- 当前 Lesson：第2课｜Collateral、LTV 与 Health Factor：借多少才安全？（待开始）
-- 当前状态：第1课已正式结束，理解检查问题一、二、三全部通过；校准已保存至 Lesson 页面。第2课尚未开始。
-- 下一步准确入口：用户请求下一课时开始第2课《Collateral、LTV 与 Health Factor：借多少才安全？》。
+- 当前 Lesson：第2课｜Collateral、LTV 与 Health Factor：借多少才安全？（理解检查中）
+- 当前状态：第1课已完成。第2课正式教材已在 ChatGPT 讲授，Notion/GitHub 正文同步并核验完成，进入理解检查阶段；尚未结课。
+- 下一步准确入口：继续第2课理解检查：Alice $30,000 抵押、70% LTV 上限，以及清算阈值与 Health Factor；可以逐题回答。
  
 ## 课程路径
 - [第1课｜为什么需要 DeFi Lending：不卖 ETH，也能借到 USDC？](lesson-01-why-defi-lending-borrow-usdc-without-selling-eth.md)
+
+- [第2课｜Collateral、LTV 与 Health Factor：借多少才安全？](lesson-02-collateral-ltv-health-factor.md)

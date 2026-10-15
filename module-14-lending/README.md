@@ -40,11 +40,15 @@
 - 当前阶段：第四阶段 Protocol / Web3 业务理解
 - 当前 Module：Module 14 — Lending
 - 已完成 Lesson：第1课｜为什么需要 DeFi Lending：不卖 ETH，也能借到 USDC？（理解检查三题全部通过）；第2课｜Collateral、LTV 与 Health Factor：借多少才安全？（三题通过）；第3课｜Supplier、Borrower 与 Interest：谁支付利息，谁得到收益？（三题独立通过）
-- 当前 Lesson：第4课｜Liquidation：抵押品价格下跌后，谁承担风险？（待开始）
-- 当前状态：第3课《Supplier、Borrower 与 Interest》理解检查三题全部通过并结课；原始回答、教师校准已记录。第4课尚未开始。
-- 下一步准确入口：学员请求下一课时开始第4课《Liquidation：抵押品价格下跌后，谁承担风险？》。
+- 当前 Lesson：第4课｜Liquidation：抵押品价格下跌后，谁承担风险？（理解检查中）
+- 当前状态：第3课已结课；第4课《Liquidation：抵押品价格下跌后，谁承担风险？》已正式授课并保存教材，目前理解检查中，尚未结课。
+- 下一步准确入口：继续第4课《Liquidation：抵押品价格下跌后，谁承担风险？》的三个理解检查问题；尚未完成答题。
  
 ## 课程路径
-- [第1课｜为什么需要 DeFi Lending：不卖 ETH，也能借到 USDC？](lesson-01-why-defi-lending-borrow-usdc-without-selling-eth.md)
 
+- [第1课｜为什么需要 DeFi Lending：不卖 ETH，也能借到 USDC？](lesson-01-why-defi-lending-borrow-usdc-without-selling-eth.md)
 - [第2课｜Collateral、LTV 与 Health Factor：借多少才安全？](lesson-02-collateral-ltv-health-factor.md)
+- [第3课｜Supplier、Borrower 与 Interest：谁支付利息，谁得到收益？](lesson-03-supplier-borrower-interest.md)
+- [第4课｜Liquidation：抵押品价格下跌后，谁承担风险？](lesson-04-liquidation-risks-and-incentives.md)
+- 第5课｜Aave / Kamino 的借贷业务与链上数据语义（待创建）
+- 第6课｜Lending Business Understanding Review（待创建）

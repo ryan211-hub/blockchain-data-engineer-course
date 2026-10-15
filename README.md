@@ -29,12 +29,12 @@
 - Module 7 完成结论：第 1～10 课与结课综合实践均已完成；Mini Indexer 五项验收 Normal Sync / Idempotent Replay / Crash Recovery / Backfill / Reorg Recovery 全部通过，已达到 Module Contract 结束标准。五项实践由用户在 Codex 中实际完成并明确确认通过。
 - Module 8 完成结论：第 1～8 课与结束标准综合检查均已完成，已达到 Module Contract 结束标准。已能从 Query Semantics 推导 Business Object、Grain、Source Identity、Unique Key、Fact / Dimension、Relation 与 Layer，并区分 Source Identity 与 Business Identity。
 - Module 9 完成结论：第 1～7 课与结束标准综合检查均已完成，达到 Module Contract 结束标准。已能独立设计基础 Blockchain Batch ETL Pipeline，并解释 Source / Target、Processing Range、Grain、Unique Key、Watermark / Cursor / Checkpoint、Idempotency、Validation、Late-arriving / Reorg、Lookback / Backfill / Historical Repair、DAG Dependency 与 Scheduler / Orchestrator。
-- 当前 Lesson：Module 14 第 4 课｜Liquidation：抵押品价格下跌后，谁承担风险？（理解检查中）
-- 当前状态：Module 14 第3课已结课；第4课 Liquidation 已完成正式授课与教材保存，目前理解检查中，尚未结课。
-- 最近完成：Module 14 第3课《Supplier、Borrower 与 Interest：谁支付利息，谁得到收益？》三题均通过，正式结课。
-- 最近掌握重点：Borrow APR 与 Supply APR 的差异来自资金利用率和 Reserve Factor；利用率上升通常提高借款成本、影响存款收益与可用流动性；利息累积使 Current Debt 与 Borrow Event 不同。
+- 当前 Lesson：Module 14 第 5 课｜Aave / Kamino 的借贷业务与链上数据语义（待开始）
+- 当前状态：Module 14 第4课《Liquidation：抵押品价格下跌后，谁承担风险？》三题已通过，正式结课：问题一初答部分正确，补充回答通过；问题二和问题三初答通过。第5课尚未开始。
+- 最近完成：Module 14 第4课《Liquidation：抵押品价格下跌后，谁承担风险？》三道理解检查全部通过并正式结课。
+- 最近掌握重点：Liquidator 通过替 Borrower 偿债获得抵押品与 Liquidation Bonus，但 Bonus 不是 Net Profit；部分清算降低 Debt 同时减少 Collateral；清算降低协议风险却不能保证 Supplier 免受 Bad Debt。
 - 历史同步债务处理决定：用户已明确要求忽略 Module 8 第 4～6 课的既有 Notion / GitHub 同步债务与第 5 课 Canonical Drift；这些历史问题不再修复，也不再阻塞课程推进。
-- 下一步准确入口：继续 Module 14 第4课《Liquidation：抵押品价格下跌后，谁承担风险？》三个理解检查问题，不提前标记结课。
+- 下一步准确入口：学员请求开始下一课时，进入 Module 14 第5课《Aave / Kamino 的借贷业务与链上数据语义》，对比 EVM 与 Solana Lending 的业务语义，业务理解优先。
 
 ## 目录
 

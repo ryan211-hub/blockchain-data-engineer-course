@@ -203,3 +203,38 @@ Alice 在 Kamino 的同一个钱包下有两个 Obligation：
 - [Kamino KLend Program](https://github.com/Kamino-Finance/klend)
 
 所有资产数量和价格均为教学假设，不代表实时市场配置。
+
+## 教师示范解答记录｜第5课
+**本轮真实学习行为：** 学员未独立提交问题一、问题二、问题三的作答，而是明确请求：“这三个问题请你给我解答一下”。因此下列答案属于**教师示范解答**，不能标注为“学员独立答题通过”。
+### 问题一：如何确认 5,000 USDC Token Transfer 是否为 Borrow？
+**教师参考答案：不能仅凭转账断定新借款发生。** Token Transfer 说明资产流动，但不说明 Supply、Borrow、Repay、Withdraw 等具体借贷业务语义。
+- **Aave（EVM）：** 结合成功的 Transaction / Receipt、Pool 的 Borrow Event，以及相关债务状态；注意 Event 中的债务承担者与 `tx.from` 不一定相同。
+- **Kamino（Solana）：** 结合成功执行的 Lending Program Borrow Instruction、已解码的 Obligation 与 Reserve 等 Account State、相关 USDC Token Transfer；确认债务和对应仓位确实发生变化。
+**结论：Asset Transfer ≠ Lending Business Event。**
+### 问题二：为什么同一 Wallet 下两个 Obligation 不自动共享抵押品？
+**教师参考答案：Wallet 是用户身份层次，Obligation 是特定仓位的风险核算对象。**
+假设 Obligation A 抵押 SOL 借 USDC，Obligation B 抵押其他资产借 USDT。即使两者属于同一个钱包，也不能据此推定其抵押品会自动互相担保。是否可以跨仓位担保要由具体协议仓位与风险配置决定。
+可汇总 Alice 的全部资产债务进行 User-level Analysis，但清算风险需要按具体协议定义的 Position / Obligation 范围核算，不能用用户级加总数据直接替代。
+**结论：Wallet-level Aggregate ≠ Position-level Risk。** 银行类比：一个客户拥有两笔不同贷款，并不意味着两笔贷款的抵押物天然可以交叉担保。
+### 问题三：能否直接比较 Aave HF=1.20 与 Kamino LTV=72%？
+**教师参考答案：不能直接比较，因为指标定义不同。**
+在简化的单抵押资产、单借款资产模型：
+```text
+LTV = Debt Value / Collateral Value
+HF = (Collateral Value × Liquidation Threshold) / Debt Value
+因此 HF = Liquidation Threshold / LTV
+```
+Kamino LTV=72% 时，若假设 Liquidation Threshold=80%，等效 HF 约为 1.111，低于 Aave 的 1.20；若假设 Liquidation Threshold=90%，等效 HF 为 1.25，高于 Aave 的 1.20。
+因此只凭 1.20 与 72% 不能判断哪笔仓位更安全。还需统一清算阈值、资产估值时点、抵押品和债务结构、预言机口径、协议风险规则等。等效 HF 仅作为简化教学推导，不代表 Kamino 官方按同一公式展示风险。
+**结论：Different Risk Metrics ≠ Directly Comparable Metrics。**
+## 第5课完成记录（业务理解课程，教师示范）
+- **三道理解题的回答来源：教师示范解答。**
+- **学员独立答题结果：无独立作答记录，不标记“三题独立通过”。**
+- **课程处理：按照第四阶段 Business Understanding 优先、允许教师示范而无需强制补考的规则，记为“业务理解课程已完成（教师示范解答，未独立考核）”，不做工程设计验收。**
+- **下一课（待开始）：Module 14 第6课｜Lending Business Understanding Review（不重复的业务综合检查）。**
+
+## 第5课结课确认｜学员明确认可通过（2026-10-17）
+**学员原话：** 本课可以认为通过，请同步GitHub
+**最终课程判定：** 根据学员明确确认及第四阶段以业务理解为主的结课规则，Module 14 第5课《Aave / Kamino 的借贷业务与链上数据语义》标记为 **已通过（业务理解课程通过）**。
+**答题来源和考核性质保持不变：** 本课三道题均由教师示范解答，学员没有独立提交这三题的答案，因此本次“课程通过”是学员确认的业务理解结课状态，**不是“三题独立考核通过”**。原有教材和教师示范答案保留不改写。
+**下一课：** Module 14 第6课｜Lending Business Understanding Review（待开始）。

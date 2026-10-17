@@ -29,12 +29,12 @@
 - Module 7 完成结论：第 1～10 课与结课综合实践均已完成；Mini Indexer 五项验收 Normal Sync / Idempotent Replay / Crash Recovery / Backfill / Reorg Recovery 全部通过，已达到 Module Contract 结束标准。五项实践由用户在 Codex 中实际完成并明确确认通过。
 - Module 8 完成结论：第 1～8 课与结束标准综合检查均已完成，已达到 Module Contract 结束标准。已能从 Query Semantics 推导 Business Object、Grain、Source Identity、Unique Key、Fact / Dimension、Relation 与 Layer，并区分 Source Identity 与 Business Identity。
 - Module 9 完成结论：第 1～7 课与结束标准综合检查均已完成，达到 Module Contract 结束标准。已能独立设计基础 Blockchain Batch ETL Pipeline，并解释 Source / Target、Processing Range、Grain、Unique Key、Watermark / Cursor / Checkpoint、Idempotency、Validation、Late-arriving / Reorg、Lookback / Backfill / Historical Repair、DAG Dependency 与 Scheduler / Orchestrator。
-- 当前 Lesson：Module 14 第 5 课｜Aave / Kamino 的借贷业务与链上数据语义（理解检查中）
-- 当前状态：Module 14 第4课已结课；第5课已正式授课且 Canonical Base 初版已保存，理解检查待回答，尚未结课。
-- 最近完成：Module 14 第4课《Liquidation：抵押品价格下跌后，谁承担风险？》三道理解检查全部通过并正式结课。
-- 最近掌握重点：Liquidator 通过替 Borrower 偿债获得抵押品与 Liquidation Bonus，但 Bonus 不是 Net Profit；部分清算降低 Debt 同时减少 Collateral；清算降低协议风险却不能保证 Supplier 免受 Bad Debt。
+- 当前 Lesson：Module 14 第 6 课｜Lending Business Understanding Review（待开始）
+- 当前状态：Module 14 第5课《Aave / Kamino 的借贷业务与链上数据语义》已通过（学员明确确认业务理解课程通过；三题由教师示范解答，未独立作答，不记为独立考核通过）；第6课综合检查尚未开始。
+- 最近完成：Module 14 第5课《Aave / Kamino 的借贷业务与链上数据语义》已通过（学员确认；教师示范解答，非独立考核通过）。
+- 最近掌握重点：Token Transfer 不等于 Borrow 业务事实；Wallet-level Aggregate 不等于 Obligation-level Risk；不同协议的 Health Factor 与 LTV 不能不统一阈值及估值口径就直接比较。此处仅表示已讲解，不等于学员独立验收通过。
 - 历史同步债务处理决定：用户已明确要求忽略 Module 8 第 4～6 课的既有 Notion / GitHub 同步债务与第 5 课 Canonical Drift；这些历史问题不再修复，也不再阻塞课程推进。
-- 下一步准确入口：继续第5课《Aave / Kamino 的借贷业务与链上数据语义》理解检查问题一至三，不提前标记结课。
+- 下一步准确入口：学员提出开始下一课时，进入 Module 14 第6课《Lending Business Understanding Review》，设置3～5道跨场景新题，不重复第1～5课已有理解题，不考生产级工程实现。
 
 ## 目录
 

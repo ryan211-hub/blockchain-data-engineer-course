@@ -40,9 +40,9 @@
 - 当前阶段：第四阶段 Protocol / Web3 业务理解
 - 当前 Module：Module 14 — Lending
 - 已完成 Lesson：第1课｜为什么需要 DeFi Lending：不卖 ETH，也能借到 USDC？（理解检查三题全部通过）；第2课｜Collateral、LTV 与 Health Factor：借多少才安全？（三题通过）；第3课｜Supplier、Borrower 与 Interest：谁支付利息，谁得到收益？（理解检查三题通过）；第4课｜Liquidation：抵押品价格下跌后，谁承担风险？（问题一补充后通过，问题二与三通过）；第5课｜Aave / Kamino 的借贷业务与链上数据语义（学员确认课程通过；教师示范解答，非独立考核通过）
-- 当前 Lesson：第6课｜Lending Business Understanding Review（待开始）
-- 当前状态：第5课已通过（学员明确确认业务理解课程通过）；三道理解题由教师示范解答，没有学员独立作答，不能记为三题独立考核通过。第6课综合检查待开始。
-- 下一步准确入口：学员请求下一课时开始第6课《Lending Business Understanding Review》，设置不重复前5课的3～5道业务综合新题。
+- 当前 Lesson：第6课｜Lending Business Understanding Review（综合检查中）
+- 当前状态：第5课已通过（教师示范解答，非独立考核通过）；第6课正式综合检查已发布并同步教材，四道新题待作答，Module 14 尚未结课。
+- 下一步准确入口：回答第6课四道综合业务题：杠杆敞口、Gross Supply 资金来源、连锁清算风险、DEX 价格与 Oracle 清算边界。
  
 ## 课程路径
 
@@ -51,4 +51,4 @@
 - [第3课｜Supplier、Borrower 与 Interest：谁支付利息，谁得到收益？](lesson-03-supplier-borrower-interest.md)
 - [第4课｜Liquidation：抵押品价格下跌后，谁承担风险？](lesson-04-liquidation-risks-and-incentives.md)
 - [第5课｜Aave / Kamino 的借贷业务与链上数据语义](lesson-05-aave-kamino-lending-data-semantics.md)
-- 第6课｜Lending Business Understanding Review（待创建）
+- [第6课｜Lending Business Understanding Review](lesson-06-lending-business-understanding-review.md)

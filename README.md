@@ -24,17 +24,17 @@
 
 - 当前阶段：第四阶段 Protocol
 - 已完成 Module：Module 1、Module 2、Module 3、Module 4、Module 5、Module 6、Module 7、Module 8、Module 9、Module 10、Module 11、Module 12, Module 13（业务理解完成；第10课问题一、二通过，问题三教师示范，问题四部分校准和教师讲解，未记全部独立通过）、Module 14（Lending 第1～6课完成；第5课教师示范并确认通过，第6课四题最终通过；工程实践后置）
-- 当前 Module：Module 15 — NFT（待开始）
+- 当前 Module：Module 15 — NFT
 - Module 6 完成结论：第 1～4 课均已完成，已达到 Module Contract 结束标准。已能区分 History / Historical State，解释 Pruning、Archive 成本，并根据 Query Semantics、Derived State、规模与 TCO 判断 Archive RPC / Self-hosted / Hybrid。
 - Module 7 完成结论：第 1～10 课与结课综合实践均已完成；Mini Indexer 五项验收 Normal Sync / Idempotent Replay / Crash Recovery / Backfill / Reorg Recovery 全部通过，已达到 Module Contract 结束标准。五项实践由用户在 Codex 中实际完成并明确确认通过。
 - Module 8 完成结论：第 1～8 课与结束标准综合检查均已完成，已达到 Module Contract 结束标准。已能从 Query Semantics 推导 Business Object、Grain、Source Identity、Unique Key、Fact / Dimension、Relation 与 Layer，并区分 Source Identity 与 Business Identity。
 - Module 9 完成结论：第 1～7 课与结束标准综合检查均已完成，达到 Module Contract 结束标准。已能独立设计基础 Blockchain Batch ETL Pipeline，并解释 Source / Target、Processing Range、Grain、Unique Key、Watermark / Cursor / Checkpoint、Idempotency、Validation、Late-arriving / Reorg、Lookback / Backfill / Historical Repair、DAG Dependency 与 Scheduler / Orchestrator。
-- 当前 Lesson：Module 15 第1课（待开始；正式标题待依 Module Contract 确定）
-- 当前状态：Module 14 — Lending 已正式结课，Module 14 第6课综合检查四题全部最终通过（问题一初答通过；问题二校准后通过；问题三、四经补充回答通过）；第5课教师示范由学员确认通过，未记独立答题。Module 15 — NFT 尚未开始。
+- 当前 Lesson：Module 15 第1课｜为什么需要 NFT：拥有一张图片和拥有一个 Token 有什么不同？（理解检查中）
+- 当前状态：Module 14 — Lending 已结课；Module 15 — NFT 第1课正式授课并创建初版教材，三道理解检查待回答，尚未结课。
 - 最近完成：Module 14 — Lending 第6课《Lending Business Understanding Review》四题最终通过，整个 Module 达到 Business Understanding 结束标准，工程实践留在第五阶段。
 - 最近掌握重点：循环借贷放大资产敞口和损益；Gross Supply / Borrow 不等于外部新增净资本；下跌与清算可能形成有条件的卖压反馈；Oracle 定价、可清算条件与实际清算执行不同。
 - 历史同步债务处理决定：用户已明确要求忽略 Module 8 第 4～6 课的既有 Notion / GitHub 同步债务与第 5 课 Canonical Drift；这些历史问题不再修复，也不再阻塞课程推进。
-- 下一步准确入口：用户请求下一课时，读取 AI 提示词和 Module 15 课程规划，开始 Module 15 — NFT 第1课（待开始），第四阶段继续采用业务理解优先及轻量综合检查规则。
+- 下一步准确入口：继续 Module 15 — NFT 第1课的三道理解检查：复制图片与 NFT 身份、Token Ownership 与作品版权、Transfer 与 Sale 的证据边界。
 
 ## 目录
 
@@ -49,6 +49,7 @@
 - [Module 12 — 数据质量](module-12-data-quality/README.md)
 - [Module 13 — DEX](module-13-dex/README.md)
 - [Module 14 — Lending](module-14-lending/README.md)
+- [Module 15 — NFT](module-15-nft/README.md)
 
 ## 同步规则
 

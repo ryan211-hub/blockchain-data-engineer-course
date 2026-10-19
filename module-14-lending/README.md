@@ -39,10 +39,10 @@
 ## 当前学习进度
 - 当前阶段：第四阶段 Protocol / Web3 业务理解
 - 当前 Module：Module 14 — Lending
-- 已完成 Lesson：第1课｜为什么需要 DeFi Lending：不卖 ETH，也能借到 USDC？（理解检查三题全部通过）；第2课｜Collateral、LTV 与 Health Factor：借多少才安全？（三题通过）；第3课｜Supplier、Borrower 与 Interest：谁支付利息，谁得到收益？（理解检查三题通过）；第4课｜Liquidation：抵押品价格下跌后，谁承担风险？（问题一补充后通过，问题二与三通过）；第5课｜Aave / Kamino 的借贷业务与链上数据语义（学员确认课程通过；教师示范解答，非独立考核通过）
-- 当前 Lesson：第6课｜Lending Business Understanding Review（综合检查中）
-- 当前状态：第5课已通过（教师示范解答，非独立考核通过）；第6课正式综合检查已发布并同步教材，四道新题待作答，Module 14 尚未结课。
-- 下一步准确入口：回答第6课四道综合业务题：杠杆敞口、Gross Supply 资金来源、连锁清算风险、DEX 价格与 Oracle 清算边界。
+- 已完成 Lesson：第1课｜为什么需要 DeFi Lending：不卖 ETH，也能借到 USDC？（理解检查三题全部通过）；第2课｜Collateral、LTV 与 Health Factor：借多少才安全？（三题通过）；第3课｜Supplier、Borrower 与 Interest：谁支付利息，谁得到收益？（理解检查三题通过）；第4课｜Liquidation：抵押品价格下跌后，谁承担风险？（问题一补充后通过，问题二与三通过）；第5课｜Aave / Kamino 的借贷业务与链上数据语义（学员确认课程通过；教师示范解答，非独立考核通过）；第6课｜Lending Business Understanding Review（四道综合题最终通过：问题一初答通过，问题二校准通过，问题三、四补充通过）
+- 当前 Lesson：第6课｜Lending Business Understanding Review（已通过、正式结课）
+- 当前状态：Module 14 — Lending 第1～6课均已完成，Module 14 正式结课，达到第四阶段 Business Understanding 结束标准。第5课教师示范答题不记为独立通过；第6课四道综合题最终通过，工程实践后置。
+- 下一步准确入口：结束 Module 14；学员请求下一课时转入 Module 15 — NFT 第1课（待开始）。
  
 ## 课程路径
 

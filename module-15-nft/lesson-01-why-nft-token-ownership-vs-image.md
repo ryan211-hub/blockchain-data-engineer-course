@@ -243,3 +243,20 @@ To: Bob
 - [ERC-1155 Multi-Token Standard](https://eips.ethereum.org/EIPS/eip-1155)
 - [OpenSea Metadata Standards](https://docs.opensea.io/docs/metadata-standards)
 - [OpenSea Metadata Storage](https://docs.opensea.io/docs/metadata-storage)
+
+## 第1课理解检查｜学员原始回答与教师校准
+### 学员原始回答（保持原文）
+问题一：
+Charlie 没有因此拥有了相同的 NFT。因为 Charlie 有的只是一个图片，而 Bob 他在链上有唯一的 Token，这个 Token 里面有元数据来指向这个图片，以此证明 Bob 拥有这个 Digital Cat NFT
+问题 2：这个判断不正确。因为数字艺术品的全部版权和商业使用权和 NFT 是不同的，所以具体要看这个 NFT 所包含了哪些东西。
+问题 3：
+从这个记录上可以看到，这个 Digital Cat 它有 transfer 的记录，从 Alice 到 Bob，并不能证明 Bob 是花了钱的。
+要证明这个的话，还需要有 Bob 和 Alice 的交易转账记录。
+### 教师判断与校准
+**问题一：通过。** 学员准确区分可复制的图片文件与合约中具有独立 Token ID 和所有权记录的 ERC-721 NFT。教师补充：NFT 不一定在 Token 内直接储存 Metadata；常见实现由合约 tokenURI 指向元数据位置。链上记录能验证特定 Token 的持有者，不自动证明图片原创性或版权归属。
+**问题二：通过。** 学员正确识别 NFT Token Ownership 与作品著作权、商业使用权不自动一致。教师补充：具体权益由授权许可、合同、相关项目条款及适用法律决定，不只由 Metadata 本身决定。
+**问题三：通过。** 学员正确区分 ERC-721 Transfer 与实际 NFT Sale，并指出需要核对资金转账证据。教师补充：单独一笔 Bob → Alice 的资金转账也不足以直接证明是本次 NFT 的买卖对价，需结合 Marketplace 成交/订单履约、结算信息与相关交易上下文确认经济关联。
+## 第1课理解检查｜正式结课判定
+**Module 15 第1课《为什么需要 NFT：拥有一张图片和拥有一个 Token 有什么不同？》三道理解检查全部独立回答并通过，正式结课。**
+本课掌握的业务边界：Image Copy ≠ NFT Ownership；NFT Ownership ≠ Copyright Ownership；NFT Transfer ≠ NFT Sale。
+**下一课（待开始）：Module 15 第2课《Mint、Transfer、Burn：NFT 如何产生与流转》。** 后续课程按第四阶段 Business Understanding 优先规则推进。

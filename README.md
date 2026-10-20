@@ -29,12 +29,12 @@
 - Module 7 完成结论：第 1～10 课与结课综合实践均已完成；Mini Indexer 五项验收 Normal Sync / Idempotent Replay / Crash Recovery / Backfill / Reorg Recovery 全部通过，已达到 Module Contract 结束标准。五项实践由用户在 Codex 中实际完成并明确确认通过。
 - Module 8 完成结论：第 1～8 课与结束标准综合检查均已完成，已达到 Module Contract 结束标准。已能从 Query Semantics 推导 Business Object、Grain、Source Identity、Unique Key、Fact / Dimension、Relation 与 Layer，并区分 Source Identity 与 Business Identity。
 - Module 9 完成结论：第 1～7 课与结束标准综合检查均已完成，达到 Module Contract 结束标准。已能独立设计基础 Blockchain Batch ETL Pipeline，并解释 Source / Target、Processing Range、Grain、Unique Key、Watermark / Cursor / Checkpoint、Idempotency、Validation、Late-arriving / Reorg、Lookback / Backfill / Historical Repair、DAG Dependency 与 Scheduler / Orchestrator。
-- 当前 Lesson：Module 15 第1课｜为什么需要 NFT：拥有一张图片和拥有一个 Token 有什么不同？（理解检查中）
-- 当前状态：Module 14 — Lending 已结课；Module 15 — NFT 第1课正式授课并创建初版教材，三道理解检查待回答，尚未结课。
-- 最近完成：Module 14 — Lending 第6课《Lending Business Understanding Review》四题最终通过，整个 Module 达到 Business Understanding 结束标准，工程实践留在第五阶段。
-- 最近掌握重点：循环借贷放大资产敞口和损益；Gross Supply / Borrow 不等于外部新增净资本；下跌与清算可能形成有条件的卖压反馈；Oracle 定价、可清算条件与实际清算执行不同。
+- 当前 Lesson：Module 15 第2课｜Mint、Transfer、Burn：NFT 如何产生与流转（待开始）
+- 当前状态：Module 15 第1课三题独立回答并全部通过，正式结课；第2课《Mint、Transfer、Burn：NFT 如何产生与流转》待开始。
+- 最近完成：Module 15 第1课《为什么需要 NFT：拥有一张图片和拥有一个 Token 有什么不同？》三题独立通过，正式结课。
+- 最近掌握重点：Image Copy 不等于 NFT Ownership；NFT Ownership 不自动赋予作品版权；Transfer Event 不能独立证明 Sale，需结合 Marketplace 成交与支付关联。
 - 历史同步债务处理决定：用户已明确要求忽略 Module 8 第 4～6 课的既有 Notion / GitHub 同步债务与第 5 课 Canonical Drift；这些历史问题不再修复，也不再阻塞课程推进。
-- 下一步准确入口：继续 Module 15 — NFT 第1课的三道理解检查：复制图片与 NFT 身份、Token Ownership 与作品版权、Transfer 与 Sale 的证据边界。
+- 下一步准确入口：进入 Module 15 第2课《Mint、Transfer、Burn：NFT 如何产生与流转》（待开始）。
 
 ## 目录
 

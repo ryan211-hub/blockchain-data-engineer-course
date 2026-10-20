@@ -296,3 +296,35 @@ tokenURI = ipfs://CID_B/1001.json
 这个判断是否正确？为什么？
 
 请一次性回答三道题。通过后正式结束第3课。
+
+## 第3课理解检查｜学员原始回答（2026-10-20）
+
+问题一：
+
+1. Bob还拥有这个 NFT
+2. NFT 图片无法显示，但是 NFT 还是存在链上的
+3. 因为链上的 NFT 和链下的原始图片它们其实是分离的，所以即使图片无法显示了，它也不影响链上的 NFT 继续存在。
+
+问题二：
+
+IPFS 能保证的是Content Addressing + Content Integrity，它并不能保证 metadata 里面的内容能否改变，这个是由链上合约来决定的
+
+问题三：
+
+这个判断不正确。因为掌握全部的 Transfer Event，只代表了这个 NFT 在链上的 Transfer 记录；而 NFT 的名称、图片、颜色和稀有度这些，还需要涉及到额外的链下数据，如media数据。
+
+## 教师判断与校准（2026-10-20）
+
+**评估结果：三道题全部独立作答并通过，达到本课 Business Understanding 标准。**
+
+**问题一：通过。** Bob 仍持有链上 NFT。Metadata / Media 的可用性与 Token Ownership 是不同层次；服务器关闭、图片失效不自动销毁 Token。
+
+**问题二：通过，补充细节。** IPFS 采用 Content Addressing，CID 与内容完整性相关。同一 CID 对应内容具有完整性约束，但 NFT 当前引用哪个 CID（Reference Mutability），在题设中由可修改 tokenURI 的合约实现决定。引用也可能通过链下可变机制变化。
+
+**问题三：通过。** ERC-721 Transfer Events 能说明所有权转移历史，不能独立还原名称、图片、颜色和稀有度。名称、颜色、稀有度等来自 Metadata JSON，图片本身属于 Media；需额外读取 tokenURI、Metadata 与 Media。
+
+## 第3课正式结课判定
+
+Module 15 第3课《Metadata：NFT 图片、属性和 URI 存在哪里？》三道理解检查由学员独立作答并全部通过，正式结课。
+
+下一课：Module 15 第4课《Collection：发行、稀缺性与项目价值》（待开始）。

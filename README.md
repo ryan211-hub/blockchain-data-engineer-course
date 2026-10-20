@@ -29,12 +29,12 @@
 - Module 7 完成结论：第 1～10 课与结课综合实践均已完成；Mini Indexer 五项验收 Normal Sync / Idempotent Replay / Crash Recovery / Backfill / Reorg Recovery 全部通过，已达到 Module Contract 结束标准。五项实践由用户在 Codex 中实际完成并明确确认通过。
 - Module 8 完成结论：第 1～8 课与结束标准综合检查均已完成，已达到 Module Contract 结束标准。已能从 Query Semantics 推导 Business Object、Grain、Source Identity、Unique Key、Fact / Dimension、Relation 与 Layer，并区分 Source Identity 与 Business Identity。
 - Module 9 完成结论：第 1～7 课与结束标准综合检查均已完成，达到 Module Contract 结束标准。已能独立设计基础 Blockchain Batch ETL Pipeline，并解释 Source / Target、Processing Range、Grain、Unique Key、Watermark / Cursor / Checkpoint、Idempotency、Validation、Late-arriving / Reorg、Lookback / Backfill / Historical Repair、DAG Dependency 与 Scheduler / Orchestrator。
-- 当前 Lesson：Module 15 第3课｜Metadata：NFT 图片、属性和 URI 存在哪里（待开始）
-- 当前状态：Module 15 第2课三题独立回答并校准通过，正式结课；第3课待开始。
+- 当前 Lesson：Module 15 第3课｜Metadata：NFT 图片、属性和 URI 存在哪里（理解检查中）
+- 当前状态：Module 15 第2课三题独立回答并校准通过，正式结课；第3课已授课，三道理解检查待回答。
 - 最近完成：Module 15 第2课《Mint、Transfer、Burn：NFT 如何产生与流转》三题独立通过，正式结课。
 - 最近掌握重点：ERC-721 Mint/Transfer/Burn；Zero Address 不是系统账户；Burn 保留历史记录；Transfer Count ≠ Sales Count ≠ Trading Volume。
 - 历史同步债务处理决定：用户已明确要求忽略 Module 8 第 4～6 课的既有 Notion / GitHub 同步债务与第 5 课 Canonical Drift；这些历史问题不再修复，也不再阻塞课程推进。
-- 下一步准确入口：进入 Module 15 第3课《Metadata：NFT 图片、属性和 URI 存在哪里》（待开始）。
+- 下一步准确入口：完成 Module 15 第3课《Metadata：NFT 图片、属性和 URI 存在哪里》的三道理解检查。
 
 ## 目录
 

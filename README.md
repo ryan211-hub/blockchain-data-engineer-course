@@ -29,12 +29,12 @@
 - Module 7 完成结论：第 1～10 课与结课综合实践均已完成；Mini Indexer 五项验收 Normal Sync / Idempotent Replay / Crash Recovery / Backfill / Reorg Recovery 全部通过，已达到 Module Contract 结束标准。五项实践由用户在 Codex 中实际完成并明确确认通过。
 - Module 8 完成结论：第 1～8 课与结束标准综合检查均已完成，已达到 Module Contract 结束标准。已能从 Query Semantics 推导 Business Object、Grain、Source Identity、Unique Key、Fact / Dimension、Relation 与 Layer，并区分 Source Identity 与 Business Identity。
 - Module 9 完成结论：第 1～7 课与结束标准综合检查均已完成，达到 Module Contract 结束标准。已能独立设计基础 Blockchain Batch ETL Pipeline，并解释 Source / Target、Processing Range、Grain、Unique Key、Watermark / Cursor / Checkpoint、Idempotency、Validation、Late-arriving / Reorg、Lookback / Backfill / Historical Repair、DAG Dependency 与 Scheduler / Orchestrator。
-- 当前 Lesson：Module 15 第4课｜Collection：发行、稀缺性与项目价值（待开始）
-- 当前状态：Module 15 第3课三题独立回答并通过，正式结课；第4课待开始。
-- 最近完成：Module 15 第3课《Metadata：NFT 图片、属性和 URI 存在哪里》三题独立通过，正式结课。
-- 最近掌握重点：Token、Metadata、Media 分离；Content Addressing / Integrity 不等于引用不可变；Transfer Events 不包含完整 Metadata。
+- 当前 Lesson：Module 15 第5课｜Marketplace：Listing、Sale、Fee 与 Royalty（待开始）
+- 当前状态：Module 15 第4课三题独立回答并通过，正式结课；第5课待开始。
+- 最近完成：Module 15 第4课《Collection：发行、稀缺性与项目价值》三题独立通过，正式结课。
+- 最近掌握重点：Scarcity 不保证 Demand；Floor Price 不等于成交价及可变现价值；Current Supply 与 Maximum Supply 区分；Transfer Events 无法独立证明最大发行限制。
 - 历史同步债务处理决定：用户已明确要求忽略 Module 8 第 4～6 课的既有 Notion / GitHub 同步债务与第 5 课 Canonical Drift；这些历史问题不再修复，也不再阻塞课程推进。
-- 下一步准确入口：进入 Module 15 第4课《Collection：发行、稀缺性与项目价值》（待开始）。
+- 下一步准确入口：进入 Module 15 第5课《Marketplace：Listing、Sale、Fee 与 Royalty》（待开始）。
 
 ## 目录
 

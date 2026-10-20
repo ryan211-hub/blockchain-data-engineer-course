@@ -44,16 +44,16 @@
 
 - 当前阶段：第四阶段 Protocol / Web3 业务理解
 - 当前 Module：Module 15 — NFT
-- 已完成 Lesson：第1～3课（均三题独立回答并通过，正式结课）
-- 当前 Lesson：第4课｜Collection：发行、稀缺性与项目价值（待开始）
-- 当前状态：第3课三题独立回答并通过，正式结课；第4课待开始。
-- 下一步准确入口：第4课《Collection：发行、稀缺性与项目价值》（待开始），继续第四阶段业务理解。
+- 已完成 Lesson：第1～4课（均三题独立回答并通过，正式结课）
+- 当前 Lesson：第5课｜Marketplace：Listing、Sale、Fee 与 Royalty（待开始）
+- 当前状态：第4课三题独立回答并通过，正式结课；第5课待开始。
+- 下一步准确入口：第5课《Marketplace：Listing、Sale、Fee 与 Royalty》（待开始），继续第四阶段业务理解。
 
 ## 课程路径
 
 - [第1课｜为什么需要 NFT：拥有一张图片和拥有一个 Token 有什么不同？](lesson-01-why-nft-token-ownership-vs-image.md)
 - [第2课｜Mint、Transfer、Burn：NFT 如何产生与流转](lesson-02-mint-transfer-burn.md)
 - [第3课｜Metadata：NFT 图片、属性和 URI 存在哪里](lesson-03-nft-metadata.md)
-- 第4课｜Collection：发行、稀缺性与项目价值（待创建）
+- [第4课｜Collection：发行、稀缺性与项目价值](lesson-04-collection-scarcity-value.md)
 - 第5课｜Marketplace：Listing、Sale、Fee 与 Royalty（待创建）
 - 第6课｜NFT Business Understanding Review（待创建）

@@ -55,5 +55,5 @@
 - [第2课｜Mint、Transfer、Burn：NFT 如何产生与流转](lesson-02-mint-transfer-burn.md)
 - [第3课｜Metadata：NFT 图片、属性和 URI 存在哪里](lesson-03-nft-metadata.md)
 - [第4课｜Collection：发行、稀缺性与项目价值](lesson-04-collection-scarcity-value.md)
-- 第5课｜Marketplace：Listing、Sale、Fee 与 Royalty（待创建）
-- 第6课｜NFT Business Understanding Review（待创建）
+- [第5课｜Marketplace：Listing、Sale、Fee 与 Royalty](lesson-05-marketplace.md)
+- [第6课｜NFT Business Understanding Review](lesson-06-nft-business-review.md)

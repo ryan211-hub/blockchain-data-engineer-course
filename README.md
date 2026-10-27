@@ -51,6 +51,14 @@
 - [Module 14 — Lending](module-14-lending/README.md)
 - [Module 15 — NFT](module-15-nft/README.md)
 
+## 批量发布教材（2026-10-27）
+
+- [Module 16 — Staking](module-16-staking/README.md)
+- [Module 17 — Wallet Label](module-17-wallet-label/README.md)
+- [第五阶段 Portfolio](portfolio/README.md)
+- Module 15 第5–6课、Module 16 第1–4课、Module 17 第1–4课、Portfolio Project 1–5：Material Published（教材已发布），Learning Studied / Practiced / Verified 尚未按此次发布变更。
+- 课后题用于自学，不强制回答；项目验收标准保留但不自动判定项目通过。
+
 ## 同步规则
 
 每课结束或暂停时：
